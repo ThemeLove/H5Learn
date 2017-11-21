@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>before和after的使用</title>
+	<style type="text/css">
+		div{
+			width: 600px;
+			height:600px;
+			/*背景颜色*/
+			background-color: #f00;
+			/*内容颜色*/
+			color: black;
+		}
+
+/*伪元素*/
+		div:before{
+			width: 200px;
+			height: 150px;
+			background-color: #0f0;
+
+/*display :修改元素的显示方式
+ content:伪元素的内容
+ 伪元素要显示，这两个字段必须要有
+*/
+			display: block;
+			content: "我是伪元素before里的内容";
+		}
+		div:after{
+			width:200px;
+			height: 150px;
+			background-color: #00f;
+
+			display: block;
+			content: "";
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<p>我是div里p标签的内容</p>
+	</div>
+</body>
+</html>

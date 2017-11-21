@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>伪元素first-letter和first-line</title>
+	<style type="text/css">
+		p{
+			/*标签内容颜色*/
+			color: blue;
+		}
+
+		p:first-line{
+			/*第一行标签里的内容为红色，第二行颜色还是为p元素的blue色，字体大小为large*/
+			color: red;
+			font-size: large;
+		}
+
+		p:first-letter{
+			/*首字母字体大小为xx-large,颜色为green*/
+			font-size:xx-large;
+			color:green;
+		}
+
+	</style>
+</head>
+<body>
+	<h1>消愁</h1>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp--------毛不易
+	<p>当你走进这欢乐场，背上所有梦与想；各色的脸上各色的妆，没人记得你的模样；<br/>三巡酒过你在角落，固执的唱着苦涩的歌，听他在喧嚣里被淹没.</p>
+</body>
+</html>
