@@ -1,0 +1,41 @@
+*{
+	margin: 0;
+	padding:0;
+}
+
+body{
+	background-color: #fae8c8;
+}
+
+.login-box{
+	width: 450px;
+	height: 620px;
+	background-color:#fff;
+	margin-left: 100px;
+	margin-top: 100px;
+	padding-left: 16px;
+	padding-right: 16px;
+}
+
+.login-box h3{
+	font: 30px/100px "Microsoft YaHei";
+}
+
+.user-pwd input{
+	display: block;
+	width: 100%;
+	height: 60px;
+	font-size: 20px;
+	text-indent: 56px;
+	background-repeat: no-repeat;
+	background-position: 9px 8px;
+}
+
+.user-name{
+	background: url(../images/user-bg.png);
+}
+
+.user-pwd{
+	margin-top: 10px;
+	background: url(../images/pwd-bg.png) ;
+}
