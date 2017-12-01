@@ -1,0 +1,26 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+table{
+	margin: 0 auto;
+	width: 800px;
+	border-collapse: collapse;
+}
+caption{
+	margin-top: 10px;
+	margin-bottom:10px;
+}
+tr{
+	border: 1px solid green;
+	background: red;
+	height: 50px;
+	text-align: center;
+	padding: 3px;
+}
+th,td{
+	border: 1px solid green;
+}
+td{
+	background: white;
+}
