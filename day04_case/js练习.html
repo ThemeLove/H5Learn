@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js测试</title>
+	<style type="text/css">
+		input{
+			width: 200px;
+			height: 50px;
+		}
+		button{
+			width: 200px;
+			height: 50px;
+		}
+	</style>
+	<script type="text/javascript" src="./js/test.js"></script>
+</head>
+<body>
+	<input value="按钮1" type="button" onclick="javascript:alert('我是按钮1--->叫你点，你就主动点！')"></input>
+	<input value="按钮2 " type="button" onclick="onClick('我是按钮2--->你主动点我呀！')"></input>
+	<button onclick="onClick('我是按钮3--->快点我ya!')" value="按钮3">按钮3</button><br/>
+	<input  type="text" placeholder="输入点什么吧，我会原样显示到浏览器哦" id="message" ><br/>
+	<span id="input_message" style="color:#F00"></span><br/>
+	<button onclick="writeToBrowse()">点我显示到浏览器</button>
+</body>
+</html>
