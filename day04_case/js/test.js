@@ -12,5 +12,5 @@ function onClick(text) {
 function writeToBrowse(){
 	var message=document.getElementById("message").value;
 	document.getElementById("input_message").innerHTML=message;
-	document.write(message+"\\"+message);
+	document.write(message);
 }
