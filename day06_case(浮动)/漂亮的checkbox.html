@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>漂亮的checkbox</title>
+	<style type="text/css">
+		input{
+			width: 24px;
+			height: 24px;
+			display: none;
+		}
+
+		input:checked+label{
+			background:url(./images/checked.png);
+		}
+
+		label{
+			width: 24px;
+			height: 24px;
+			background:#ccc;
+			display: block;
+		}
+
+	</style>
+</head>
+<body>
+	<!-- <input type="checkbox" id="xxx"><label for="xxx">我是关联了checkbox的label</label></input> -->
+	<input type="checkbox" id="xxx"><label for="xxx"></label></input>
+</body>
+</html>
