@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>注册表单边框</title>
+	<style type="text/css">
+		input{
+			border: none;
+			outline: none;
+		}
+
+		.username{
+			margin-top: 20px;
+			background-color: #E7EEFE;
+			border: 1px dashed #ccc;
+		}
+		.username:focus{
+			background-color: pink;
+			border-color: blue;
+		}
+
+		.email{
+			margin-top: 20px;
+			border-bottom: 1px dashed pink;
+		}
+
+		.search{
+			margin-top: 20px;
+			border: 1px dotted cyan;
+		}
+
+	</style>
+</head>
+<body>
+	<div>
+		<form action="">
+			用户名：<input type="text" class="username"><br/>
+			邮　箱：<input type="text" class="email"><br/>
+			搜索一下：<input type="text" class="search" placeholder="请输入"><br/>
+		</form>
+	</div>
+</body>
+</html>

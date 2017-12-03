@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>通栏布局</title>
+	<style type="text/css">
+		*{
+			margin: 0px;
+			padding:0px;
+		}
+
+		.div_header{
+			background-color: red;
+			height: 30px;
+		}
+
+		.w {
+			margin: 45px auto;
+			width: 1000px;
+			height: 500px;
+			background-color: #000;
+		}
+
+		.div_red{
+			background-color: #f00;	
+			width: 200px;
+			height: inherit;
+			float: left;
+		}
+
+		.div_green{
+			background-color: #0f0;
+			width: 580px;
+			height: 300px;
+			float: left;
+			margin:0px 10px;
+		}
+
+		.div_yellow{
+			width: 200px;
+			height: inherit;
+			background-color: yellow;
+			float:right;
+		}
+
+		.div_purple{
+			width: 285px;
+			height: 190px;
+			background-color:purple;
+			margin-left: 10px;
+			margin-top: 10px;
+			float: left;
+		}
+
+		.div_footer {
+			background-color: cyan;
+			height: 100px;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="div_header"></div>
+	<div class="w">
+		<div class="div_red"></div>
+		<div class="div_green"></div>
+		<div class="div_yellow"></div>
+		<div class="div_purple"></div>
+		<div class="div_purple"></div>
+	</div>
+	<div class="div_footer w"></div>
+</body>
+</html>
