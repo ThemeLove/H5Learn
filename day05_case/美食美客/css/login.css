@@ -189,3 +189,87 @@ body{
 }
 
 /*其他登录方式部分 结束*/
+
+/*底部footer的开始*/
+.footer{
+	width: 100%;
+	height: 283px;
+	background-color: #2f2f2f;
+	padding:11px;
+	margin-top: 35px;
+}
+.footer-outer{
+	height: 243px;
+	border: 2px solid #ffd283;
+	position: relative;
+	padding:20px 0;
+}
+
+.footer .square{
+	width: 14px;
+	height: 14px;
+	background-color: #2f2f2f;
+	display: block;
+	position: absolute;
+	/*溢出部分隐藏*/
+	overflow: hidden;
+}
+
+.footer .left-top{
+	left: -2px;
+	top: -2px;
+}
+
+.footer .left-bottom{
+	left: -2px;
+	bottom:-2px;
+}
+
+.footer .right-top{
+	right:-2px;
+	top: -2px;
+}
+
+.footer .right-bottom{
+	right: -2px;
+	bottom: -2px;
+}
+
+.footer .circle{
+	width: 28px;
+	height: 28px;
+	background-color:#2f2f2f;
+	position: absolute;
+	border: 2px solid #ffd283;
+	border-radius: 14px;
+}
+
+.left-top .circle{
+	right: 0px;
+	bottom: 0px;
+}
+
+.left-bottom .circle{
+	right: 0px;
+	top: 0px;
+}
+
+.right-top .circle{
+	left: 0px;
+	bottom: 0px;
+}
+
+.right-bottom .circle{
+	left: 0px;
+	top: 0px;
+}
+
+
+.footer-inner{
+	margin: 0px auto;
+	height: inherit;
+	background-color: #f00;
+}
+
+
+/*底部footer的结束*/
