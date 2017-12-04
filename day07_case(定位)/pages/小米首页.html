@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>小米首页</title>
+	<style type="text/css">
+		.main{
+			margin: 200px auto;
+			width: 1226px;
+			height: 460px;
+			background-image: url(../images/xiaomi_content.png);
+			position:relative;
+		}
+
+		.arrow-left{
+			width: 43px;
+			height: 69px;
+			background-image: url(../images/xiaomi_arrows.png);
+			background-position:-83px;
+			position: absolute;
+			left:0px;
+			top:200px;
+		}
+
+		.arrow-left:hover{
+			background-position:left;
+		}
+
+		.arrow-right{
+			position: absolute;
+			right:0px;
+			top:200px;
+			width: 43px;
+			height: 69px;
+			background-image: url(../images/xiaomi_arrows.png);
+			background-position:-123px;
+		}
+
+		.arrow-right:hover{
+			background-position:-43px;
+		}
+
+		.slides-bottom{
+			width: 200px;
+			height: 20px;
+			background-color: #00f;
+			position: absolute;
+			left: 50%;
+			bottom: 0px;
+			margin-left: -50px;
+		}
+	</style>
+</head>
+<body>
+	<div class="main">
+		<div class="arrow-left"></div>
+		<div class="arrow-right"></div>
+		<div class="slides-bottom"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>四分之一圆弧</title>
+	<style type="text/css">
+		*{
+			margin:0px;
+			padding: 0px;
+		}
+
+		.square{
+			margin:100px 200px;
+			width: 50px;
+			height: 50px;
+			/*background-color: rgba(0,255,0,1);*/
+			background-color: white;
+			position: relative;
+			/*溢出部分隐藏*/
+			overflow: hidden;
+		}
+
+		.circle{
+			width: 100px;
+			height: 100px;
+			/*background-color: rgba(0,0,255,0.5);*/
+			background-color: white;
+			border:1px solid red;
+			border-radius: 50px;
+			position: absolute;
+			/*border-bottom-left-radius: 50px;*/
+		}
+	</style>
+</head>
+<body>
+	<div class="square">
+		<div class="circle"></div>
+	</div>
+</body>
+</html>

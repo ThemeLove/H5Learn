@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>层级概念</title>
+	<style type="text/css">
+
+		*{
+			margin: 0px;
+			padding: 0px;
+		}
+
+		.fl_red{
+			width: 300px;
+			height: 300px;
+			background-color:red;
+			float:left;
+			/*z-index: -1;*/
+		}
+
+		.static_green{
+			width: 400px;
+			height: 400px;
+			background-color: green;
+		}
+
+		.abs_blue{
+			width: 450px;
+			height: 200px;
+			background-color: blue;
+			position: absolute;
+			left: 30px;
+			top: 50px;
+			color:white;
+			/*z-index: -1;*/
+		}
+
+		.rl_cyan{
+			width: 150px;
+			height: 150px;
+			background-color: cyan;
+			position: relative;
+			left: 10px;
+			top:-10px;
+			/*z-index: -1;*/
+		}
+		
+		.fix_yellow{
+			width: 300px;
+			height: 100px;
+			background-color: yellow;
+			position: fixed;
+			left:350px;
+			top:20px;
+			z-index: -1;
+		}
+
+
+	h3{
+		margin-left: 50px;
+	}
+
+	</style>
+</head>
+<body>
+	<div class="fl_red">浮动-red</div>
+	<div class="static_green">静态-green</div>
+	<div class="abs_blue">
+		绝对定位-blue <br>
+		相对第一个非static的父元素<br>
+		left:30px<br>
+		right:50px;
+	</div>
+	<div class="rl_cyan">
+		相对定位-cyan<br/>
+		相对自身原始位置<br/>
+		left:10px<br/>
+		top:-10px</div>
+	<div class="fix_yellow">-------------固定定位-yellow<br/>
+		-------------------z-index:-1<br/>
+		-------------------将该层至于最底层
+	</div>
+
+	<h3>总结:<br/>
+		浮动、绝对定位、固定定位都能使元素脱离标志流<br/>
+		相对对位没有脱离标志流<br/>
+		绝对定位、相对定位、固定定位都要结合LTRB使用<br/>
+		z-index:-1 对绝对定位、相对定位、固定定位都有作用，可以将其置于图层最底层<br/>
+		z-index:-1 对浮动没有作用
+	</h3>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自定义三角</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding:0;
+		}
+
+		.content{
+			width: 150px;
+			height: 30px;
+			background-color: #f00;
+			margin: 200px auto;
+			color: white;
+			line-height: 30px;
+			position: relative;
+			text-align: center;
+		}
+
+		.arrow{
+			width: 0px;
+			border: 18px solid transparent;
+			border-top-color: red;
+			position: absolute;
+			top: 30px;
+			left: 50%;
+			margin-left: -18px;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="content">自定义箭头
+		<div class="arrow"></div>
+	</div>
+	
+</body>
+</html>
