@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>精灵图制作滑动门</title>
+	<style type="text/css">
+		*{
+			margin: 0px;
+			padding:0px;
+		}
+
+		.left{
+			margin: 200px 200px;
+			height: 36px;
+			background: url(../images/sprite.png) no-repeat left -144px;
+			padding-left: 20px;
+			float:left;
+		}
+
+		.left:hover{
+			background-position: left -192px;
+		}
+
+		.left:hover .right{
+			background-position: right -192px;
+		}
+
+		.right{
+			height: 36px;
+			background: url(../images/sprite.png) no-repeat right -144px;
+			color: white;
+			line-height: 36px;
+			float: left;
+			padding-right: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="left">
+		<a href="" class="right">afdsafdsafdsafdsafaaaaaaaaaa</a>
+	</div>
+</body>
+</html>

@@ -268,8 +268,49 @@ body{
 .footer-inner{
 	margin: 0px auto;
 	height: inherit;
-	background-color: #f00;
+	border-bottom:1px solid #ccc;
+} 
+
+.inner-intro{
+	width: 400px;
+	height: 180px;
+	float: left;
 }
 
+.inner-intro p{
+	color: #ccc;
+	font: 14px/40px "Microsoft YaHei"
+}
+
+.inner-intro p span{
+	color:rgba(255,0,0,0.5);
+	font: 16px "Microsoft YaHei"
+}
+
+.inner-icon{
+	width: 500px;
+	height: 180px;
+	float: right;
+}
+
+.inner-icon li {
+	width: 105px;
+	float: left;
+	margin-left: 26px;
+	list-style: none;
+	text-align: center;
+}
+.inner-icon li:first-child{
+	margin-left: 0px;
+}
+/*文字与图片的对齐方式*/
+.inner-icon li img{
+	vertical-align: bottom;
+}
+
+.inner-icon li a{
+	color: #666;
+	font-size: 12px;
+}
 
 /*底部footer的结束*/

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>滑动门完成微信导航</title>
+	<style type="text/css">
+		*{
+			margin: 0px;
+			padding: 0px;
+		}
+
+		body{
+			background:url(../images/sprite_weixin_bg.png) repeat-x;
+		}
+
+
+		.nav-items{
+
+		}
+
+		.nav-items ul{
+			margin-top: 19px;
+		}
+
+		.nav-items li{
+			background: url(../images/sprite.png) no-repeat;
+		}
+
+		.nav-items li a{
+			background: url(../images/sprite.png) no-repeat;
+		}
+
+
+		.nav-items li{
+			list-style: none;
+			color: white;
+			float: left;
+			margin-left: 30px;
+			background-position: left -144px;
+			padding-left: 20px;
+		}
+
+		.nav-items li:hover{
+			background-position:left -192px;
+		}
+
+		.nav-items li:hover a{
+			background-position: right -192px;
+		}
+
+		.nav-items li a{
+			text-decoration: none;
+			color: white;
+			line-height: 36px;
+			height: 36px;
+			background-position: right -144px;
+			padding-right: 20px;
+			float: left;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="nav-items">
+		<ul>
+			<li><a href="#">首页</a></li>
+			<li><a href="#">公众平台</a></li>
+			<li><a href="#">帮助与反馈</a></li>
+			<li><a href="#">表情开放平台</a></li>
+		</ul>
+	</div>
+	
+</body>
+</html>
