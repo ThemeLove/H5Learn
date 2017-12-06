@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>login</title>
+	<title>home</title>
 	<link rel="stylesheet" type="text/css" href="../css/init.css">
 	<link rel="stylesheet" type="text/css" href="../css/base.css">
-	<link rel="stylesheet" type="text/css" href="../css/login.css">
+	<link rel="stylesheet" type="text/css" href="../css/home.css">
 </head>
 <body>
+	<!-- 网站头部开始 -->
 	<div class="top">
 		<div class="welcome-msg">
 			<p class="w">您好，欢迎来到美食杰网！</p>
@@ -31,30 +32,58 @@
 			</div>
 		</div>
 	</div>
-	<div class="login-box w">
-		<h3>美食美客</h3>
-		<div class="user-pwd">
-			<input type="text" placeholder="请输入昵称" class="user-name">
-			<input type="text" placeholder="请输入密码" class="user-password">
-		</div>
-		<div class="tools">
-			<input type="checkbox">
-			自动登录
-			<a href="#">忘记密码?</a>
-		</div> 
-		<input type="button" class="login-btn" value="登录">
-		<div class="others">
-			<p>其他方式</p>
-			<ul>
-				<li class="tencent">QQ登录</li>
-				<li class="weibo">微博登录</li>
-				<li class="email">邮箱登录</li>
+	<!-- 网站头部结束 -->
+	<!-- 网站导航开始 -->
+	<div class="nav-items">
+		<div class="w">
+			<ul class="fl">
+				<li><a href="#">首页</a></li>
+				<li><a href="#">菜谱大全</a></li>
+				<li><a href="#">饮食健康</a></li>
+				<li><a href="#">家居馆</a></li>
+				<li><a href="#">美食达人</a></li>
+				<li><a href="#">讨论组</a></li>
+				<li><a href="#">手机版下载</a></li>
 			</ul>
-
 		</div>
-		<div></div>
+	</div>
+	<!-- 网站导航结束 -->
+
+	<!-- 早餐列表开始 -->
+	<h3 class="breakfast-title">今日早餐推荐：给心爱的她做顿元气满满的早餐吧</h3>
+	<div class="breakfast-item clear-fix">
+		<ul>
+			<li>
+				<a href="#" class="bread"></a>
+				<div class="intro"><h3>美味面包片</h3><span>美味面包片，营养双管齐下</span></div>
+				<div class="tip">补充能量</div>
+			</li>
+			<li>
+				<a href="#" class="dumpling"></a>
+				<div class="intro"><h3>香煎大混沌</h3><span>咸香在味蕾中绽放</span></div>
+				<div class="tip">均衡营养</div>
+			</li>
+			<li>
+				<a href="#" class="zongzi"></a>
+				<div class="intro"><h3>经典美粽</h3><span>美味的粽子，带有情怀</span></div>
+				<div class="tip">益智补脑</div>
+			</li>
+			<li>
+				<a href="#" class="milk"></a>
+				<div class="intro"><h3>冰沙杯鲜橙混合美味绝妙</h3><span>芒果、菠萝、很多草莓、绝美组合</span></div>
+				<div class="tip">均衡营养</div>
+			</li>
+		</ul>
+	</div>
+	<!-- 早餐列表结束 -->
+
+	<div class="big-search">
+		<div class="bigsearch-area">
+			<input type="text" placeholder="请输入" class="bigsearch-txt" >
+			<input type="text"  value="搜索" class="bigsearch-btn"></div>
 	</div>
 
+	<!-- 网站底部开始 -->
 	<div class="footer">
 		<div class="footer-outer">
 			<s class="square left-top">
@@ -87,13 +116,6 @@
 			</div>
 		</div>
 	</div>
-
-	<div>
-		
-	</div>
-
-	<div>
-		
-	</div>
+	<!-- 网站底部结束 -->
 </body>
 </html>
