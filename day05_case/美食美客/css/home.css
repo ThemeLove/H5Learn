@@ -115,6 +115,7 @@
 .big-search{
 	height: 100px;
 	background-color: #3f3a32;
+	overflow: hidden;
 }
 
 .big-search .bigsearch-area{
@@ -122,6 +123,7 @@
 	height: 77px;
 	margin:12px auto;
 	background-color: #f00;
+
 }
 
 .bigsearch-area .bigsearch-txt{
@@ -130,6 +132,8 @@
 	border:none;
 	outline: none;
 	float: left;
+	font:18px/77px "Microsoft YaHei";
+	text-indent: 1em;
 }
 
 .bigsearch-area .bigsearch-btn{
@@ -138,7 +142,12 @@
 	border:none;
 	outline: none;
 	float: left;
+	background-color: #f00;
+	font:18px/77px "Microsoft YaHei";
+	color: #fff;
+	text-align: center;
 }
+
 /*大搜索框结束*/
 
 
