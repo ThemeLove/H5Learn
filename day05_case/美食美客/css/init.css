@@ -37,3 +37,8 @@ input {
 	content:"";
 	clear:both;
 }
+
+/*隐藏*/
+.hidden{
+	visibility: hidden;
+}

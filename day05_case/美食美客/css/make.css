@@ -1,0 +1,36 @@
+
+/*首页导航开始*/
+.nav-items{
+	height: 77px;
+	background-color: #fff;
+}
+
+.nav-items ul{
+	width: inherit;
+	height: inherit;
+	height: 77px;
+	padding-left: 0px;
+}
+
+.nav-items ul li{
+	height:77px;
+	line-height: 77px;
+	float: left;
+	list-style: none;
+	margin-right: 20px;
+}
+
+.nav-items li a {
+	font: 700 18px "Microsoft YaHei";
+	color:#000;
+	list-style: none;
+}
+
+.nav-items li .cookbook{
+	border-bottom: 1px solid red;
+}
+
+/*首页导航结束*/
+
+
+
