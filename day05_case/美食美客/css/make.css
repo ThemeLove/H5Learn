@@ -1,5 +1,5 @@
 
-/*首页导航开始*/
+/*导航开始*/
 .nav-items{
 	height: 77px;
 	background-color: #fff;
@@ -29,8 +29,176 @@
 .nav-items li .cookbook{
 	border-bottom: 1px solid red;
 }
+/*导航结束*/
 
-/*首页导航结束*/
+/*面包屑导航开始*/
+.bread-nav{
+	height: 70px;
+}
 
+.bread-nav li{
+	display: block;
+	font: 20px/70px "Microsoft YaHei";
+	height: 70px;
+	color: #000;
+	float: left;
+}
+
+.bread-nav li a{
+	color: #666;
+}
+/*面包屑导航结束*/
+
+/*食品详情介绍开始*/
+.food-intro{
+	height: 447px;
+}
+
+.food-intro .intro-left{
+	width: 328px;
+	height: inherit;
+	float: left;
+	position: relative;
+}
+
+.intro-left .intro-border{
+	position: absolute;
+	left: 10px;
+	top: 10px;
+}
+
+.food-intro .intro-right{
+	width: 672px;
+	height: inherit;
+	background-color: #fff;
+	float: left;
+}
+
+.intro-right .table{
+	margin: 10px auto;
+	width: 652px;
+	height: 418px;
+	border:1px solid #FF9900;
+	border-collapse: collapse;
+}
+
+.intro-right .table td{
+	border: 1px solid #FF9900;
+}
+
+.table .table-one{
+	height: 150px;
+}
+
+.table .table-two, .table-three,.table-four{
+	height: 89px;
+}
+
+.table .one-left{
+	height: 50px;
+	width: 30%;
+	margin-left: 30px;
+	float: left;
+}
+
+.one-left .food-name{
+	font: 700 30px/50px "Microsoft YaHei";
+	color: #000;
+	height: 50px;
+	float: left;
+}
+
+.table .one-right{
+	width: 234px;
+	height: 50px;
+	float: left;
+	float: right;
+	background-color: #fae8c8;
+	margin-right: 20px;
+}
+
+.one-right input{
+	width: 108px;
+	height: inherit;
+	font: 15px/50px "Microsoft YaHei";
+	color: #fff;
+	background-color: #f00;
+}
+
+.one-right li{
+	float: left;
+}
+.one-right li a{
+	width: 16px;
+	height: 50px;
+	display: block;
+	float: left;
+	margin-left:5px;
+	background:no-repeat 0px 17px;
+}
+
+.one-right .share-txt{
+	width: 40px;
+	height: 50px;
+	font: 10px/50px "Microsoft YaHei";
+	text-align: center;
+	margin-left: 10px;
+}
+
+.one-right li .qq{
+	background-image:url(../images/share-qq.png);
+}
+
+.one-right li .qq-zone{
+	background-image:url(../images/share-qzone.png);
+}
+
+.one-right li .sina{
+	background-image: url(../images/share-sina.png);
+}
+
+.table-two .one{
+	width: 102px;
+	height: inherit;
+}
+.table-two .one p{
+	width: inherit;
+	height: 30px;
+	text-align: center;
+	line-height:30px;
+}
+
+.table-two .one .steam{
+	font: 700 20px/30px "Microsoft YaHei";
+	color: red;
+	text-align: center;
+	line-height: 30px;
+}
+
+.table-two .two{
+	width: 270px;
+}
+.table-two .two .level-img{
+	width: 30px;
+	height: 30px;
+}
+
+.table-two .two ul li{
+	width: 5px;
+	height: 30px;
+	background-color: #ccc;
+	float: left;
+}
+
+.table-tow .two ul .level-red{
+	background-color: #f00;
+}
+
+.table-two .two ul .level-txt{
+	width: 50px;
+	height: 30px;
+}
+
+/*食品详情介绍结束*/
 
 
