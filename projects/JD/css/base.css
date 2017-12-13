@@ -1,0 +1,77 @@
+/*去除默认元素的margin和padding*/
+body,ul,li,a,i,s{
+    margin: 0px;
+    padding: 0px;
+}
+/*京东的版心1210*/
+.w {
+    width: 1210px;
+    margin: 0 auto;
+}
+/*左浮动*/
+.fl{
+    float: left;
+}
+/*右浮动*/
+.fr {
+    float: right;
+}
+
+body{
+    font: 12px/150% Arial, Verdana, "\5b8b\4f53";
+    color: #666;
+}
+/*去除li的默认样式*/
+li{
+    list-style: none;
+}
+/*去除a标签默认样式*/
+a {
+    color: #666;
+    text-decoration: none;
+}
+/*红色背景*/
+.col-red{
+    color: #C81623;
+}
+
+
+
+
+
+
+
+
+
+/*site-nav部分开始start*/
+.site-nav {
+    height: 30px;
+    background-color: #F1F1F1;
+}
+
+.site-nav-l{
+    background-color: #f00;
+}
+.site-nav-l:hover{
+    background-color: #fff;
+}
+.site-nav-send{
+    width: inherit;
+    line-height: 30px;
+}
+
+.site-nav-r li{
+    float: left;
+    height: inherit;
+    line-height: 30px;
+    padding: 0 10px;
+    color: #666;
+}
+
+.site-nav-r .line {
+    width: 1px;
+    height: 12px;
+    margin-top: 9px;
+    background-color: #ddd;
+    padding: 0px;
+}

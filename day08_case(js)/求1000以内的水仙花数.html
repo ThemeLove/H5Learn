@@ -5,7 +5,6 @@
 	<title>输出1000以内的水仙花谁</title>
 	<script type="text/javascript">
 
-
 	document.write("1000以内的水仙花数</br>");
 
 	function getDaffodilNumber(num){
@@ -18,7 +17,6 @@
 			var num2=Math.floor(i%100/10);
 			// 个位数
 			var num3=i%10;
-
 			var sum=Math.pow(num1,3)+Math.pow(num2,3)+Math.pow(num3,3);
 
 			if (sum==i) {
@@ -31,37 +29,6 @@
 	
 	getDaffodilNumber(1000);
 
-		// for(var i==100;i<1000;i++){
-		// 			// 百位数
-		// 			var number3=Math.floor(i/100);
-		// 			// 十位数
-		// 			var number2=Math.floor(i%100/10);
-		// 			// 个位数
-		// 			var number1=i%10;
-
-		// 			if((number1*number1*number1)+(number2*number2*number2)+(number3*number3*number3)==i){
-		// 				document.write(i+"");
-		// 				document.write("</br>");
-		// 			}
-		// }
-
-
-		// function getDaffodilNumber(num){
-		// 	for(var i==100;i<num;i++){
-		// 			// 百位数
-		// 			var number3=Math.floor(i/100);
-		// 			// 十位数
-		// 			var number2=Math.floor(i%100/10);
-
-		// 			var number1=i%10;
-
-		// 			if((number1*number1*number1)+(number2*number2*number2)+(number3*number3*number3)==i){
-		// 				document.write(i);
-		// 				document.write("</br>");
-		// 			}
-		// 		}
-		// }
-		// getDaffodilNumber(1000);
 	</script>
 </head>
 <body>

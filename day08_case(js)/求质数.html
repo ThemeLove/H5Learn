@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>求100以内的质数</title>
+    <script>
+        function getPrimeNumbers(num) {
+            document.writeln(num+"以内的质数有：</br>");
+            for (var i=1;i<num;i++){
+                var isPrime=true;
+                for (var j=2;j<i;j++){
+                    var temp=i%j;
+                    if(temp==0){
+                        isPrime=false;
+                        break;
+                    }
+                }
+                if (isPrime){
+                    document.writeln(i+"</br>");
+                }
+            }
+        }
+        getPrimeNumbers(200);
+    </script>
+</head>
+<body>
+
+</body>
+</html>
