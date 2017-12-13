@@ -30,11 +30,21 @@ a {
     color: #666;
     text-decoration: none;
 }
+/*清除图片低侧默认的3像素空白缝隙*/
+img{
+    border: 0;
+    vertical-align: middle;
+}
 /*红色背景*/
 .col-red{
     color: #C81623;
 }
 
+/*设置i，s,em为默认字体*/
+i,s,em{
+    font-style: normal;
+    text-decoration: none;
+}
 
 
 
@@ -50,15 +60,34 @@ a {
 }
 
 .site-nav-l{
-    background-color: #f00;
 }
 .site-nav-l:hover{
     background-color: #fff;
 }
-.site-nav-send{
+.site-nav-send,.site-nav-r .nav-arrow{
     width: inherit;
     line-height: 30px;
+    padding: 0 25px 0 10px;
+    position: relative;
 }
+
+.site-nav-send i,.nav-arrow i{
+    width: 14px;
+    height: 7px;
+    position: absolute;
+    right: 8px;
+    top: 12px;
+    overflow: hidden;
+}
+
+.site-nav-send s,.nav-arrow s{
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    left: 0px;
+    top: -14px;
+}
+
 
 .site-nav-r li{
     float: left;
@@ -68,10 +97,45 @@ a {
     color: #666;
 }
 
+.site-nav-r a:hover{
+    color: #C81623;
+}
+
 .site-nav-r .line {
     width: 1px;
     height: 12px;
     margin-top: 9px;
     background-color: #ddd;
     padding: 0px;
+}
+
+.site-nav-r .jd-tel{
+    padding-left: 25px;
+}
+
+.jd-tel span{
+    width: 15px;
+    height: 20px;
+    position: absolute;
+    left: 7px;
+    top: 5px;
+    background:url("../images/tel.png") no-repeat;
+}
+/*site-nav部分开始结束*/
+.top-banner{
+    background-color: #FD6500;
+}
+.tb{
+    position: relative;
+}
+.close-banner{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 19px;
+    height: 19px;
+    background: url("../images/close-banner.png") no-repeat;
+}
+.close-banner:hover{
+    background-position: 0px -19px;
 }
