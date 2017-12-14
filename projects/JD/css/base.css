@@ -1,8 +1,14 @@
 /*去除默认元素的margin和padding*/
-body,ul,li,a,i,s{
+body,input,button,ul,li,h1,a,i,s{
     margin: 0px;
     padding: 0px;
 }
+
+input,button,h1{
+    border: none;
+    outline: none;
+}
+
 /*京东的版心1210*/
 .w {
     width: 1210px;
@@ -15,6 +21,16 @@ body,ul,li,a,i,s{
 /*右浮动*/
 .fr {
     float: right;
+}
+
+/*清除浮动*/
+clear-fix{
+    zoom: 1;
+}
+clear-fix:after{
+    content:"";
+    clear: both;
+    display: block;
 }
 
 body{
@@ -96,6 +112,9 @@ i,s,em{
     padding: 0 10px;
     color: #666;
 }
+.site-nav-r .nav-arrow:hover{
+    background-color: #fff;
+}
 
 .site-nav-r a:hover{
     color: #C81623;
@@ -139,3 +158,107 @@ i,s,em{
 .close-banner:hover{
     background-position: 0px -19px;
 }
+
+/*search部分start*/
+.search-logo{
+    width: 362px;
+    height: 100px;
+    position: relative;
+}
+.search-logo h1{
+    text-indent: -999em;
+    color: #fff;
+}
+.search-logo a{
+    background: url("../images/logo.png") no-repeat;
+    display: block;
+    width: 270px;
+    height: 60px;
+    position: absolute;
+    left: 0;
+    top: 20px;
+}
+
+.search-area{
+    width: 538px;
+    height: 36px;
+    margin-top: 25px;
+}
+
+.search-area input{
+    width: 450px;
+    height: 32px;
+    float: left;
+    border: 2px solid #B61D1D;
+    border-right: none;
+    text-indent: 5px;
+}
+
+.search-area button{
+    width: 82px;
+    height: inherit;
+    background-color: #B61D1D;
+    float: left;
+    font:15px/36px "Microsoft YaHei" ;
+    color: #fff;
+    cursor: pointer;
+}
+
+.search-car{
+    width: 141px;
+    height: 36px;
+    background-color: #F9F9F9;
+    color: #000;
+    margin: 25px 65px 0 0;
+    text-align: center;
+    position: relative;
+}
+
+.search-car .link{
+    line-height: 36px;
+}
+.search-car .link:hover{
+    color: #C81623;
+}
+
+.search-car .icon{
+    width: 18px;
+    height: 16px;
+    background: url("../images/tel.png") no-repeat 0 -58px;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+.search-car .arrow{
+    line-height: 36px;
+    position: absolute;
+    right: 15px;
+    font: 13px/36px "SimSun";
+}
+
+.search-car .pro-count{
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    right: 22px;
+    top: -5px;
+    background-color: #C81623;
+    color: #fff;
+    border-radius: 10px 8px 10px 0px;
+}
+
+.search-morelink{
+    width: 538px;
+    height: 28px;
+}
+.search-morelink li{
+    float: left;
+    line-height: 28px;
+    padding-right: 10px;
+}
+.search-morelink a:hover{
+    color: #C81623;
+}
+/*search部分end*/
+
