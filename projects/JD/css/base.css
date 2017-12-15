@@ -262,6 +262,70 @@ i,s,em{
 }
 /*search部分end*/
 
+/*shortcut-nav部分start*/
+.shortcut-nav{
+
+}
+.shortcut-nav-menu{
+    height: 44px;
+    float: left;
+    position: relative;
+    width: 210px;
+    z-index: 1;
+}
+.shortcut-nav-menu-all{
+    height: 44px;
+    background-color: #B1191A;
+    color: #fff;
+    font: 400 15px/44px "microsoft yahei";
+}
+
+.shortcut-nav-menu-all a{
+    color: #fff;
+    font: 400 15px/44px "microsoft yahei";
+    width: 210px;
+    height: 44px;
+    display: block;
+    float: left;
+    text-indent: 10px;
+}
+
+.shortcut-nav-menu-one{
+    width: 209px;
+    height: 446px;
+    background-color: #C81623;
+    border-left: 1px solid #B1191A;
+    border-bottom: 1px solid #B1191A;
+}
+.shortcut-nav-items{
+    height: 44px;
+    float: left;
+    width: 730px;
+}
+
+.shortcut-nav-items a{
+    height: 44px;
+    font: 400 16px/44px "microsoft yahei";
+    padding: 0px 20px;
+    float: left;
+}
+.shortcut-nav-items a:hover{
+    color: #C81623;
+}
+
+.shortcut-nav-img{
+    float: right;
+    margin-right:40px;
+    margin-top: -12px;
+}
+.shortcut-nav-img a{
+    width: 200px;
+    height: 54px;
+    background:url("../images/img2.jpg") no-repeat;
+    display: block;
+}
+/*shortcut-nav部分end*/
+
 /*footer部分start*/
 .footer-top{
     /*background-color: #f5f5f5;*/
@@ -351,7 +415,6 @@ i,s,em{
 .footer-bottom-img a{
     margin: 0 10px;
 }
-
 /*footer-bottom部分end*/
 /*footer部分end*/
 
