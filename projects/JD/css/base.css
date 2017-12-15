@@ -1,5 +1,5 @@
 /*去除默认元素的margin和padding*/
-body,input,button,ul,li,h1,a,i,s{
+body,input,button,ul,li,h1,h3,a,i,s,dl,dt,dd{
     margin: 0px;
     padding: 0px;
 }
@@ -24,10 +24,10 @@ input,button,h1{
 }
 
 /*清除浮动*/
-clear-fix{
+.clear-fix{
     zoom: 1;
 }
-clear-fix:after{
+.clear-fix:after{
     content:"";
     clear: both;
     display: block;
@@ -261,4 +261,71 @@ i,s,em{
     color: #C81623;
 }
 /*search部分end*/
+
+/*footer部分start*/
+.footer-top{
+    /*background-color: #f5f5f5;*/
+}
+.footer-top-slogen{
+    background-color: #f5f5f5;
+    height: 94px;
+    position: relative;
+}
+.footer-top-slogen-icon{
+    width: 220px;
+    height: 54px;
+    position: absolute;
+    left: 50%;
+    top: 20px;
+}
+
+.footer-top-slogen-icon1{
+    margin-left: -604px;
+}
+.footer-top-slogen-icon2{
+    margin-left: -302px;
+}
+
+.footer-top-slogen-icon4{
+    margin-left: 302px;
+}
+
+.footer-top-shopping {
+    background-color: #fff;
+}
+
+.footer-top-shopping dl{
+    float: left;
+    width: 200px;
+}
+
+.footer-top-shopping .footer-top-shopping-last{
+    width: 100px;
+}
+.footer-top-shopping dt,.coverage h3{
+    height: 34px;
+    font: 400 16px/34px "microsoft yahei";
+}
+.footer-top-shopping dd{
+    line-height: 20px;
+}
+.footer-top-shopping a:hover{
+    color: #C81623;
+}
+
+.footer-top-shopping .coverage{
+    width: 183px;
+    height: 169px;
+    margin-right: 60px;
+    background: url("../images/china.png") no-repeat left bottom;
+    padding-left: 20px;
+}
+
+/*.footer-top-shopping .coverage p{*/
+    /*padding-left: 10px;*/
+/*}*/
+.footer-top-shopping .coverage a{
+    float: right;
+}
+/*footer部分end*/
 
