@@ -321,11 +321,37 @@ i,s,em{
     padding-left: 20px;
 }
 
-/*.footer-top-shopping .coverage p{*/
-    /*padding-left: 10px;*/
-/*}*/
 .footer-top-shopping .coverage a{
     float: right;
 }
+
+/*footer-bottom部分start*/
+.footer-bottom{
+    border-top: 1px solid #E5E5E5;
+    padding: 20px 0 30px;
+}
+.footer-bottom-link{
+    /*background-color: cyan;*/
+    text-align: center;
+}
+.footer-bottom-link a{
+    margin: 0 10px;
+}
+
+.footer-bottom-link a:hover{
+    color: #C81623;
+}
+.footer-bottom-copyright{
+    text-align: center;
+    padding: 10px 0px;
+}
+.footer-bottom-img{
+    text-align: center;
+}
+.footer-bottom-img a{
+    margin: 0 10px;
+}
+
+/*footer-bottom部分end*/
 /*footer部分end*/
 
