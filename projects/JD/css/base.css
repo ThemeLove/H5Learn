@@ -264,7 +264,7 @@ i,s,em{
 
 /*shortcut-nav部分start*/
 .shortcut-nav{
-
+    border-bottom: 2px solid #B1191A;
 }
 .shortcut-nav-menu{
     height: 44px;
