@@ -87,7 +87,7 @@
     height: 20px;
     line-height: 20px;
 }
-.main-news-top-faster-content li:hover{
+.main-news-top-faster-content a:hover{
     color: #C81623;
 }
 .main-news-top-faster-content span{
