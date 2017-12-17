@@ -297,6 +297,29 @@ i,s,em{
     border-left: 1px solid #B1191A;
     border-bottom: 1px solid #B1191A;
 }
+.shortcut-nav-menu-one-sort{
+    height: 30px;
+    line-height: 30px;
+}
+.shortcut-nav-menu-one-sort:hover{
+    background-color: #fff;
+}
+
+.shortcut-nav-menu-one-sort:hover a{
+    color: #f00;
+}
+.shortcut-nav-menu-one-sort a{
+    float: left;
+    text-indent: 10px;
+    color: #fff;
+}
+.shortcut-nav-menu-one-sort i{
+    float: right;
+    font: 15px/30px "simsun";
+    color: #000;
+    padding-right: 10px;
+}
+
 .shortcut-nav-items{
     height: 44px;
     float: left;
