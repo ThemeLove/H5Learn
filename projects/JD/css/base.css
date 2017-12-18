@@ -312,6 +312,7 @@ i,s,em{
     float: left;
     text-indent: 10px;
     color: #fff;
+    font: 14px/30px "Microsoft YaHei";
 }
 .shortcut-nav-menu-one-sort i{
     float: right;

@@ -67,9 +67,11 @@
     height: 372px;
     border: 1px solid #ccc;
     margin-bottom: 10px;
+    overflow: hidden;
+    border-bottom: none;
 }
 .main-news-top-faster{
-    padding: 5px;
+    padding: 5px ;
 }
 .main-news-top-faster-title{
     height: 30px;
@@ -96,8 +98,51 @@
     margin-right: 5px;
 }
 
-.main-news-top-sort{
+.main-news-top-sort {
+    width: 290px;
+}
 
+.main-news-top-sort ul{
+    float: left;
+}
+
+.main-news-top-sort li{
+    width: 62px;
+    height: 72px;
+    border: 1px solid #ccc;
+    float: left;
+    margin-left: -1px;
+    margin-bottom: -1px;
+    position: relative;
+}
+
+.main-news-top-sort .sort-logo{
+    display: block;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    left: 18px;
+    top: 10px;
+    background:url("../images/sprite-service.png") no-repeat 0px -40px;
+}
+
+.main-news-top-sort-tip{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    background: url("../images/sort-tip.png") no-repeat;
+}
+.main-news-top-sort a{
+    padding-top: 40px;
+    line-height: 30px;
+    text-align: center;
+    display: block;
+}
+
+.main-news-top-sort a:hover{
+    color: #C81623;
 }
 /*main-news部分end*/
 
