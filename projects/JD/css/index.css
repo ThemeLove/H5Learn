@@ -1,4 +1,22 @@
+/*sub-banner部分start*/
+.sub-banner{
+    width: 100%;
+    position: relative;
+}
+.sub-banner a{
+    position: absolute;
+    width: 100%;
+    height: 500px;
+    left: 0px;
+    top: 0px;
+    background: url("../images/sub-banner.jpg") no-repeat center;
+}
+/*sub-banner部分end*/
+
 /*main部分start*/
+.main{
+    position: relative;
+}
 .main-slider {
     margin: 12px 0 0 220px;
     position: relative;
@@ -61,6 +79,7 @@
 /*main-news部分start*/
 .main-news{
     margin-top: 12px;
+    background-color: #fff;
 }
 .main-news-top{
     width: 248px;
@@ -145,5 +164,36 @@
     color: #C81623;
 }
 /*main-news部分end*/
+
+/*today-rec部分start*/
+.today-rec{
+    height: 150px;
+    margin-top: 10px;
+    position: relative;
+}
+
+.today-rec-left{
+    width: 210px;
+    height: 150px;
+    float: left;
+}
+
+.today-rec-right{
+    width: 1000px;
+    height: 150px;
+    float: right;
+    position: relative;
+    overflow: hidden;
+}
+
+.today-rec-right ul{
+    width: 450%;
+}
+
+.today-rec-right li{
+    float: left;
+    margin-right: 1px;
+}
+/*today-rec部分end*/
 
 /*main部分end*/
