@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>关闭京东广告栏</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        #out {
+            margin-top: 30px;
+            width: 100%;
+            height: 100px;
+            background-color: cyan;
+        }
+        .w {
+            width: 1210px;
+            height: 100px;
+            background-color: #ccc;
+            margin: 0 auto;
+        }
+        .w a{
+            width: 20px;
+            height: 20px;
+            float: right;
+            background-color: #000;
+            text-align: center;
+            color: red;
+            text-decoration: none;
+        }
+        .hide{
+            display: none;
+        }
+    </style>
+
+    <script>
+        window.onload=function () {
+            var close=document.getElementById("close");
+            close.onclick=function () {
+                var out=document.getElementById("out");
+                out.className+="hide";
+            }
+            
+        }
+        
+    </script>
+
+</head>
+<body>
+点击叉叉 隐藏整个div
+<div id="out">
+    <div class="w">
+        <a id="close" href="#">
+            X
+        </a>
+    </div>
+</div>
+</body>
+</html>

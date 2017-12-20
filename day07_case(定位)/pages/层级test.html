@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>层级test</title>
+
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        p{
+            margin-top: 100px;
+            text-align: center;
+            font:700 25px "simsun;";
+            color: red;
+        }
+
+        ul{
+            list-style:none;
+        }
+
+        /*.out {*/
+            /*width: 500px;*/
+            /*height: 200px;*/
+            /*margin: 100px auto;*/
+            /*overflow: hidden;*/
+        /*}*/
+        body{
+            height: 1500px;
+        }
+        .ul-one{
+            width: 100px;
+            height: 150px;
+            margin: 100px 50px;
+            margin-bottom: 100px;
+            background-color: cyan;
+        }
+
+        .ul-one li{
+            width: 100px;
+            height: 150px;
+            border: 2px solid red;
+            list-style: none;
+            margin-top: -2px;
+
+        }
+        .ul-one li:hover{
+            border: 2px solid blue;
+            position: relative;
+        }
+
+
+        .ul-two{
+            width: 550px;
+            height: 200px;
+            margin: 100px auto;
+        }
+
+        .ul-two li{
+            width: 100px;
+            height: 200px;
+            border: 2px solid red;
+            margin-left: -2px;
+            float: left;
+        }
+
+        .ul-two li:hover{
+            border: 2px solid blue;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+<p>
+    层级：position(定位) > z-index=0 > float > 标准流 > position(z-index=-1)<br/>
+    position要和z-index配合使用<br>
+    同一层级的盒子，后面的会压住前面的盒子<br>
+    position:relative 定位，使其在hover时提升其层级达到边框全部显示的效果
+</p>
+    <ul class="ul-one">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <ul class="ul-two">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+</html>
