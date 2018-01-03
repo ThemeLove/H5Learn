@@ -14,6 +14,21 @@
                 jdImg.src="../images/jd1.png";
             }
         }
+        ppsdk.openNativePage({
+            pageUrl: "pptv://page/discover/scan",
+
+            success: function(json){
+
+            },
+
+            error: function(code,msg){
+                alert(code);
+            }
+
+        });
+        // window.ppsdk.ready(()=> {
+        //
+        // });
     </script>
 
     <style>
