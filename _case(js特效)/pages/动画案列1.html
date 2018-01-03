@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动画案列1</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .box{
+            height: 400px;
+            background-color: #ddd;
+            position: relative;
+        }
+
+        .box2{
+            width: 100px;
+            height: 100px;
+            background-color: #ff0000;
+            position: absolute;
+            left: 3px;
+        }
+
+        button{
+            width: 80px;
+            height: 30px;
+            background-color: #0f0;
+            outline: none;
+            border:none;
+        }
+
+    </style>
+</head>
+<body>
+<div class="box">
+    <button class="btn1" value="移动到200">移动到200</button>
+    <button class="btn2" value="移动到400">移动到400</button>
+    <div class="box2"></div>
+</div>
+
+<script>
+    var btn1=document.getElementsByTagName("button")[0];
+    var btn2=document.getElementsByTagName("button")[1];
+    var box2=document.getElementsByClassName("box2")[0];
+
+    var timer=null;
+    btn1.onclick=function () {
+        animateOffset(200,5)
+    }
+
+    btn2.onclick=function () {
+        animateOffset(400,10)
+    }
+
+    function animateOffset(target,speed){
+        clearInterval(timer);
+        timer=setInterval(function () {
+            var currentPosition=box2.offsetLeft;
+            var dySpeed=currentPosition>target?-Math.abs(speed):Math.abs(speed);
+            var dis=Math.abs(currentPosition-target);
+            if(currentPosition!=target){
+                if(dis>Math.abs(speed)){
+                    box2.style.left=box2.offsetLeft+dySpeed+"px";
+                    console.log("box2-offsetLeft="+box2.offsetLeft)
+                }else{
+                    box2.style.left=target+"px";
+                    console.log("box2-offsetLeft="+box2.offsetLeft)
+                }
+            }
+        },50)
+    }
+
+</script>
+</body>
+</html>
