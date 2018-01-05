@@ -8,6 +8,11 @@
             margin: 0px;
             padding: 0px;
         }
+        /*清除图片低侧默认的3像素空白缝隙*/
+        img{
+            border: 0;
+            vertical-align: middle;
+        }
 
         .box{
             height: 400px;
@@ -21,8 +26,16 @@
             background-color: #ff0000;
             position: absolute;
             left: 3px;
+            top:40px;
         }
-
+        .box3{
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+            position: absolute;
+            left: 3px;
+            top:150px;
+        }
         button{
             width: 80px;
             height: 30px;
@@ -38,35 +51,37 @@
     <button class="btn1" value="移动到200">移动到200</button>
     <button class="btn2" value="移动到400">移动到400</button>
     <div class="box2"></div>
+    <div class="box3"></div>
 </div>
 
 <script>
     var btn1=document.getElementsByTagName("button")[0];
     var btn2=document.getElementsByTagName("button")[1];
     var box2=document.getElementsByClassName("box2")[0];
+    var box3=document.getElementsByClassName("box3")[0];
 
     var timer=null;
     btn1.onclick=function () {
-        animateOffset(200,5)
+        animateOffset(box2,200,5)
     }
 
     btn2.onclick=function () {
-        animateOffset(400,10)
+        animateOffset(box3,400,10)
     }
 
-    function animateOffset(target,speed){
-        clearInterval(timer);
-        timer=setInterval(function () {
-            var currentPosition=box2.offsetLeft;
+    function animateOffset(ele,target,speed){
+        clearInterval(ele.timer);
+        ele.timer=setInterval(function () {
+            var currentPosition=ele.offsetLeft;
             var dySpeed=currentPosition>target?-Math.abs(speed):Math.abs(speed);
             var dis=Math.abs(currentPosition-target);
             if(currentPosition!=target){
                 if(dis>Math.abs(speed)){
-                    box2.style.left=box2.offsetLeft+dySpeed+"px";
-                    console.log("box2-offsetLeft="+box2.offsetLeft)
+                    ele.style.left=ele.offsetLeft+dySpeed+"px";
+                    console.log("box2-offsetLeft="+ele.offsetLeft)
                 }else{
-                    box2.style.left=target+"px";
-                    console.log("box2-offsetLeft="+box2.offsetLeft)
+                    ele.style.left=target+"px";
+                    console.log("box2-offsetLeft="+ele.offsetLeft)
                 }
             }
         },50)

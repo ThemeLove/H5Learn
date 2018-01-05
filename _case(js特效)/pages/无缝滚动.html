@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播图无缝滚动案例</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        /*清除图片低侧默认的3像素空白缝隙*/
+        img{
+            border: 0;
+            vertical-align: middle;
+        }
+        #outer{
+            width: 500px;
+            height:200px;
+            margin: 100px auto;
+            position: relative;
+            border: 1px solid #f00;
+            padding: 5px;
+        }
+        .arrow{
+            width:500px;
+            height: 60px;
+            /*background-color: #ff0000;*/
+            position: absolute;
+            left: 0px;
+            top: 70px;
+        }
+         .arrow a{
+            width: 30px;
+            height: 60px;
+            background-color:rgba(0,0,0,0.3);
+            position: absolute;
+            outline-style: none;
+            text-decoration: none;
+            font: 25px/60px "console";
+            color: #ffffff;
+            text-align: center;
+        }
+        .arrow .left{
+            left: 0px;
+        }
+
+        .arrow .right{
+            right: 0px;
+        }
+
+        ol{
+            height: 25px;
+            right: 10px;
+            bottom: 10px;
+            position: absolute;
+
+        }
+
+        ol li{
+            width: 25px;
+            height: 25px;
+            margin-right: 5px;
+            background-color: #fff;
+            list-style: none;
+            float: left;
+            text-align: center;
+            line-height: 25px;
+            cursor: pointer;
+            border: 1px solid #FD6500;
+        }
+
+        .current-index{
+            background-color: #ff0;
+        }
+
+        #inner{
+            width: 500px;
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #inner ul{
+            width:600%;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+
+       #inner ul li{
+            list-style: none;
+            float: left;
+       }
+
+       #inner ul li img{
+           width: 500px;
+           height: 200px;
+       }
+
+    </style>
+
+    <script >
+        window.onload=function (ev) {
+
+            //firstElementChild获取元素节点，firstChild可能获取空白节点
+            var inner=document.getElementById("inner");
+            var ul=inner.firstElementChild||inner.firstChild;
+            var arrow=inner.children[1];
+            var ol=inner.lastElementChild||inner.lastChild;
+
+            //  在ul后面新添加一个li,这个li和第一个一样
+            var ulNewLi=ul.children[0].cloneNode(true);
+            ul.appendChild(ulNewLi);
+
+            console.log("ul.length="+ul.children.length);
+
+            //  根据ul中的图片数动态添加ol中的li
+            for (var i=1;i<ul.children.length;i++){
+                var olNewLi=document.createElement("li");
+                olNewLi.innerText=i+"";
+                ol.appendChild(olNewLi);
+                console.log("indicator-length="+ol.children.length)
+            }
+
+        //    循环给ol中的li添加鼠标经过状态
+            for (var i=0;i<ol.children.length;i++){
+                var ele=ol.children[i];
+                ele.index=i;
+                ele.onmouseover=function(){
+                   setCurrentIndex(this);
+                }
+            }
+
+        //    定时器自动滚动
+            var scroll_width=inner.offsetWidth;//每次滚动的宽度
+            console.log("scroll_width="+scroll_width);
+
+            /**
+             * 自动滚动播放方法
+             * @param ele 执行动画的元素
+             * @param target    执行动画要到的目标位置
+             * @param speed     执行动画的速度
+             * @param interval  执行动画的时间间隔
+             */
+            var autoPlay=function(ele,target,speed,interval){
+                 //用定时器之前先清除定时器
+                 window.clearInterval(ele.timer);
+                 ele.timer=null;
+                 ele.timer=window.setInterval(function () {
+                    scroll_anim(ele,target)
+                 },interval)
+            };
+
+            var image_index=0;
+            var indicator_index=0;
+            var timer=null;
+            timer=setInterval(function () {
+                image_index++;
+                indicator_index++;
+                // console.log("image_index="+image_index);
+                // if (){
+                //
+                // }
+                scroll_anim(ul,-scroll_width,10,20);
+
+            },1000);
+
+            var scroll_anim=function (ele, diff,speed,interval) {
+                ele.timer=null;
+                // clearInterval(ele.timer);
+                ele.timer=setInterval(function () {
+                    if(diff==0){
+                        clearInterval(ele.timer);
+                        return;
+                    }
+
+                    if(Math.abs(diff)<speed){//如果滚动的距离小于速度，直接跳转
+                        ele.style.left+=diff+"px";
+                        console.log("ul-left="+ele.style.left);
+                    }else {
+                        if (diff>0){
+                            ele.style.left+=Math.abs(speed)+"px";
+                            console.log("ul-left="+ele.style.left);
+                        }else{
+                            ele.style.left+=-Math.abs(speed)+"px";
+                            console.log("ul-left="+ele.style.left);
+                        }
+                    }
+                },interval);
+            };
+
+            var setCurrentIndex=function (ele) {
+                for(var j=0;j<ol.children.length;j++){
+                    if (j==ele.index){ //    将自己的类名改为选中状态
+                        ele.className="current-index";
+                    }else{
+                        ol.children[j].className="";
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="outer">
+    <div id="inner">
+        <ul>
+            <li><img src="../images/1.jpg"/></li>
+            <li><img src="../images/2.jpg"/></li>
+            <li><img src="../images/3.jpg"/></li>
+            <li><img src="../images/4.jpg"/></li>
+            <li><img src="../images/5.jpg"/></li>
+        </ul>
+        <div class="arrow">
+            <a href="javascript:void(0)" class="left"><</a>
+            <a href="javascript:void(0)" class="right">></a>
+        </div>
+        <ol ></ol>
+    </div>
+</div>
+
+</body>
+</html>
