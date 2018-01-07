@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>无缝轮播图改进版</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        /*清除图片低侧默认的3像素空白缝隙*/
+        img{
+            border: 0;
+            vertical-align: middle;
+        }
+        #outer{
+            width: 500px;
+            height:200px;
+            margin: 100px auto;
+            position: relative;
+            border: 1px solid #f00;
+            padding: 5px;
+        }
+        .arrow{
+            width:500px;
+            height: 60px;
+            /*background-color: #ff0000;*/
+            position: absolute;
+            left: 0px;
+            top: 70px;
+        }
+        .arrow a{
+            width: 30px;
+            height: 60px;
+            background-color:rgba(0,0,0,0.3);
+            position: absolute;
+            outline-style: none;
+            text-decoration: none;
+            font: 25px/60px "console";
+            color: #ffffff;
+            text-align: center;
+        }
+        .arrow .left{
+            left: 0px;
+        }
+
+        .arrow .right{
+            right: 0px;
+        }
+
+        ol{
+            height: 25px;
+            right: 10px;
+            bottom: 10px;
+            position: absolute;
+
+        }
+
+        ol li{
+            width: 25px;
+            height: 25px;
+            margin-right: 5px;
+            background-color: #fff;
+            list-style: none;
+            float: left;
+            text-align: center;
+            line-height: 25px;
+            cursor: pointer;
+            border: 1px solid #FD6500;
+        }
+
+        .current-index{
+            background-color: #ff0;
+        }
+
+        #inner{
+            width: 500px;
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #inner ul{
+            width:600%;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+
+        #inner ul li{
+            list-style: none;
+            float: left;
+        }
+
+        #inner ul li img{
+            width: 500px;
+            height: 200px;
+        }
+
+    </style>
+
+    <script >
+        window.onload=function (ev) {
+            //firstElementChild获取元素节点，firstChild可能获取空白节点
+            var outer = document.getElementById("outer")
+            var inner = document.getElementById("inner");
+            var ul = inner.firstElementChild || inner.firstChild;
+            var arrow = inner.children[1];
+            var ol = inner.lastElementChild || inner.lastChild;
+            var arrow_left = arrow.firstElementChild || arrow.firstChild;
+            var arrow_right = arrow.lastElementChild || arrow.lastChild;
+
+            var image_index = 0;
+            var indicator_index = 0;
+            var timer = null;
+            var ulArray = ul.children;
+            var olArray = ol.children;
+        }
+    </script>
+</head>
+<body>
+<div id="outer">
+    <div id="inner">
+        <ul>
+            <li><img src="../images/1.jpg"/></li>
+            <li><img src="../images/2.jpg"/></li>
+            <li><img src="../images/3.jpg"/></li>
+            <li><img src="../images/4.jpg"/></li>
+            <li><img src="../images/5.jpg"/></li>
+        </ul>
+        <div class="arrow">
+            <a href="javascript:void(0)" class="left"><</a>
+            <a href="javascript:void(0)" class="right">></a>
+        </div>
+        <ol ></ol>
+    </div>
+</div>
+
+</body>
+</html>

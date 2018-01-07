@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数练习</title>
+    <style>
+        button{
+            height: 30px;
+            background-color: #dddddd;
+        }
+    </style>
+    <script>
+        window.onload=function () {
+            var btn= document.getElementsByTagName("button")[0];
+            btn.onclick=function () {
+                alert("我是javascript中添加的点击事件,必须写在onload中");
+            }
+        }
+        function test() {
+            alert("我是test函数，我是在button行内式中调用的，不能写在onload回调函数里");
+        }
+        // var test=function () {
+        //     alert("我是test函数:函数自变量定义方式");
+        // }
+    </script>
+</head>
+<body>
+<button class="btn" >javascript中动态添加点击事件</button>
+<button onclick="test()">行内式调用</button>
+</body>
+</html>

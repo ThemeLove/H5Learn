@@ -103,10 +103,47 @@
         window.onload=function (ev) {
 
             //firstElementChild获取元素节点，firstChild可能获取空白节点
+           var outer= document.getElementById("outer")
             var inner=document.getElementById("inner");
             var ul=inner.firstElementChild||inner.firstChild;
             var arrow=inner.children[1];
             var ol=inner.lastElementChild||inner.lastChild;
+            var arrow_left=arrow.firstElementChild||arrow.firstChild;
+            var arrow_right=arrow.lastElementChild||arrow.lastChild;
+
+            var image_index=0;
+            var indicator_index=0;
+            var timer=null;
+            var ulArray=ul.children;
+            var olArray=ol.children;
+
+            //给左右箭头添加点击事件
+            arrow_left.onclick=function () {
+                if (isRun)return;
+                autoPlay(ul,image_index-1);
+            }
+            arrow_right.onclick=function () {
+                if (isRun)return;
+                autoPlay(ul,image_index+1)
+            }
+
+            outer.onmouseenter=function (ev2) {
+                arrow.style.display="block";
+                clearInterval(timer);
+                console.log("onmouseenter:timer="+timer);
+            };
+            outer.onmouseleave=function (ev2) {
+                arrow.style.display="none";
+                clearInterval(timer);
+                timer=setInterval(function () {
+                    autoPlay(ul,image_index+1);
+                    // image_index++;
+                    // indicator_index++;
+                    console.log("indicator:"+indicator_index);
+                },2000);
+                updateCurrentIndex(image_index);
+                console.log("onmouseleave:timer="+timer);
+            };
 
             //  在ul后面新添加一个li,这个li和第一个一样
             var ulNewLi=ul.children[0].cloneNode(true);
@@ -127,13 +164,29 @@
                 var ele=ol.children[i];
                 ele.index=i;
                 ele.onmouseover=function(){
+                   if (isRun)return;
                    setCurrentIndex(this);
+
+                   autoPlay(ul,this.index);
+
                 }
             }
+
+            var updateCurrentIndex=function (index) {
+                for(var i=0;i<olArray.length;i++){
+                    if(i==index){
+                        olArray[i].className="current-index";
+                    }else{
+                        olArray[i].className="";
+                    }
+                }
+            };
 
         //    定时器自动滚动
             var scroll_width=inner.offsetWidth;//每次滚动的宽度
             console.log("scroll_width="+scroll_width);
+
+
 
             /**
              * 自动滚动播放方法
@@ -142,52 +195,66 @@
              * @param speed     执行动画的速度
              * @param interval  执行动画的时间间隔
              */
-            var autoPlay=function(ele,target,speed,interval){
-                 //用定时器之前先清除定时器
-                 window.clearInterval(ele.timer);
-                 ele.timer=null;
-                 ele.timer=window.setInterval(function () {
-                    scroll_anim(ele,target)
-                 },interval)
-            };
+            var autoPlay=function(ele,index){
+                var diff=index-image_index;
 
-            var image_index=0;
-            var indicator_index=0;
-            var timer=null;
-            timer=setInterval(function () {
-                image_index++;
-                indicator_index++;
+                image_index=index;
+                if(image_index<0){
+                    ul.style.left=-(ulArray.length-1)*scroll_width+"px";
+                    ul.offsetLeft=-(ulArray.length-1)*scroll_width;
+                    image_index=ulArray.length-2;
+                    updateCurrentIndex(image_index);
+                }else if(image_index==ulArray.length){
+                    ul.style.left="0px";
+                    ul.offsetLeft=0;
+                    image_index=1;
+                    updateCurrentIndex(image_index);
+                }else if(image_index==ulArray.length-1){
+                    updateCurrentIndex(0);
+                }else{
+                    updateCurrentIndex(image_index);
+                }
+
+                scroll_anim(ul,-(diff*scroll_width),1,4);
+
                 // console.log("image_index="+image_index);
-                // if (){
-                //
-                // }
-                scroll_anim(ul,-scroll_width,10,20);
-
-            },1000);
-
+                // console.log("image_index="+image_index+",indicator_index="+indicator_index);
+                // console.log("image_scroll_width="+(-image_index*scroll_width));
+            };
+            var isRun=false;
             var scroll_anim=function (ele, diff,speed,interval) {
+                clearInterval(ele.timer);
                 ele.timer=null;
-                // clearInterval(ele.timer);
                 ele.timer=setInterval(function () {
+                    isRun=true;
                     if(diff==0){
+                        isRun=false;
                         clearInterval(ele.timer);
                         return;
                     }
-
                     if(Math.abs(diff)<speed){//如果滚动的距离小于速度，直接跳转
-                        ele.style.left+=diff+"px";
-                        console.log("ul-left="+ele.style.left);
+                        ele.style.left=ele.offsetLeft+diff+"px";
+                        diff=0;
+                        clearInterval(ele.timer);
+                        return;
                     }else {
                         if (diff>0){
-                            ele.style.left+=Math.abs(speed)+"px";
-                            console.log("ul-left="+ele.style.left);
+                            ele.style.left=ele.offsetLeft+Math.abs(speed)+"px";
+                            diff-=Math.abs(speed);
+                            // console.log("diff>0");
                         }else{
-                            ele.style.left+=-Math.abs(speed)+"px";
-                            console.log("ul-left="+ele.style.left);
+                            ele.style.left=ele.offsetLeft-Math.abs(speed)+"px";
+                            diff+=Math.abs(speed);
+                            // ele.offsetLeft+=-Math.abs(speed);
+                            // console.log("diff<0");
                         }
                     }
+                    // console.log("ul-left="+ele.style.left);
+                    // console.log("ul-offsetLeft="+ele.offsetLeft)
+
                 },interval);
             };
+
 
             var setCurrentIndex=function (ele) {
                 for(var j=0;j<ol.children.length;j++){
