@@ -60,7 +60,7 @@
 
             btn2.onclick=function(){
                 show.value+="clearInterval:timer="+timer+"\n";
-                timer=null;
+                timer=null;//加了这句，下面的clearInterval（timer）清除不成功
                 show.value+="clearInterval:timer="+timer+"\n";
                 clearInterval(timer);
             };
