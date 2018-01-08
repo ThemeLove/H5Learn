@@ -111,10 +111,137 @@
             var arrow_right = arrow.lastElementChild || arrow.lastChild;
 
             var image_index = 0;
-            var indicator_index = 0;
+            var square_index = 0;
             var timer = null;
             var ulArray = ul.children;
             var olArray = ol.children;
+            var scroll_width=inner.offsetWidth;
+
+        //  1.根据ul中的li的个数动态添加square的个数
+            for (var i=0;i<ulArray.length;i++){
+                var olNewLi=document.createElement("li");
+                olNewLi.innerHTML=i+1+"";
+                ol.appendChild(olNewLi);
+            }
+            olArray[0].className="current-index";
+
+        //  2.复制ul中第一个li添加到最后，用来之后实现无缝滚动
+            var ulNewLi=ul.children[0].cloneNode(true);
+            ul.appendChild(ulNewLi);
+
+        //  3.给每一个ol中的里添加鼠标悬停效果
+            for (var i=0;i<olArray.length;i++){
+                var currentOlLi=olArray[i];
+                currentOlLi.index=i;
+                currentOlLi.onmouseover=function () {
+                    for (var j=0;j<olArray.length;j++){
+                        olArray[j].className="";
+                    }
+                    this.className="current-index";
+                    image_index=square_index=this.index;
+                    scroll_anim(ul,-this.index*scroll_width);
+                };
+            }
+        //  4.给inner天剑鼠标悬停和离开效果
+            inner.onmouseenter=function ( ) {
+                console.log("inner onmouseenter");
+                clearInterval(timer);
+                arrow.style.display="block";
+            };
+
+            inner.onmouseleave=function ( ) {
+                arrow.style.display="none";
+                console.log("inner onmouseleave");
+                clearInterval(timer);
+                timer=setInterval(autoPlay,1000);
+            };
+
+        //  5.给左右箭头添加点击事件
+            arrow_left.onclick=function () {
+                image_index--;
+                square_index--;
+
+                if (image_index<0){
+                    ul.style.left=-(ulArray.length-1)*scroll_width+"px";
+                    image_index=ulArray.length-2;
+                }
+                console.log("image_index="+image_index);
+                scroll_anim(ul,-image_index*scroll_width);
+
+                //  更新选中小方块的索引
+
+                if (square_index<0){
+                    square_index=olArray.length-1;
+                }
+
+                update_square_index(square_index);
+            };
+
+            arrow_right.onclick=function () {
+                autoPlay();
+            };
+
+        //  4.添加定时器，实现轮播图自动滚动效果
+            timer=setInterval(autoPlay,1000);
+
+            function autoPlay(){
+                image_index++;
+                square_index++;
+
+                if (image_index>ulArray.length-1){
+                    ul.style.left=0+"px";
+                    image_index=1;
+                }
+                console.log("image_index="+image_index);
+                scroll_anim(ul,-image_index*scroll_width);
+
+            //  更新选中小方块的索引
+
+                if (square_index>olArray.length-1){
+                    square_index=0;
+                }
+
+                update_square_index(square_index);
+            }
+
+            /**
+             * 匀速运动动画
+             * @param ele       执行动画的元素
+             * @param target    要运动到的位置
+             */
+            function scroll_anim(ele,target){
+                // 下面这行代码加了连续点击左右箭头的的时候有bug,会一直重复打印255行diff=0,这是因为清除定时器的时候
+                // 将ele.timer=null的引用置为null,导致clearInterval(ele.timer)并不能真正的清除成功。
+                // ele.timer=null;
+
+                clearInterval(ele.timer);
+                console.log("target="+target);
+                console.log("distance="+Math.abs(ele.offsetLeft-target));
+                // console.log("interval="+interval);
+                var speed=ele.offsetLeft-target>0?-Math.abs(10):Math.abs(10);//速度
+                console.log("speed="+speed);
+                ele.timer=setInterval(function () {
+                    var diff=Math.abs(ele.offsetLeft-target);
+                    // console.log("diff="+diff);
+                    ele.style.left=ele.offsetLeft+speed+"px";
+                    if (diff<Math.abs(speed)){
+                        console.log("diff="+diff);
+                        ele.style.left=target+"px";
+                        clearInterval(ele.timer);
+                    }
+                },10);
+            }
+
+            function update_square_index(index){
+                for (var i=0;i<olArray.length;i++){
+                    var currentOlLi=olArray[i];
+                    if (index==i){
+                        currentOlLi.className="current-index";
+                    }else{
+                        currentOlLi.className="";
+                    }
+                }
+            }
         }
     </script>
 </head>

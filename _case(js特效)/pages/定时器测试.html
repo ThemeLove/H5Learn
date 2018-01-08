@@ -60,6 +60,8 @@
 
             btn2.onclick=function(){
                 show.value+="clearInterval:timer="+timer+"\n";
+                timer=null;
+                show.value+="clearInterval:timer="+timer+"\n";
                 clearInterval(timer);
             };
 

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>筋斗云效果</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body{
+            background-color:rgba(0,0,0,0.8);
+        }
+
+        ul{
+            list-style: none;
+            position: absolute;
+
+        }
+
+        .banner{
+            width: 664px;
+            height: 42px;
+            margin: 200px auto;
+            border-radius:10px;
+            /*border: 10px solid #FD6500;*/
+            position: relative;
+            background-color: #fff;
+        }
+
+        ul li{
+            width: 83px;
+            height: 42px;
+            text-align: center;
+            font: 700 15px/42px sunsim;
+            background-color:rgba(0,0,0,0);
+            float: left;
+            color: #000;
+            cursor: pointer;
+        }
+
+        .cloud{
+            width:83px;
+            height: 42px;
+            background: url("../images/cloud.gif") no-repeat ;
+            position: absolute;
+            left: 0px;
+        }
+
+    </style>
+    <script>
+        window.onload=function () {
+            var cloud=document.getElementsByTagName("span")[0];
+            var ulArray=document.getElementsByTagName("ul")[0].children;
+
+            var scroll_width=cloud.offsetWidth;
+            var current_index=0;
+
+        //  1.给ul中所有li添加鼠标悬浮事件和鼠标移除事件和点击事件
+            for (var i=0;i<ulArray.length;i++){
+                var ulLi=ulArray[i];
+                ulLi.index=i;
+                ulLi.onmouseover=function () {
+                    scroll_animate(cloud,this.index*scroll_width);
+                };
+
+                ulLi.onmouseout=function(){
+                    scroll_animate(cloud,current_index*scroll_width);
+                };
+
+                ulLi.onclick=function () {
+                    current_index=this.index;
+                    scroll_animate(cloud,current_index*scroll_width);
+                }
+            }
+
+            function scroll_animate(ele,target){
+                clearInterval(ele.timer);
+                ele.timer=setInterval(function () {
+                    var diff=target-ele.offsetLeft;
+                    var speed=diff>0?15:-15;
+                    ele.style.left=ele.offsetLeft+speed+"px";
+                    if (Math.abs(diff)<Math.abs(speed)){
+                        ele.style.left=target+"px";
+                        console.log("")
+                        clearInterval(ele.timer);
+                    }
+                },15);
+            }
+        }
+
+    </script>
+</head>
+<body>
+<div class="banner">
+    <span class="cloud"></span>
+    <ul>
+        <li>首页新闻</li>
+        <li>师资力量</li>
+        <li>活动策划</li>
+        <li>企业文化</li>
+        <li>招聘信息</li>
+        <li>公司简介</li>
+        <li>上海校区</li>
+        <li>广州校区</li>
+    </ul>
+</div>
+</body>
+</html>
