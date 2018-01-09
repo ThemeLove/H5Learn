@@ -99,3 +99,47 @@ function animate_ver_slow(ele,target,factor,interval){
     },Math.abs(interval));
 }
 
+/**
+ * window竖直方向的缓速滚动到指定位置
+ * @param target      滚动到的目标位置
+ * @param factor      步长因子，用来动态改变速度
+ * @param interval    定时器的频率
+ */
+function animate_window_ver_slow(target,factor,interval){
+    clearInterval(window.timer);
+    window.timer=setInterval(function () {
+        var scrollLeft=getScroll().left;
+        var scrollTop=getScroll().top;
+        console.log("scrollTop="+scrollTop);
+        var diff=target-scrollTop;
+        var speed=diff>0?Math.ceil(diff/10):Math.floor(diff/10);
+        window.scrollTo(scrollLeft,scrollTop+speed);
+        if(Math.abs(diff)<=Math.abs(speed)){
+            window.scrollTo(scrollLeft,target);
+            clearInterval(window.timer);
+        }
+    },Math.abs(interval));
+}
+
+
+/**
+ * window水平方向的缓速滚动到指定位置
+ * @param target      滚动到的目标位置
+ * @param factor      步长因子，用来动态改变速度
+ * @param interval    定时器的频率
+ */
+function animate_window_hor_slow(target,factor,interval){
+    clearInterval(window.timer);
+    window.timer=setInterval(function () {
+        var scrollLeft=getScroll().left;
+        var scrollTop=getScroll().top;
+        console.log("scrollLeft="+scrollLeft);
+        var diff=target-scrollLeft;
+        var speed=diff>0?Math.ceil(diff/10):Math.floor(diff/10);
+        window.scrollTo(scrollLeft+speed,scrollTop);//数值方向不变
+        if(Math.abs(diff)<=Math.abs(speed)){
+            window.scrollTo(target,scrollTop);
+            clearInterval(window.timer);
+        }
+    },Math.abs(interval));
+}

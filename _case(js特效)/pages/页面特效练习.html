@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>页面特效练习</title>
-    <style >
+    <style>
         *{
             margin: 0px;
             padding: 0px;
@@ -11,22 +11,91 @@
 
         body{
             height: 5000px;
+            background: url("../images/container.png") no-repeat;
+            position: relative;
         }
 
+        .topBanner{
+            width: 1519px;
+            height: 45px;
+            margin: 0px auto;
+            background: url("../images/top_banner.png") no-repeat;
+        }
+
+        .close{
+            text-decoration: none;
+            width: 50px;
+            height: 22px;
+            background-color: rgba(0,0,0,0.5);
+            float: right;
+            margin-right: 260px;
+            margin-top: 10px;
+            font: 10px/22px sunsim;
+            text-align: center;
+        }
+
+        .ad_left{
+            position: absolute;
+            top: 200px;
+            left: 0px;
+        }
+
+        .ad_right{
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            top: 200px;
+        }
+
+        .backTop{
+            width: 50px;
+            height: 50px;
+            background: url("../images/top_arrow.png") no-repeat;
+            position: fixed;
+            right: 50px;
+            bottom: 100px;
+            cursor: pointer;
+        }
     </style>
     <script src="../js/utils.js"></script>
     <script>
         window.onload=function () {
-
+            var isNeedFixed=true;
+            var topBanner=document.getElementsByTagName("div")[0];
+            var adLeft=document.getElementsByTagName("img")[0];
+            var adRight=document.getElementsByTagName("img")[1];
+            var close=document.getElementsByTagName("a")[0];
+            var backTop=document.getElementsByTagName("span")[0];
             window.onscroll=function () {
-               console.log("");
+                if(isNeedFixed){
+                    topBanner.style.position="fixed";
+                }
+
+                var scrollTop= getScroll().top+200;
+
+                //给左右广告添加跟随滚动效果
+                animate_ver_slow(adLeft,scrollTop,10,50);
+                animate_ver_slow(adRight,scrollTop,10,50);
+            };
+            // 给透明close链接绑定点击事件
+            close.onclick=function(){
+                isNeedFixed=false;
+                topBanner.style.position="";
+            };
+
+            // 给backTop添加点击事件
+            backTop.onclick=function(){
+                animate_window_ver_slow(0,10,50);
             }
         }
-
     </script>
-
 </head>
 <body>
-
+<div class="topBanner">
+    <a href="javascript:void(0)"  class="close">点我试试</a>
+</div>
+<img src="../images/ad_left.png" alt="" class="ad_left">
+<img src="../images/ad_right.png" alt="" class="ad_right">
+<span class="backTop"></span>
 </body>
 </html>
