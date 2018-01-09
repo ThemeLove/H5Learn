@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PageYOffset</title>
+
+    <style>
+            body{
+                height: 5000px;
+            }
+
+            .show{
+                width: 500px;
+                height: 100px;
+                background-color: #60a531;
+                color:#fff;
+                font: 700 20px/100px sunsim;
+                text-align: center;
+                position: fixed;
+                left: 30%;
+                top: 50%;
+            }
+    </style>
+    <script>
+
+        window.onload=function () {
+            var showBox=document.getElementsByTagName("div")[0];
+            window.onscroll=function () {
+                var top=scroll().top;
+                showBox.innerHTML="被卷起的顶部距离:"+top+"px";
+                console.log("scrollTop="+top)
+            }
+        }
+
+        function scroll(){
+            if (window.pageYOffset!=null){
+                console.log("1");
+                return{"top":window.pageYOffset,
+                    "left":window.pageXOffset
+                }
+            }else if(document.compatMode==="CSS1Compat"){
+                console.log("2");
+                return{"top":document.documentElement.scrollTop,
+                        "left":document.documentElement.scrollLeft
+                }
+            }else{
+                console.log("3");
+                return{"top":document.body.scrollTop,
+                        "left":document.body.scrollLeft
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="show">
+
+    </div>
+</body>
+</html>

@@ -24,6 +24,8 @@
             width: 100px;
             height: 100px;
             background-color: #ffff00;
+            position: absolute;
+            left: 300px;
         }
 
     </style>
@@ -34,15 +36,29 @@
             var box=document.getElementsByClassName("box")[0];
 
             btn1.onclick=function () {
-
+                slow_animation(box,100);
             };
 
             btn2.onclick=function(){
-
+                slow_animation(box,600);
             };
 
-            function slow_animation(){
+            function slow_animation(ele,target){
+                clearInterval(ele.timer);
+                ele.timer=setInterval(function () {
+                    var diff=target-ele.offsetLeft;
+                    var speed=diff>0?Math.ceil(diff/10):Math.floor(diff/10);
+                    console.log("diff="+Math.abs(diff));
+                    console.log("speed value="+diff/10);
+                    console.log("speed="+speed);
 
+                    ele.style.left=ele.offsetLeft+speed+"px";
+                    if (Math.abs(diff)<=Math.abs(speed)){//注意这里的等于
+                        console.log("left="+ele.style.left);
+                        ele.style.left=target+"px";
+                        clearInterval(ele.timer);
+                    }
+                },100);
             }
         }
     </script>
