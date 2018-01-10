@@ -27,13 +27,18 @@ function getScroll(){
  * @param interval  定时器的频率
  */
 function animate_hor(ele,target,speed,interval){
-    clearInterval(ele.timer);
-    var diff=target-ele.offsetLeft;
-    var speed=diff>0?Math.abs(speed):-Math.abs(speed);
+    // clearInterval(ele.timer);
+    console.log("speed="+speed);
     ele.timer=setInterval(function () {
+        var diff=target-ele.offsetLeft;
+        speed=diff>0?Math.abs(speed):-Math.abs(speed);
         ele.style.left=ele.offsetLeft+speed+"px";
+        console.log("speed="+speed);
+        console.log("left="+ele.offsetLeft);
+        console.log("diff="+diff);
         if(Math.abs(diff)<=Math.abs(speed)){
             ele.style.left=target+"px";
+            console.log("clearInterval");
             clearInterval(ele.timer);
         }
     },Math.abs(interval));
@@ -48,11 +53,14 @@ function animate_hor(ele,target,speed,interval){
  */
 function animate_ver(ele,target,speed,interval){
     clearInterval(ele.timer);
-    var diff=target-ele.offsetLeft;
-    var speed=diff>0?Math.abs(speed):-Math.abs(speed);
     ele.timer=setInterval(function () {
+        var diff=target-ele.offsetTop;
+        // var speed1=Math.abs(speed);
+        // console.log("speed1="+speed1);
+        speed=diff>0?Math.abs(speed):-Math.abs(speed);
+        console.log("left="+ele.offsetTop);
         ele.style.top=ele.offsetTop+speed+"px";
-        if (Math.abs(diff)<Math.abs(speed)){
+        if (Math.abs(diff)<=Math.abs(speed)){
             ele.style.top=target+"px";
             clearInterval(ele.timer);
         }

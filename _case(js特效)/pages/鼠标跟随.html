@@ -20,14 +20,22 @@
     <script>
         window.onload=function () {
             var image=document.getElementById("image");
+            var image_width=image.offsetWidth;
+            var image_height=image.offsetHeight;
             window.onclick=function (ev) {
                 var positionX=mousePosition(ev)[0];
                 var positionY=mousePosition(ev)[1];
                 console.log("positionX="+positionX);
                 console.log("positionY="+positionY);
 
-                image.style.left=positionX+"px";
-                image.style.top=positionY+"px";
+                // image.style.left=positionX-image_width/2+"px";
+                // image.style.top=positionY-image_height/2+"px";
+                var targetX=positionX-image_width/2;
+                var targetY=positionY-image_height/2;
+                console.log("targetX="+targetX);
+                console.log("targetY="+targetY);
+                animate_hor(image,targetX,10,50);
+                animate_ver(image,targetY,10,50);
             }
         }
     </script>
