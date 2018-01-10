@@ -143,3 +143,15 @@ function animate_window_hor_slow(target,factor,interval){
         }
     },Math.abs(interval));
 }
+
+/**
+ * 获取鼠标在屏幕的位置
+ * @param evt
+ * @returns {*[]}
+ */
+function mousePosition(evt){
+    evt = evt || window.event;
+    var xPos = evt.pageX || evt.clientX || evt.offsetX || evt.x;
+    var yPos = evt.pageY || evt.clientY || evt.offsetY || evt.y;
+    return [xPos, yPos];
+}

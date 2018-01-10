@@ -9,6 +9,16 @@
             padding: 0px;
         }
 
+        /*清除浮动*/
+        .clear-fix{
+            zoom: 1;
+        }
+        .clear-fix:after{
+            content:"";
+            clear: both;
+            display: block;
+        }
+
         body{
             height: 5000px;
             background: url("../images/container.png") no-repeat;
@@ -20,6 +30,11 @@
             height: 45px;
             margin: 0px auto;
             background: url("../images/top_banner.png") no-repeat;
+        }
+
+        .topContainer{
+            width: 100%;
+            background-color: #ffff00;
         }
 
         .close{
@@ -56,43 +71,176 @@
             bottom: 100px;
             cursor: pointer;
         }
+
+        #dialog{
+            width: 450px;
+            height: 250px;
+            border: 2px solid red;
+            position: absolute;
+            left: 600px;
+            top: 250px;
+            background-color: #fff;
+            display: none;
+        }
+
+        #title{
+            width: 450px;
+            height: 50px;
+            background-color: #666666;
+            font: 20px/50px "sunsim";
+            color: #fff;
+            text-align: left;
+            text-indent: 1em;
+            cursor: move;
+            user-select: none;
+        }
+
+        #message{
+            width: 450px;
+            height: 120px;
+            background-color: #ffffff;
+            font: 700 30px/120px "sunsim";
+            color: #FD6500;
+            text-align: center;
+            user-select: none;
+        }
+
+        #yes{
+            height: 30px;
+            font: 15px/30px sunsim;
+            border: 1px solid red;
+            background: #ffd283;
+            color: #000;
+            float: left;
+            padding: 10px;
+            margin-bottom: 30px;
+            margin-left: 30px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        #cancel{
+            height: 30px;
+            font: 15px/30px sunsim;
+            border: 1px solid red;
+            background: #ffd283;
+            color: #000;
+            float: right;
+            padding: 10px;
+            margin-bottom: 30px;
+            margin-right: 30px;
+            cursor: pointer;
+            user-select: none;
+        }
+
     </style>
     <script src="../js/utils.js"></script>
     <script>
         window.onload=function () {
             var isNeedFixed=true;
-            var topBanner=document.getElementsByTagName("div")[0];
+            var topBannerContainer=document.getElementsByTagName("div")[0];
             var adLeft=document.getElementsByTagName("img")[0];
             var adRight=document.getElementsByTagName("img")[1];
             var close=document.getElementsByTagName("a")[0];
             var backTop=document.getElementsByTagName("span")[0];
+            var dialog=document.getElementById("dialog");
+            var title=document.getElementById("title");
+            var message=document.getElementById("message");
+            var yes=document.getElementById("yes");
+            var cancel=document.getElementById("cancel");
+
+            var positionX;
+            var positionY;
+
+            var isOverTitle=false;
+            var isMove=false;
+
+            // 给透明close链接绑定点击事件
+            close.onclick=function(){
+                dialog.style.display="block";
+            };
+
+            title.onmouseover=function () {
+                isOverTitle=true;
+            };
+
+            title.onmouseout=function () {
+                isOverTitle=false;
+            };
+
+            window.onmousedown=function (ev) {
+                isMove=true;
+                if (!isOverTitle)return;
+                positionX= mousePosition(ev)[0];
+                positionY= mousePosition(ev)[1];
+                console.log("positionX="+positionX);
+                console.log("positionY="+positionY);
+
+            };
+
+            window.onmousemove=function (ev) {
+                if(!isMove||!isOverTitle){return;
+
+                }
+                var newestPositionX= mousePosition(ev)[0];
+                var newestPositionY= mousePosition(ev)[1];
+                console.log("newestPositionX="+newestPositionX);
+                console.log("newestPositionY="+newestPositionY);
+                var diffX=newestPositionX-positionX;
+                var diffY=newestPositionY-positionY;
+                console.log("diffX="+diffX);
+                console.log("diffY="+diffY);
+                console.log("left="+dialog.offsetLeft);
+                console.log("top="+dialog.offsetTop);
+                dialog.style.left=dialog.offsetLeft+diffX+"px";
+                dialog.style.top=dialog.offsetTop+diffY+"px";
+                positionX=newestPositionX;
+                positionY=newestPositionY;
+            };
+
+            window.onmouseup=function (ev) {
+                isMove=false;
+            }
+
+            yes.onclick=function () {
+                console.log("yes.onclick");
+               dialog.style.display="none";
+            };
+
+            cancel.onclick=function () {
+                console.log("cancel.onclick");
+                dialog.style.display="none";
+            };
+
             window.onscroll=function () {
                 if(isNeedFixed){
-                    topBanner.style.position="fixed";
+                    topBannerContainer.style.position="fixed";
                 }
-
                 var scrollTop= getScroll().top+200;
-
                 //给左右广告添加跟随滚动效果
                 animate_ver_slow(adLeft,scrollTop,10,50);
                 animate_ver_slow(adRight,scrollTop,10,50);
             };
-            // 给透明close链接绑定点击事件
-            close.onclick=function(){
-                isNeedFixed=false;
-                topBanner.style.position="";
-            };
 
             // 给backTop添加点击事件
             backTop.onclick=function(){
-                animate_window_ver_slow(0,10,50);
+                // console.log("backTop.onclick");
+                // animate_window_ver_slow(0,10,50);
             }
         }
     </script>
 </head>
 <body>
-<div class="topBanner">
-    <a href="javascript:void(0)"  class="close">点我试试</a>
+<div class="topContainer clear-fix">
+    <div class="topBanner">
+        <a href="javascript:void(0)"  class="close">点我试试</a>
+    </div>
+</div>
+<div id="dialog">
+    <div id="title">提示框</div>
+    <div id="message">你真的真的要关闭吗?</div>
+    <span id="yes">真的关闭</span>
+    <span id="cancel">我再想想</span>
 </div>
 <img src="../images/ad_left.png" alt="" class="ad_left">
 <img src="../images/ad_right.png" alt="" class="ad_right">

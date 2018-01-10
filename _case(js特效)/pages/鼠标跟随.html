@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>鼠标跟随</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        #image{
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+    </style>
+    <script src="../js/utils.js"></script>
+    <script>
+        window.onload=function () {
+            var image=document.getElementById("image");
+            window.onclick=function (ev) {
+                var positionX=mousePosition(ev)[0];
+                var positionY=mousePosition(ev)[1];
+                console.log("positionX="+positionX);
+                console.log("positionY="+positionY);
+
+                image.style.left=positionX+"px";
+                image.style.top=positionY+"px";
+            }
+        }
+    </script>
+</head>
+<body>
+<img src="../images/mouse_follow.jpg" id="image" alt="">
+</body>
+</html>
