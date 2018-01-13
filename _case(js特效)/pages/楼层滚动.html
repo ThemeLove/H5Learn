@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>楼层跳跃</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        html,body,ul{
+            width: 100%;
+            height:100%;
+            position: relative;
+        }
+        ul li{
+            list-style: none;
+            width: 100%;
+            height:100%;
+            float: left;
+            font: 700 50px "sunsim";
+        }
+
+        ol{
+            position: fixed;
+            left: 100px;
+            top: 0px;
+        }
+
+        ol li{
+            list-style: none;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            font: 700 20px/50px "sunsim";
+            cursor: pointer;
+        }
+    </style>
+    <script src="../js/utils.js"></script>
+    <script>
+       window.onload=function () {
+           var ul= document.getElementsByTagName("ul")[0];
+           var ol= document.getElementsByTagName("ol")[0];
+           var colorArr=new Array("red","yellow","blue","cyan","green");
+           var scroll_height=ul.children[0].offsetHeight;
+           for(var i=0;i<ul.children.length;i++){
+               ul.children[i].style.backgroundColor=colorArr[i];
+               ol.children[i].style.backgroundColor=colorArr[i];
+
+               ol.children[i].index=i;//属性绑定
+               ol.children[i].onclick=function () {
+                    animate_window_slow_Y(this.index*scroll_height,10,30);
+               }
+           }
+       }
+    </script>
+</head>
+<body>
+    <ul>
+        <li>1F</li>
+        <li>2F</li>
+        <li>3F</li>
+        <li>4F</li>
+        <li>5F</li>
+    </ul>
+
+    <ol>
+        <li>1F</li>
+        <li>2F</li>
+        <li>3F</li>
+        <li>4F</li>
+        <li>5F</li>
+    </ol>
+
+</body>
+</html>

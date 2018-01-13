@@ -39,14 +39,15 @@
 
         .close{
             text-decoration: none;
-            width: 50px;
+            width: 100px;
             height: 22px;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0,0,0,0.8);
             float: right;
-            margin-right: 260px;
+            margin-right: 215px;
             margin-top: 10px;
             font: 10px/22px sunsim;
             text-align: center;
+            color: red;
         }
 
         .ad_left{
@@ -62,7 +63,7 @@
             top: 200px;
         }
 
-        .backTop{
+        #backTop{
             width: 50px;
             height: 50px;
             background: url("../images/top_arrow.png") no-repeat;
@@ -105,7 +106,7 @@
             user-select: none;
         }
 
-        #yes{
+        #fixed{
             height: 30px;
             font: 15px/30px sunsim;
             border: 1px solid red;
@@ -119,7 +120,7 @@
             user-select: none;
         }
 
-        #cancel{
+        #unfixed{
             height: 30px;
             font: 15px/30px sunsim;
             border: 1px solid red;
@@ -134,116 +135,124 @@
         }
 
     </style>
-    <script src="../js/utils.js"></script>
-    <script>
-        window.onload=function () {
-            var isNeedFixed=true;
-            var topBannerContainer=document.getElementsByTagName("div")[0];
-            var adLeft=document.getElementsByTagName("img")[0];
-            var adRight=document.getElementsByTagName("img")[1];
-            var close=document.getElementsByTagName("a")[0];
-            var backTop=document.getElementsByTagName("span")[0];
-            var dialog=document.getElementById("dialog");
-            var title=document.getElementById("title");
-            var message=document.getElementById("message");
-            var yes=document.getElementById("yes");
-            var cancel=document.getElementById("cancel");
 
-            var positionX;
-            var positionY;
-
-            var isOverTitle=false;
-            var isMove=false;
-
-            // 给透明close链接绑定点击事件
-            close.onclick=function(){
-                dialog.style.display="block";
-            };
-
-            title.onmouseover=function () {
-                isOverTitle=true;
-            };
-
-            title.onmouseout=function () {
-                isOverTitle=false;
-            };
-
-            window.onmousedown=function (ev) {
-                isMove=true;
-                if (!isOverTitle)return;
-                positionX= mousePosition(ev)[0];
-                positionY= mousePosition(ev)[1];
-                console.log("positionX="+positionX);
-                console.log("positionY="+positionY);
-
-            };
-
-            window.onmousemove=function (ev) {
-                if(!isMove||!isOverTitle){return;
-
-                }
-                var newestPositionX= mousePosition(ev)[0];
-                var newestPositionY= mousePosition(ev)[1];
-                console.log("newestPositionX="+newestPositionX);
-                console.log("newestPositionY="+newestPositionY);
-                var diffX=newestPositionX-positionX;
-                var diffY=newestPositionY-positionY;
-                console.log("diffX="+diffX);
-                console.log("diffY="+diffY);
-                console.log("left="+dialog.offsetLeft);
-                console.log("top="+dialog.offsetTop);
-                dialog.style.left=dialog.offsetLeft+diffX+"px";
-                dialog.style.top=dialog.offsetTop+diffY+"px";
-                positionX=newestPositionX;
-                positionY=newestPositionY;
-            };
-
-            window.onmouseup=function (ev) {
-                isMove=false;
-            };
-
-            yes.onclick=function () {
-                console.log("yes.onclick");
-               dialog.style.display="none";
-            };
-
-            cancel.onclick=function () {
-                console.log("cancel.onclick");
-                dialog.style.display="none";
-            };
-
-            window.onscroll=function () {
-                if(isNeedFixed){
-                    topBannerContainer.style.position="fixed";
-                }
-                var scrollTop= getScroll().top+200;
-                //给左右广告添加跟随滚动效果
-                animate_ver_slow(adLeft,scrollTop,10,50);
-                animate_ver_slow(adRight,scrollTop,10,50);
-            };
-
-            // 给backTop添加点击事件
-            backTop.onclick=function(){
-                // console.log("backTop.onclick");
-                // animate_window_ver_slow(0,10,50);
-            }
-        }
-    </script>
 </head>
 <body>
 <div class="topContainer clear-fix">
     <div class="topBanner">
-        <a href="javascript:void(0)"  class="close">点我试试</a>
+        <a href="javascript:void(0)"  class="close">顶部固定模式切换</a>
     </div>
 </div>
 <div id="dialog">
     <div id="title">提示框</div>
-    <div id="message">你真的真的要关闭吗?</div>
-    <span id="yes">真的关闭</span>
-    <span id="cancel">我再想想</span>
+    <div id="message">切换顶部topBanner的固定模式</div>
+    <span id="fixed">固定fixed</span>
+    <span id="unfixed">不固定</span>
 </div>
 <img src="../images/ad_left.png" alt="" class="ad_left">
 <img src="../images/ad_right.png" alt="" class="ad_right">
-<span class="backTop"></span>
+<span id="backTop"></span>
+
+<script src="../js/utils.js"></script>
+<script>
+    window.onload=function () {
+        var isNeedFixed=true;
+        var topBannerContainer=document.getElementsByTagName("div")[0];
+        var adLeft=document.getElementsByTagName("img")[0];
+        var adRight=document.getElementsByTagName("img")[1];
+        var close=document.getElementsByTagName("a")[0];
+        var backTop=document.getElementById("backTop");
+        var dialog=document.getElementById("dialog");
+        var title=document.getElementById("title");
+        var message=document.getElementById("message");
+        var fixed    =document.getElementById("fixed");
+        var unfixed=document.getElementById("unfixed");
+
+        var positionX;
+        var positionY;
+
+        var isOverTitle=false;
+        var isMove=false;
+
+        title.onmouseover=function () {
+            isOverTitle=true;
+        };
+
+        title.onmouseout=function () {
+            isOverTitle=false;
+        };
+
+        window.onmousedown=function (ev) {
+            isMove=true;
+            if (!isOverTitle)return;
+            positionX= mousePosition(ev)[0];
+            positionY= mousePosition(ev)[1];
+            console.log("positionX="+positionX);
+            console.log("positionY="+positionY);
+
+        };
+
+        window.onmousemove=function (ev) {
+            if(!isMove||!isOverTitle){return;
+
+            }
+            var newestPositionX= mousePosition(ev)[0];
+            var newestPositionY= mousePosition(ev)[1];
+            console.log("newestPositionX="+newestPositionX);
+            console.log("newestPositionY="+newestPositionY);
+            var diffX=newestPositionX-positionX;
+            var diffY=newestPositionY-positionY;
+            console.log("diffX="+diffX);
+            console.log("diffY="+diffY);
+            console.log("left="+dialog.offsetLeft);
+            console.log("top="+dialog.offsetTop);
+            dialog.style.left=dialog.offsetLeft+diffX+"px";
+            dialog.style.top=dialog.offsetTop+diffY+"px";
+            positionX=newestPositionX;
+            positionY=newestPositionY;
+        };
+
+        window.onmouseup=function (ev) {
+            isMove=false;
+        };
+
+        // 给透明close链接绑定点击事件
+        close.onclick=function(){
+            console.log("close");
+            dialog.style.display="block";
+        };
+
+        fixed.onclick=function () {
+            console.log("yes.onclick");
+            dialog.style.display="none";
+            topBannerContainer.style.position="fixed";
+            isNeedFixed=true;
+        };
+
+        unfixed.onclick=function () {
+            console.log("cancel.onclick");
+            dialog.style.display="none";
+            topBannerContainer.style.position="absolute";
+            isNeedFixed=false;
+        };
+
+        // 给backTop添加点击事件
+        backTop.onclick=function(){
+            console.log("backTop.onclick");
+            animate_window_slow_Y(0,10,50);
+        }
+
+        window.onscroll=function () {
+            if(isNeedFixed){
+                topBannerContainer.style.position="fixed";
+            }
+            var scrollTop= getScroll().top+200;
+            //给左右广告添加跟随滚动效果
+            animate_slow_Y(adLeft,scrollTop,10,50);
+            animate_slow_Y(adRight,scrollTop,10,50);
+        };
+
+    }
+</script>
 </body>
 </html>

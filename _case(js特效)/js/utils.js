@@ -26,8 +26,8 @@ function getScroll(){
  * @param speed     执行动画的步长，速度
  * @param interval  定时器的频率
  */
-function animate_hor(ele,target,speed,interval){
-    // clearInterval(ele.timer);
+function animate_X(ele,target,speed,interval){
+    clearInterval(ele.timer);
     console.log("speed="+speed);
     ele.timer=setInterval(function () {
         var diff=target-ele.offsetLeft;
@@ -51,7 +51,7 @@ function animate_hor(ele,target,speed,interval){
  * @param speed     执行动画的步长，速度
  * @param interval  定时器的频率
  */
-function animate_ver(ele,target,speed,interval){
+function animate_Y(ele,target,speed,interval){
     clearInterval(ele.timer);
     ele.timer=setInterval(function () {
         var diff=target-ele.offsetTop;
@@ -68,13 +68,43 @@ function animate_ver(ele,target,speed,interval){
 }
 
 /**
+ * 匀速移动到某一点,这里的速度一定要根据x,y方向的距离动态计算
+ * @param ele       执行动画的元素
+ * @param targetX   目标点的X坐标
+ * @param targetY   目标点的Y坐标
+ * @param interval  定时器的频率
+ */
+function animate_XY(ele,targetX,targetY,interval){
+    clearInterval(ele.timer);
+    ele.timer=setInterval(function () {
+        var diffX=targetX-ele.offsetLeft;
+        var speedX=diffX>0?Math.ceil(diffX/Math.abs(interval)):Math.floor(diffX/Math.abs(interval));
+
+        ele.style.left=ele.offsetLeft+speedX+"px";
+
+        var diffY=targetY-ele.offsetTop;
+        var speedY=diffY>0?Math.ceil(diffY/Math.abs(interval)):Math.floor(diffY/Math.abs(interval));
+        ele.style.top=ele.offsetTop+speedY+"px";
+
+        if (Math.abs(diffX)<=Math.abs(speedX)&&Math.abs(diffY)<=Math.abs(speedY)){
+            ele.style.left=targetX+"px";
+            ele.style.top=targetY+"px";
+            console.log("clearInterval=animate_XY");
+            clearInterval(ele.timer);
+        }
+        console.log("left="+ele.offsetLeft);
+        console.log("top="+ele.offsetTop);
+    },Math.abs(interval));
+}
+
+/**
  * 水平方向缓速运动
  * @param ele       执行动画元素
  * @param target    动画运动到的目标
  * @param factor    步长因子,用来动态改变速度
  * @param interval  定时器的频率
  */
-function animate_hor_slow(ele,target,factor,interval){
+function animate_slow_X(ele,target,factor,interval){
     clearInterval(ele.timer);
     ele.timer=setInterval(function () {
         var diff=target-ele.offsetLeft;
@@ -94,7 +124,7 @@ function animate_hor_slow(ele,target,factor,interval){
  * @param factor    步长因子,用来动态改变速度
  * @param interval  定时器的频率
  */
-function animate_ver_slow(ele,target,factor,interval){
+function animate_slow_Y(ele,target,factor,interval){
     clearInterval(ele.timer);
     ele.timer=setInterval(function () {
         var diff=target-ele.offsetTop;
@@ -107,13 +137,33 @@ function animate_ver_slow(ele,target,factor,interval){
     },Math.abs(interval));
 }
 
+function animate_slow_XY(ele,targetX,targetY,factor,interval){
+    clearInterval(ele.timer);
+    ele.timer=setInterval(function () {
+        var diffX=targetX-ele.offsetLeft;
+        var speedX=diffX>0?Math.ceil(diffX/Math.abs(factor)):Math.floor(diffX/Math.abs(factor));
+        ele.style.left=ele.offsetLeft+speedX+"px";
+
+        var diffY=targetY-ele.offsetTop;
+        var speedY=diffY>0?Math.ceil(diffY/Math.abs(factor)):Math.floor(diffY/Math.abs(factor));
+        ele.style.top=ele.offsetTop+speedY+"px";
+
+        if (Math.abs(diffX)<=Math.abs(speedX)&&Math.abs(diffY)<=Math.abs(speedY)){
+            ele.style.left=targetX+"px";
+            ele.style.top=targetY+"px";
+            clearInterval(ele.timer);
+        }
+    },Math.abs(interval))
+
+}
+
 /**
  * window竖直方向的缓速滚动到指定位置
  * @param target      滚动到的目标位置
  * @param factor      步长因子，用来动态改变速度
  * @param interval    定时器的频率
  */
-function animate_window_ver_slow(target,factor,interval){
+function animate_window_slow_Y(target,factor,interval){
     clearInterval(window.timer);
     window.timer=setInterval(function () {
         var scrollLeft=getScroll().left;
@@ -136,7 +186,7 @@ function animate_window_ver_slow(target,factor,interval){
  * @param factor      步长因子，用来动态改变速度
  * @param interval    定时器的频率
  */
-function animate_window_hor_slow(target,factor,interval){
+function animate_window_slow_X(target,factor,interval){
     clearInterval(window.timer);
     window.timer=setInterval(function () {
         var scrollLeft=getScroll().left;
@@ -144,7 +194,7 @@ function animate_window_hor_slow(target,factor,interval){
         console.log("scrollLeft="+scrollLeft);
         var diff=target-scrollLeft;
         var speed=diff>0?Math.ceil(diff/10):Math.floor(diff/10);
-        window.scrollTo(scrollLeft+speed,scrollTop);//数值方向不变
+        window.scrollTo(scrollLeft+speed,scrollTop);//竖直方向不变
         if(Math.abs(diff)<=Math.abs(speed)){
             window.scrollTo(target,scrollTop);
             clearInterval(window.timer);

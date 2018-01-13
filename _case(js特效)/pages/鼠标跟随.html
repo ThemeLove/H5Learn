@@ -14,6 +14,7 @@
             position: absolute;
             left: 0px;
             top: 0px;
+            border: 1px solid red;
         }
     </style>
     <script src="../js/utils.js"></script>
@@ -28,14 +29,12 @@
                 console.log("positionX="+positionX);
                 console.log("positionY="+positionY);
 
-                // image.style.left=positionX-image_width/2+"px";
-                // image.style.top=positionY-image_height/2+"px";
                 var targetX=positionX-image_width/2;
                 var targetY=positionY-image_height/2;
                 console.log("targetX="+targetX);
                 console.log("targetY="+targetY);
-                animate_hor(image,targetX,10,50);
-                animate_ver(image,targetY,10,50);
+                animate_slow_XY(image,targetX,targetY,10,30);
+                // animate_XY(image,targetX,targetY,30);
             }
         }
     </script>
