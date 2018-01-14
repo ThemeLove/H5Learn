@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模拟滚动条</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        #container{
+            width: 300px;
+            height: 600px;
+            border: 1px solid red;
+            margin: 100px auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #content{
+            background: #99CC99;
+            padding: 10px;
+            user-select: none;
+        }
+
+        #scroll{
+            width: 20px;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: #ccc;
+        }
+
+        #bar{
+            width:100%;
+            height: 50px;
+            background-color: #333;
+            border-radius: 10px;
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+        }
+    </style>
+
+    <script src="../js/utils.js"></script>
+    <script>
+        window.onload=function () {
+            var container=document.getElementById("container");
+            var content=document.getElementById("content");
+            var scroll=document.getElementById("scroll");
+            var bar =document.getElementById("bar");
+
+            var containerHeight=container.offsetHeight;
+            var contentHeight=content.offsetHeight;
+
+            var scale=contentHeight/containerHeight;
+
+        //  1.根据比例，初始化bar的高度
+            bar.style.height=containerHeight/scale+"px";
+            console.log("containerHeight="+containerHeight);
+            console.log("contentHeight="+contentHeight);
+            console.log("scale="+scale);
+
+            var pageY=0;
+            var viewY=0;
+            var containerY=0;
+        //  2.添加事件
+            bar.onmouseover=function (event) {
+
+                bar.onmousedown=function (event) {
+
+                    pageY=getMousePositionInPage(event).y;
+                    containerY=pageY-container.offsetTop;
+                    viewY=containerY-bar.offsetTop;
+                    console.log("scrollTop="+scroll.offsetTop);
+                    console.log("containerTop="+container.offsetTop);
+                    console.log("barTop="+bar.offsetTop);
+
+                    bar.onmousemove=function (event) {
+                        pageY=getMousePositionInPage(event).y;
+                        var top=pageY-container.offsetTop-viewY;
+                        //边界判断
+                        if(top<0){
+                            console.log("top is 0");
+                            top=0;
+                        }
+                        if(top>containerHeight-bar.offsetHeight){
+                            top=containerHeight-bar.offsetHeight;
+                            console.log("top is bottom");
+                        }
+                        console.log("top="+top);
+                        bar.style.top=top+"px";
+                        console.log("offsetTop="+bar.offsetTop);
+                        content.style.marginTop=-scale*top+"px";
+                    };
+                };
+
+            };
+
+            //全局鼠标弹起的时候，清除鼠标移动事件
+            document.onmouseup=function (ev) {
+                bar.onmousemove=null;
+            };
+
+            bar.onmouseout=function (event) {
+                bar.onmousemove=null;
+            };
+
+            window.getSelection()?window.getSelection().removeAllRanges():document.getSelection().empty();
+        }
+    </script>
+</head>
+<body>
+<div id="container">
+    <div id="content">
+        -------------start------------<br>
+        ------------ 毛泽东 ---------- <br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生何处不青山。<br>
+        -------------end------------
+    </div>
+    <div id="scroll">
+        <div id="bar"></div>
+    </div>
+</div>
+</body>
+</html>

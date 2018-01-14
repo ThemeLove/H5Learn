@@ -213,3 +213,33 @@ function mousePosition(evt){
     var yPos = evt.pageY || evt.clientY || evt.offsetY || evt.y;
     return [xPos, yPos];
 }
+
+/**
+ * 获取鼠标在屏幕中的位置
+ * @param event     事件对象
+ * @returns {{x: number, y: number}}
+ */
+function getMousePositionInPage(event){
+    event=event||window.event;
+    var x=event.pageX||getScroll().left+event.clientX;
+    var y=event.pageY||getScroll().top+event.clientY;
+    return {"x":x ,
+            "y":y
+    }
+}
+
+/**
+ * 显示控件
+ * @param ele
+ */
+function show(ele){
+    ele.style.display="block";
+}
+
+/**
+ *  隐藏控件
+ * @param ele
+ */
+function hidden(ele){
+    ele.style.display="none";
+}

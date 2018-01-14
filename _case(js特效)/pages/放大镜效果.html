@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>放大镜效果</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        img{
+            border: 0;
+            vertical-align: middle;
+        }
+        /*清除浮动*/
+        .clear-fix{
+            zoom: 1;
+        }
+        .clear-fix:after{
+            content:"";
+            clear: both;
+            display: block;
+        }
+        #container{
+            margin: 100px 200px;
+            height: 500px;
+            padding: 50px;
+            background-color: chartreuse;
+        }
+
+        #small-box{
+            width: 350px;
+            height: 350px;
+            position: relative;
+            float: left;
+            margin-left: 50px;
+        }
+
+        #small-img{
+            border: 1px solid rgba(0,0,0,0.5);
+        }
+
+        #mask{
+            width: 175px;
+            height: 175px;
+            background-color: rgba(255,255,0,0.5);
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: none;
+            cursor: move;
+        }
+
+        #big-box{
+            margin-left: 50px;
+            position: relative;
+            float: left;
+            width: 400px;
+            height: 400px;
+            border: 1px solid rgba(0,0,0,0.5);
+            overflow: hidden;
+            display: none;
+        }
+    </style>
+
+    <script src="../js/utils.js"></script>
+    <script>
+        window.onload=function () {
+            var small_box=document.getElementById("small-box");
+            var mask=document.getElementById("mask");
+            var big_box=document.getElementById("big-box");
+            var big_img=document.getElementById("big-img");
+
+            var smallBoxWidth=small_box.offsetWidth;
+            var smallBoxHeight=small_box.offsetHeight;
+
+            console.log("smallBoxWidth="+smallBoxWidth);
+            console.log("smallBoxWidth="+smallBoxHeight);
+
+            var maskWidth=mask.offsetWidth;
+            var maskHeight=mask.offsetHeight;
+
+            var scale=800/350;
+
+        //  1.给小盒子添加鼠标悬浮事件
+            small_box.onmouseover=function (event) {
+                show(mask);
+                show(big_box);
+                //给maskWidth、maskHeight赋值
+                maskWidth=mask.offsetWidth;
+                maskHeight=mask.offsetHeight;
+
+                scale=big_img.offsetWidth/smallBoxWidth;
+
+                console.log("maskWidth="+maskWidth);
+                console.log("maskHeight="+maskHeight);
+            };
+
+            small_box.onmouseout=function ( ) {
+                hidden(mask);
+                hidden(big_box);
+            };
+
+            small_box.onmousemove=function (ev) {
+                var pageX=getMousePositionInPage(event).x;
+                var pageY=getMousePositionInPage(event).y;
+                var viewX=pageX-small_box.offsetLeft;
+                var viewY=pageY-small_box.offsetTop;
+
+                console.log("pageX="+pageX);
+                console.log("pageY="+pageY);
+                console.log("viewX="+viewX);
+                console.log("viewY="+viewY);
+
+                //  计算mask的left和top值，保证鼠标位置在mask的中心。
+                var left=viewX-maskWidth/2;
+                var top=viewY-maskHeight/2;
+
+                //  控制left和top的范围
+                if(left<0){
+                   left=0;
+                }
+
+                if (left>smallBoxWidth-maskWidth){
+                    left=smallBoxWidth-maskWidth;
+                }
+
+                if(top<0){
+                    top=0;
+                }
+
+                if(top>smallBoxHeight-maskHeight){
+                   top=smallBoxHeight-maskHeight;
+                }
+
+                console.log("left="+left);
+                console.log("top="+top);
+
+                mask.style.left=left+"px";
+                mask.style.top=top+"px";
+                console.log("offsetLeft="+mask.offsetLeft);
+                console.log("offsetTop="+mask.offsetTop);
+
+            //    同时动态改变big-img的位置，实现放大镜的效果
+
+                big_img.style.marginLeft=-scale*left+"px";
+                big_img.style.marginTop=-scale*top+"px";
+            }
+        };
+    </script>
+</head>
+<body>
+<span style="font-size: 30px; color: red;">鼠标移动到图片上即可放大</span>
+<div id="container">
+    <div id="small-box" class="clear-fix"><img src="../images/small_mouse.jpg" alt="" id="small-img">
+        <div id="mask"></div>
+    </div>
+    <div id="big-box"><img src="../images/big_mouse.jpg" alt="" id="big-img"></div>
+</div>
+</body>
+</html>
