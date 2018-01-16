@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>旋转木马</title>
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            margin: 100px auto;
+        }
+        .rotate{
+            width: 1200px;
+            height: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .slide{
+            width: 1200px;
+            height: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .slide li{
+            list-style: none;
+            position: absolute;
+            cursor: pointer;
+            display: block;
+        }
+
+        .arrow-left{
+            width: 76px;
+            height: 112px;
+            position: absolute;
+            left: 0;
+            top: 194px;
+            z-index: 30;
+            cursor: pointer;
+        }
+
+        .arrow-right{
+            width: 76px;
+            height: 112px;
+            position: absolute;
+            right: 0;
+            top: 194px;
+            z-index: 30;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="rotate">
+        <ul class="slide">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <img src="../images/prev.png" alt="" class="arrow-left">
+        <img src="../images/next.png" alt="" class="arrow-right">
+    </div>
+</div>
+</body>
+<script src="../js/myJQuery.js"></script>
+<script>
+    window.onload=function () {
+        //初始化数组
+        var attrArr = [
+            {   //  1
+                "width":400,
+                "height":250,
+                "top":70,
+                "left":50,
+                "opacity":20,
+                "zIndex":2
+            },
+            {  // 2
+                "width":600,
+                "height":375,
+                "top":120,
+                "left":0,
+                "opacity":80,
+                "zIndex":3
+            },
+            {   // 3
+                "width":800,
+                "height":500,
+                "top":100,
+                "left":200,
+                "opacity":100,
+                "zIndex":4
+            },
+            {  // 4
+                "width":600,
+                "height":375,
+                "top":120,
+                "left":600,
+                "opacity":80,
+                "zIndex":3
+            },
+            {   //5
+                "width":400,
+                "height":250,
+                "top":70,
+                "left":750,
+                "opacity":20,
+                "zIndex":2
+            }
+        ];
+
+        var rotate=document.getElementsByTagName("div")[1];
+        var ul= document.getElementsByTagName("ul")[0];
+        var liArr=ul.children;
+        var arrowLeft=rotate.children[1];
+        var arrowRight=rotate.children[2];
+
+        var imgArr=["../images/slidepic1.jpg",
+                    "../images/slidepic2.jpg",
+                    "../images/slidepic3.jpg",
+                    "../images/slidepic4.jpg",
+                    "../images/slidepic5.jpg"];
+        //初始化li中的背景图片
+        for (var i=0;i<liArr.length;i++){
+            liArr[i].style.cssText= "background: url("+imgArr[i]+") no-repeat";
+        }
+
+        //初始化选择木马
+        move();
+
+    //    1.给rotate添加鼠标进入和移除监听
+        rotate.onmouseenter=function(){
+            animate_slow(arrowLeft,{"opacity":100});
+            animate_slow(arrowRight,{"opacity":100});
+        };
+
+        rotate.onmouseleave=function () {
+            animate_slow(arrowLeft,{"opacity":0});
+            animate_slow(arrowRight,{"opacity":0});
+        };
+
+
+        var canClick=true;
+    //  2.给左右箭头添加点击事件
+        arrowLeft.onclick=function () {
+            if(canClick){
+                canClick=false;
+                move(true);
+            }
+        };
+
+        arrowRight.onclick=function () {
+            if(canClick){
+                canClick=false;
+                move(false);
+            }
+        };
+
+        function move(isNext){
+            if(isNext!==undefined){
+                if(isNext){
+                    attrArr.unshift(attrArr.pop());
+                }else{
+                    attrArr.push(attrArr.shift())
+                }
+            }
+            //    初始化li中的属性，以缓动的方式加载
+            for(var i=0;i<liArr.length;i++){
+                animate_slow(liArr[i],attrArr[i],function () {
+                    //这里在循环里控制，其实是只要有一个动画执行完回调到就会将canClick置为true，因为几个动画执行时间几乎同时完成，所以可以起到控制效果
+                    canClick=true;
+                })
+            }
+        }
+    }
+</script>
+</html>
