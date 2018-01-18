@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>淘宝精品服饰广告案例</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        img{
+            border: 0;
+            vertical-align: middle;
+        }
+
+        .ad{
+            width: 324px;
+            height: 250px;
+            margin: 200px auto;
+            border: 1px solid pink;
+            overflow: hidden;
+        }
+
+        .left{
+            float: left;
+            width: 60px;
+        }
+
+        .left li{
+            list-style: none;
+            width: 60px;
+            height: 27px;
+            font: 15px/27px sunsim;
+            text-align: center;
+            border-bottom: 1px solid pink;
+            cursor: pointer;
+        }
+
+        .center{
+            float: left;
+            width: 200px;
+            height: 250px;
+            position: relative;
+            border-left: 1px solid pink;
+            border-right: 1px solid pink;
+        }
+        .center li{
+            list-style: none;
+            position: absolute;
+            left: 0;
+            right: 0;
+            cursor: pointer;
+        }
+
+        .right{
+            float: left;
+            width: 60px;
+        }
+        .right li{
+            list-style: none;
+            width: 60px;
+            height: 27px;
+            border-bottom: 1px solid darksalmon;
+            font: 15px/27px sunsim;
+            text-align: center;
+            cursor: pointer;
+        }
+    </style>
+
+    <script src="../js/jquery-1.11.1.js"></script>
+
+    <script>
+        $(window).ready(function () {
+            $(".left li").mouseenter(function () {
+                $(this).css({"background":"url(../images/taobao_abg.gif)"}).siblings("li").css({"background":"url(../images/taobao_lili.jpg)"})
+                $(".center li").eq($(this).index()).show().siblings("li").hide();
+            });
+            $(".ad").mouseleave(function () {
+                $(".left li").css({"background":"url(../images/taobao_lili.jpg)"})
+                $(".right li").css({"background":"url(../images/taobao_lili.jpg)"})
+            });
+
+            $(".right li").mouseenter(function () {
+                $(this).css({"background":"url(../images/taobao_abg.gif)"}).siblings("li").css({"background":"url(../images/taobao_lili.jpg)"})
+                $(".center li").eq($(this).index()+9).show().siblings("li").hide();
+            })
+        });
+    </script>
+</head>
+<body>
+
+<div class="ad">
+    <ul class="left">
+        <li>女靴</li>
+        <li>雪地靴</li>
+        <li>冬裙</li>
+        <li>呢大衣</li>
+        <li>毛衣</li>
+        <li>棉服</li>
+        <li>女裤</li>
+        <li>羽绒服</li>
+        <li>牛子裤</li>
+    </ul>
+    <ul class="center">
+        <li><img src="../images/taobao_女靴.jpg" alt=""></li>
+        <li><img src="../images/taobao_雪地靴.jpg" alt=""></li>
+        <li><img src="../images/taobao_冬裙.jpg" alt=""></li>
+        <li><img src="../images/taobao_呢大衣.jpg" alt=""></li>
+        <li><img src="../images/taobao_毛衣.jpg" alt=""></li>
+        <li><img src="../images/taobao_棉服.jpg" alt=""></li>
+        <li><img src="../images/taobao_女裤.jpg" alt=""></li>
+        <li><img src="../images/taobao_羽绒服.jpg" alt=""></li>
+        <li><img src="../images/taobao_牛仔裤.jpg" alt=""></li>
+        <li><img src="../images/taobao_女包.jpg" alt=""></li>
+        <li><img src="../images/taobao_男包.jpg" alt=""></li>
+        <li><img src="../images/taobao_登山鞋.jpg" alt=""></li>
+        <li><img src="../images/taobao_皮带.jpg" alt=""></li>
+        <li><img src="../images/taobao_围巾.jpg" alt=""></li>
+        <li><img src="../images/taobao_皮衣.jpg" alt=""></li>
+        <li><img src="../images/taobao_男毛衣.jpg" alt=""></li>
+        <li><img src="../images/taobao_男棉服.jpg" alt=""></li>
+        <li><img src="../images/taobao_男靴.jpg" alt=""></li>
+    </ul>
+    <ul class="right">
+        <li>女包</li>
+        <li>男包</li>
+        <li>登山鞋</li>
+        <li>皮带</li>
+        <li>围巾</li>
+        <li>皮衣</li>
+        <li>男毛衣</li>
+        <li>男棉服</li>
+        <li>男靴</li>
+    </ul>
+</div>
+</body>
+</html>
