@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>根据浏览器的可视宽度改变背景色</title>
+    <style>
+        body,html{
+            height: 5000px;
+        }
+    </style>
+</head>
+<body>
+拖动浏览器改变其宽度，试试看背景色有没有变化
+<script src="../js/myJQuery.js"></script>
+<script>
+    window.onload=function (event) {
+
+        window.onscroll=function (event) {
+            // alert("当前电脑分辨率="+getScreenPix().width+"*"+getScreenPix().height);
+        };
+
+        window.onresize=function (event) {//浏览器大小发生变化的时候
+            //    获取浏览器可视区域大小，动态改变背景色
+            var avaScreenWidth=getScreen().width;
+            if (avaScreenWidth>1000){
+                document.bgColor="red";
+            }else if(avaScreenWidth>500){
+                document.bgColor="blue";
+            }else {
+                document.bgColor="cyan";
+            }
+        }
+
+    };
+</script>
+</body>
+</html>

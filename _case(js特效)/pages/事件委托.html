@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件委托</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .container{
+            background-color: #666666;
+            height: 2000px;
+        }
+
+        button{
+            width:250px;
+            height: 50px;
+        }
+
+        ul li{
+            width: 400px;
+            height: 30px;
+            font: 18px/30px sunsim;
+            background-color: cyan;
+            list-style: none;
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        ul a{
+            width: 400px;
+            height: 30px;
+            font: 18px/30px sunsim;
+            background-color: cyan;
+            list-style: none;
+            margin: 10px;
+            cursor: pointer;
+            display: block;
+        }
+    </style>
+    <script src="../js/myJQuery.js"></script>
+    <script>
+        window.onload=function ( ) {
+            var btn1=document.getElementsByTagName("button")[0];
+            var btn2=document.getElementsByTagName("button")[1];
+            var btn3=document.getElementsByTagName("button")[2];
+            var ul=document.getElementsByTagName("ul")[0];
+            var liArr=ul.children;
+
+        //  给ul中的li添加点击事件
+            for(var i=0;i<liArr.length;i++){
+                liArr[i].onclick=function () {
+                    alert(this.innerHTML);
+                }
+            }
+
+            var cusLiCount=0;
+            btn1.onclick=function () {
+               var li= document.createElement("li");
+               li.innerHTML="我是后添加的自定义li,序号"+cusLiCount+",委托后才能点击";
+               li.style.backgroundColor="red";
+               li.style.margin="10px";
+               // 添加到ul的最后
+               ul.append(li);
+               cusLiCount++;
+            };
+
+            var cusACount=0;
+            btn2.onclick=function () {
+                var a= document.createElement("a");
+                a.innerHTML="我是后添加的自定义a链接,序号"+cusACount+",我还不能点击";
+                a.style.backgroundColor="yellow";
+                a.style.margin="10px";
+                // 添加到ul的最后
+                ul.append(a);
+                cusACount++;
+            };
+
+            btn3.onclick=function () {
+                //清除原来所有li中的点击事件
+                for(var i=0;i<liArr.length;i++){
+                    liArr[i].onclick=null;
+                }
+                //将ul中的li的所有点击事件都委托给ul处理
+                ul.onclick=function (event) {
+                    var target=getEventTarget(event);
+                    var tagName=target.tagName;
+                    if("LI"==tagName){
+                        alert(target.innerHTML);
+                    }
+                };
+                alert("委托成功，现在ul中的所有li都可以点击了");
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <button >添加自定义的li</button>
+    <button >添加a链接</button>
+    <button >将ul中的li点击事件委托给ul</button>
+
+    <ul>
+        <li>我是原生可点击的li序号0</li>
+        <li>我是原生可点击的li序号1</li>
+        <li>我是原生可点击的li序号2</li>
+        <li>我是原生可点击的li序号3</li>
+        <li>我是原生可点击的li序号4</li>
+        <li>我是原生可点击的li序号5</li>
+        <li>我是原生可点击的li序号6</li>
+    </ul>
+</div>
+</body>
+</html>

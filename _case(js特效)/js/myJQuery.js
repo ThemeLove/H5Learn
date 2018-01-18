@@ -12,6 +12,95 @@ function getStyle(ele,attr){
 }
 
 /**
+ * 获取系统分辨率
+ * @returns {{width, height}}
+ */
+function getScreenPix( ){
+    return {
+        "width":window.screen.width ,
+        "height":window.screen.height
+    }
+}
+
+/**
+ *  阻止事件冒泡
+ * @param event
+ */
+function stopEventBubble(event){
+    event=event||window.event;
+    if(event.stopPropagation()){
+        event.stopPropagation();
+    }else{
+        event.cancelBubble=true;
+    }
+}
+
+/**
+ * 获取事件源头id
+ * @param event          事件对象
+ * @returns {string}     事件源id
+ */
+function getEventTargetId(event){
+    event=event||window.event;
+    return event.target?event.target.id:event.srcElement.id;
+}
+
+/**
+ * 获取事件源
+ * @param event     事件对象
+ * @returns {any}   事件源
+ */
+function getEventTarget(event){
+    event=event||window.event;
+    return event.target?event.target:event.srcElement;
+}
+
+/**
+ * 获取屏幕可视区域宽高
+ * @returns {{width: number, height: number}} 宽高以json格式返回
+ */
+function getScreen(){
+    if(window.innerWidth!=undefined){
+        return {
+            "width":window.innerWidth,
+            "height":window.innerHeight
+        }
+    }else if(window.compatMode==="CSS1Compat"){
+        return {
+            "width":window.documentElement.clientWidth,
+            "height":window.documentElement.clientHeight
+        }
+    }else{
+        return {
+            "width":window.body.clientWidth,
+            "height":window.body.clientHeight
+        }
+    }
+}
+
+/**
+ * 获取竖直方向和水平方向滚动条滚动的距离，以json格式返回
+ * @returns {{top: number, left: number}}
+ */
+function getScroll(){
+    if (window.pageYOffset!=null){// ie9+ 高版本浏览器
+        // 因为 window.pageYOffset 默认的是  0  所以这里需要判断
+        return{"top":window.pageYOffset,
+            "left":window.pageXOffset
+        }
+    }else if(document.compatMode==="CSS1Compat"){// 标准浏览器   来判断有没有声明DTD
+        return{"top":document.documentElement.scrollTop,
+            "left":document.documentElement.scrollLeft
+        }
+    }else{// 未声明 DTD
+        return{"top":document.body.scrollTop,
+            "left":document.body.scrollLeft
+        }
+    }
+}
+
+
+/**
  * 带回调函数的属性缓动动画
  * @param ele       目标元素
  * @param json      属性值:json格式
