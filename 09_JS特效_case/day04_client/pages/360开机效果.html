@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>360开机效果</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        img{
+            border: 0;
+            vertical-align: middle;
+        }
+
+        .close-ad{
+            width: 332px;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+        }
+
+        .ad-top{
+            width: 332px;
+            height: 224px;
+        }
+
+        .ad-bottom{
+            width: 332px;
+            height: 101px;
+        }
+
+        span{
+            width: 30px;
+            height: 30px;
+            background-color: rgba(0,0,0,0);
+            cursor: pointer;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+    </style>
+    <script src="../js/myjQuery.js"></script>
+    <script>
+        window.onload=function ( ) {
+            var adContainer=document.getElementsByTagName("div")[0];
+           var close= document.getElementsByTagName("span")[0];
+           var ad_bottom= document.getElementsByTagName("img")[1];
+
+           close.onclick=function (event) {
+                animate_slow(ad_bottom,{"height":0},function () {
+                    animate_slow(adContainer,{"width":0},function () {
+                        alert("动画结束");
+                    })
+                })
+           }
+
+        }
+    </script>
+</head>
+<body>
+<div class="close-ad">
+    <span class="close"></span>
+    <img src="../images/360top.jpg" alt="" class="ad-top">
+    <img src="../images/360bottom.jpg" alt="" class="ad-bottom">
+</div>
+</body>
+</html>

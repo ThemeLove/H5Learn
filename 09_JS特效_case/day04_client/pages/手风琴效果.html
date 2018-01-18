@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>手风琴效果</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        img{
+            border: 0;
+            vertical-align: middle;
+        }
+        .container{
+            width: 1226px;
+            height: 460px;
+            margin: 100px auto;
+            border: 1px solid blue;
+            overflow: hidden;
+        }
+
+        ul{
+            width: 1550px;
+            height: 460px;
+            margin: 0 auto;
+        }
+
+        ul li{
+            list-style: none;
+            width: 245px;
+            height: 460px;
+            display: block;
+            float: left;
+            overflow: hidden;
+        }
+
+        ul li img{
+            height: 460px;
+        }
+    </style>
+    <script src="../js/myjQuery.js"></script>
+
+    <script>
+        window.onload=function ( ) {
+            var ul=document.getElementsByTagName("ul")[0];
+            var liArr=ul.children;
+            for(var i=0;i<liArr.length;i++){
+                liArr[i].index=i;
+                liArr[i].onmouseenter=function (event) {
+                    for (var j=0;j<liArr.length;j++){
+                        if (this.index==j){
+                            animate_slow(this,{"width":850});
+                        }else{
+                            animate_slow(liArr[j],{"width":100})
+                        }
+                    }
+
+                //     for(var j=0;j<liArr.length;j++){
+                //         animate_slow(liArr[j],{"width":100});
+                //     }
+                //     animate_slow(this,{"width":826});
+                // };
+                 }
+            }
+            
+            ul.onmouseleave=function () {
+                for (var i=0;i<liArr.length;i++){
+                    animate_slow(liArr[i],{"width":245})
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <ul >
+        <li><img src="../images/accordion_1.jpg" alt=""></li>
+        <li><img src="../images/accordion_2.jpg" alt=""></li>
+        <li><img src="../images/accordion_3.jpg" alt=""></li>
+        <li><img src="../images/accordion_4.jpg" alt=""></li>
+        <li><img src="../images/accordion_5.jpg" alt=""></li>
+    </ul>
+</div>
+</body>
+</html>
