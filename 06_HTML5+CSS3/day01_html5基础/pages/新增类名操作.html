@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增类名操作</title>
+    <style>
+        div{
+            width: 300px;
+            height: 100px;
+            border: 1px solid pink;
+            margin: 100px auto;
+        }
+
+        .active{
+            width: 300px;
+            height: 100px;
+            background: red;
+            border-radius: 50%;
+        }
+
+    </style>
+
+    <!--
+        html5新增操作类名样式，其效果同jQuery
+        classList.add("类名");        增加类名
+        classList.remove("类名");     删除类名
+        classList.toggle("类名");     切换类名
+    -->
+
+    <script>
+        window.onload=function (ev) {
+            var box1=document.querySelector(".box1");
+            var add=document.querySelector("#add");
+            add.onclick=function () {
+                box1.classList.add("active");
+            };
+
+            var remove=document.querySelector("#remove");
+            remove.onclick=function () {
+              box1.classList.remove("active");
+            };
+
+            var toggle=document.querySelector("#toggle");
+            toggle.onclick=function () {
+                box1.classList.toggle("active");
+            }
+
+        }
+    </script>
+</head>
+<body>
+<div class="box box1"></div>
+<button id="add">点击添加active样式</button>
+<button id="remove">点击删除active样式</button>
+<button id="toggle">点击切换active样式</button>
+</body>
+</html>

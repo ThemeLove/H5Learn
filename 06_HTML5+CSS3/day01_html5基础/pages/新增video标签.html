@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增video标签</title>
+</head>
+<body>
+
+<!--
+    常用属性：
+    autoplay:自动播放
+    controls:控制条
+    loop:循环播放
+-->
+
+<!--
+    因为各个浏览器支持的视频格式不一样，所以以下是兼容写法
+-->
+
+<!--    <video src="../video/movie.mp4" autoplay controls loop></video>-->
+
+    <video autoplay controls loop>
+        <source src="../video/movie.mp4">
+        <source src="../video/movie.ogg">
+        <source src="../video/movie.webm">
+        您的浏览器暂时还不支持html5视频标签video，请升级
+    </video>
+</body>
+</html>

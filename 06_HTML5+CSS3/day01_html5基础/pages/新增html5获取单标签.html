@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增html5获取单标签</title>
+    <style>
+        div{
+            width: 300px;
+            height: 100px;
+            margin: 30px auto;
+            border: 1px solid pink;
+        }
+    </style>
+
+    <!--
+        document.querySelector("css 选择器")，该方法等同于jQuery中的$的用法，
+        查找结果只会取集合结果第一个
+    -->
+
+    <script>
+
+        window.onload=function (ev) {
+            var box1=document.querySelector(".box1");
+            box1.style.background="red";
+
+            var box2=document.querySelector(".box2");
+            box2.style.background="green";
+
+            var box4=document.querySelector(".box.box4");
+            box4.style.background="blue";
+        }
+    </script>
+</head>
+<body>
+    <div class="box box1"></div>
+    <div class="box box2"></div>
+    <div class="box box2"></div>
+    <div class="box box4"></div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增表单元素</title>
+    <style>
+        form{
+            width: 100%;
+            min-width: 300px;
+            max-width: 600px;
+            margin: 100px auto;
+            height: auto;
+        }
+
+        input,meter,progress{
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .sex{
+            width: 50px;
+        }
+    </style>
+
+</head>
+<body>
+
+<!--html5新增表单元素
+    datalist    数据列表标签,input输入框属性list指定datalist的id,组合可以做下拉选择菜单
+    output      输出
+    keygen      加密
+    meter       度量器 属性value、min、max、low、high,当value小于low或高于high时，会显示警告色
+    progress    进度条
+-->
+
+
+<form action="">
+    <fieldset>
+        <legend>新增表单元素</legend>
+        用户名:  <br>
+        <input type="text" name="userName"><br>
+        密码：  <br>
+        <input type="password" name="pwd"><br>
+        性别：  <br>
+        男：<input class="sex" type="radio" value="male" name="sex" checked="checked">
+        女：<input class="sex" type="radio" value="female" name="sex">
+        不详：<input class="sex" type="radio" value="unknown" name="sex">
+        <br>
+        爱好： <br>
+        <input type="text" list="car"><br>
+        <datalist id="car"><option>奥迪</option>
+            <option>宝马</option>
+            <option>宝骏</option>
+            <option>宝强</option>
+            <option>奥迪</option>
+            <option>迪奥</option>
+            <option>奥拓</option>
+            <option>奥尼尔</option>
+            <option>奥利奥</option>
+            <option>奥林匹克</option>
+        </datalist> <br>
+        推荐人：    <output>山哥</output><br><br>
+        加密类型：<keygen/><br><br>
+        度量尺：<br><br>
+        <meter value="60" min="0" max="100" low="30" high="90"></meter><br>
+        进度条：<br><br>
+        <progress value="50" min="0" max="100"></progress>
+        <input type="submit" value="提交"><br>
+    </fieldset>
+</form>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增自定义属性</title>
+    <style>
+        div{
+            width: 300px;
+            height: 100px;
+            margin: 30px auto;
+            border: 1px solid red;
+        }
+    </style>
+    <script>
+        window.onload=function (ev) {
+            var box1=document.querySelector(".box1");
+            var con=box1.dataset["con"];
+            alert(con);
+
+
+            var box2=document.querySelector(".box2");
+            var myCon=box2.dataset["myCon"];
+            alert(myCon);
+            box2.dataset["myCon"]="我被重新赋值了";
+        }
+    </script>
+</head>
+<body>
+<div class="box1" data-con="我是自定义属性con"></div>
+<div class="box2" data-my-con="我是自定义属性my-con,我带'-'注意获取我的特殊性"></div>
+</body>
+</html>

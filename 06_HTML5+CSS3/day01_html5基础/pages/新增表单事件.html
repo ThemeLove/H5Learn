@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增表单事件</title>
+    <style>
+        form{
+            width: 100%;
+            min-width: 200px;
+            max-width: 500px;
+            margin: 100px auto;
+        }
+        input{
+            width: 80%;
+            margin: 0 auto;
+        }
+    </style>
+
+    <!--
+        html5新增表单事件
+        oninput        当用户输入的时候触发
+        oninvalid      当验证不通过时触发，可用于设置提示文字 this.setCustomValidity("提示文字")
+    -->
+    <script>
+        window.onload=function () {
+           var email= document.getElementById("email");
+           var text=document.getElementById("text");
+
+           email.oninput=function (ev) {
+               var emailLength=this.value.length;
+               text.value=emailLength;
+           }
+
+           email.oninvalid=function (ev) {
+               this.setCustomValidity("亲,请输入正确的邮箱格式")
+           }
+        };
+    </script>
+</head>
+<body>
+<form action="">
+    <fieldset>
+        <legend>新增表单事件</legend>
+        email: <br>
+        <input type="email" name="email" id="email"><br>
+        动态记录上面输入的字符个数： <br>
+        <input type="text" name="text" id="text"><br>
+
+        <input type="submit"><br>
+    </fieldset>
+</form>
+</body>
+</html>

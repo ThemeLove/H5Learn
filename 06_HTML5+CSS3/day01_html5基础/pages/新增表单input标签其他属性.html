@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增表单input标签其他属性</title>
+    <style>
+        form{
+            width: 100%;
+            min-width: 300px;
+            max-width: 600px;
+            margin: 200px auto;
+        }
+        input{
+            width:80% ;
+        }
+
+    </style>
+</head>
+<body>
+<!--
+	placeholder		提示文字（占位符）
+	autofocus		自动获取焦点，属性值和属性名相同时，可以不写属性值
+	autocomplete	自动匹配已经输入的内容，on(默认开启)，off 关闭
+	required	    必填项，空值会提示
+	multiple		多选
+	novalidata		关闭表单自动验证功能（只能加给form）
+    pattern			正则表达式
+-->
+<form action="" >
+    <fieldset>
+        <legend>新增表单input标签其他属性</legend>
+        用户名：<br>
+        <input type="text" name="userName" placeholder="请输入用户名" autofocus autocomplete="on" required><br><br>
+        tel: <br>
+        <input type="tel" name="tel" pattern="1\d{10}"><br>
+        上传文件：<br>
+        <input type="file" name="updateFile" multiple ><br>
+        <input type="submit"><br>
+    </fieldset>
+</form>
+</body>
+</html>

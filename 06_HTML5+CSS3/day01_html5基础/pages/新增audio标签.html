@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增audio标签</title>
+</head>
+<body>
+   <!-- <audio src="../music/yinyue.mp3" autoplay controls loop></audio>-->
+    <!--
+        常用属性：
+        autoplay:自动播放
+        controls:控制条
+        loop:循环播放
+    -->
+    <!--
+        因为各个浏览器支持的音频格式不一样，所以以下是兼容写法
+    -->
+    <audio autoplay controls loop>
+        <source src="../music/yinyue.mp3"/>
+        <source src="../music/yinyue.ogg"/>
+        <source src="../music/yinyue.wav"/>
+        您的浏览器暂时还不支持html5音频标签audio，请升级
+    </audio>
+</body>
+</html>

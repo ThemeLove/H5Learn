@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增html5获取多标签集合</title>
+    <style>
+        div{
+            width: 300px;
+            height: 100px;
+            margin: 50px auto;
+            border: 1px solid pink;
+        }
+    </style>
+    <!--
+        document.querySelectorAll("css 选择器")，该方法等同于jQuery中的$的用法，
+        查找结果是符合结果的标签集，可以用索引取其中一个
+    -->
+    <script>
+        window.onload=function (ev) {
+            var box2=document.querySelectorAll(".box.box2")[0];
+            box2.style.background="red";
+            var box3=document.querySelectorAll(".box.box2")[1];
+            box3.style.background="yellow";
+        }
+    </script>
+</head>
+<body>
+<div class="box box1"></div>
+<div class="box box2"></div>
+<div class="box box2"></div>
+<div class="box box4"></div>
+</body>
+</html>
