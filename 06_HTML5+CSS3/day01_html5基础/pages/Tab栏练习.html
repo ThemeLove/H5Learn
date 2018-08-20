@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tab栏练习</title>
+</head>
+<style>
+    .news{
+        width:1000px;
+        margin: 100px auto;
+    }
+
+    .navs{
+        width: 100%;
+        min-width: 500px;
+        max-width: 1000px;
+        height: 30px;
+    }
+
+    .navs nav{
+        float: left;
+        width: 25%;
+        height: 100%;
+        text-align: center;
+    }
+
+    /*导航栏被激活时的样式*/
+    .navactive{
+        background: #99CC99;
+    }
+
+    /*标题栏正常状态时的样式*/
+    .navnormal{
+        background: #ffd283;
+    }
+
+    .sections{
+        position: relative;
+        width: 100%;
+        height: 500px;
+        border: 1px solid #666666;
+        background: #E5E5E5;
+    }
+
+    .sections section{
+        position: absolute;
+        float: left;
+        padding: 1em;
+
+    }
+
+    .sections h2{
+        text-align: center;
+    }
+    .sections p{
+        text-indent: 2em;
+    }
+</style>
+<script>
+ /*   window.onload=function () {
+        var navs=document.querySelectorAll("nav");
+        for(var i=0 ;i<navs.length;i++){
+            var nav=navs[i];
+            nav.onclick=function () {
+                onNavClick(i);
+            }
+        }
+
+        var onNavClick=new function (index) {
+            for (var i=0;i<navs.length;i++){
+                if (index==i){
+                    navs[i].classList.add(".navactive");
+                    var sectionID=navs[i].dataset["new"];
+                    var section=document.querySelector("#"+sectionID);
+                    section.style.display="display";
+                }else{
+                    var sectionID=navs[i].dataset["new"];
+                    var section=document.querySelector("#"+sectionID);
+                    section.style.display="none";
+                    navs[i].classList.remove(".navactive");
+                    navs[i].calssList.add(".navnormal");
+                }
+            }
+        };
+    };*/
+    window.onload=function () {
+
+        (function (index) {
+            var vans=document.querySelectorAll("nav");
+            var sections=document.querySelectorAll("section");
+
+            for (var i=0;i<vans.length;i++){
+                vans[i].onclick=function () {
+/*                    if (i==index){
+                        this.classList.remove(".navnormal");
+                        this.classList.add(".navactive");
+                    }else{
+                        this.classList.remove(".navactive");
+                        this.classList.add(".navnormal");
+                    }*/
+                    for(var j=0;j<vans.length;j++){
+                        vans[j].classList.remove("navactive");
+                        vans[j].classList.add("navnormal");
+                    }
+
+                    this.classList.remove("navnormal");
+                    this.classList.add("navactive");
+
+                    for(var k=0;k<sections.length;k++){
+                        sections[k].style.display="none";
+                    }
+
+                     var sectionID= this.dataset["new"];
+                     var section=document.querySelector("#"+sectionID);
+                     section.style.display="block";
+                };
+            }
+
+            vans[index].click();
+        })(0);
+    }
+
+</script>
+<body>
+<div class="news">
+    <div class="navs">
+        <nav class="nav1 navnormal" data-new="section1">国内</nav>
+        <nav class="nav2 navnormal" data-new="section2">国际</nav>
+        <nav class="nav3 navnormal" data-new="section3">军事</nav>
+        <nav class="nav4 navnormal" data-new="section4">航空</nav>
+    </div>
+    <div class="sections">
+        <section class="section1" id="section1">
+            <h2>人民币中间价上调176点 央行本月已两度出手稳汇率</h2>
+            <p>近期人民币汇率市场波动加大，从4月初至今已累计贬值9%左右，破7担忧再次燃起。而随着人民币汇率快速贬值，央行已在9个交易日的时间内两次出手稳汇率。</p>
+            <p>8月3日，央行宣布，自2018年8月6日起，将远期售汇业务的外汇风险准备金率从0调整为20%。彼时出手背景是，当天离岸人民币汇率跌破6.9重要关口。此举在当下人民币贬值压力愈发加大的背景下，旨在抑制彼时外汇市场过度波动，打击跨境外汇套利。</p>
+            <p>8月16日，人民币兑美元汇率在即将破7之际，央行出手立竿见影，离岸人民币汇率从6.95到6.86，收复10个关口。央行上海总部通知，鉴于近期离岸人民币价格波动较大，即日起，上海自贸区分账核算单元的三个净流出公式暂不执行，各银行不得通过同业往来账户向境外存放或拆放人民币资金，同时不得影响实体经济真实的跨境资金收付需求。业内人士分析称，此举旨在收紧离岸人民币的流动性，增加做空人民币成本，打击投机套利行为。</p>
+            <p>业内人士分析，可以看出，一方面，央行出手稳汇率时主要会关注离岸人民币汇率的走势，因为离岸人民币更反映市场的汇率预期；另一方面，“7”或是央行的汇率政策底线。</p>
+        </section>
+        <section class="section2" id="section2">
+            <h2>印尼亚运会颁奖仪式上 韩国太极旗挂反了</h2>
+            <p>印度尼西亚亚运会游泳场馆可谓状况不断。19日，在男子200米自由泳颁奖仪式上，两面五星红旗和一面日本国旗突然掉落，中国国歌也随之中断。当时，领奖台上的孙杨第一时间寻找组委会官员进行交涉，数次要求“one more time”。赛事组织方重新挂好国旗后，重新进行了一次升旗仪式。</p>
+            <p>而据韩联社报道，在亚运会男子100米仰泳决赛中，韩国选手以52秒52的成绩摘得铜牌。不过在颁奖仪式上，却出现了太极旗左右挂反的尴尬一幕。</p>
+            <p>报道还说，在女子200米自由泳结束后，由于升旗设备发生故障没有修复，组织方甚至放弃旗杆，让工作人员直接用手抓着国旗，并通过举旗高度的不同来分辨金、银、铜牌的归属。</p>
+        </section>
+        <section class="section3" id="section3">
+            <h2>新纳粹”以打擦边球的方式在悄悄壮大</h2>
+            <p>【环球时报驻德国特约记者 青木 环球时报特约记者 吴硕】“新纳粹更加猖獗!”当地时间18日，600名德国极右翼分子上街纪念纳粹罪犯鲁道夫·赫斯去世31周年。人数相当的反纳粹者不甘示弱举行抗议，双方爆发冲突。随着极右翼政党崛起以及国内反移民情绪高涨，“新纳粹”势力近年在德国有抬头之势。而如今这些人打着“爱国主义”的旗号，以更隐蔽的方式绕过法律规定、“合法”地宣扬毒害思想，这种新趋势引发关注和担忧。</p>
+            <p>据德新社19日报道，极右翼分子活动当天身着白色或黑色上衣，高举黑白红相间的“第三帝国”旗帜。游行前列人士还举着“柏林国家社会主义者：我毫无悔意”的标语，人群浩浩荡荡穿过柏林市区。赫斯是纳粹德国副元首，在纽伦堡审判中被判终身监禁。1987年8月，他被发现在监狱中上吊身亡。</p>
+            <p>由左翼党派和工会等组成的反对势力在极右翼分子经过的路口非暴力静坐，并齐声向他们高喊“纳粹滚出去”，一些人还向游行者投掷石头和瓶罐。两派人马发生冲突并致人员受伤。柏林警方事先出动2300名警察维持秩序，同时规定在赫斯自杀的柏林施潘道附近，游行人数不得超过50人。柏林警方19日表示，警方当天逮捕29人，6名警察在行动中受伤。</p>
+        </section>
+        <section class="section4" id="section4">
+            <h2>航空公司“抢飞”北京新老机场 三大航很“纠结”</h2>
+            <p>东航和南航从北京新机场获得航权具有一定优势，对即将前往新机场运营的中小航司，具有碾压性的地位。</p>
+            <p>从概念图上看，在北京天安门向南直线距离46公里处，新机场岿然而立，京津冀地区另外三座机场分散在周围，颇有一种众星捧月的模样。</p>
+            <p>被民航局副局长王志清称为“百年大计、世纪伟业”的北京新机场，将在明年下半年正式投入运营。作为我国民航史上最大的机场项目，它将肩负起缓解首都航空运输不平衡、推动京津冀融合等多个重任。</p>
+            <p> 随着运营日期临近，新机场酝酿的巨大能量也将逐渐释放。根据规划，新机场与首都机场一样，定位于大型国际航空枢纽，双方将按照所属航空联盟的标准“选择”航空公司，借助联盟力量推动两场的枢纽建设。规划之下，东方航空、南方航空转场新机场，并作为基地航司各承担40%客运量，国航将留守老机场（即首都机场），继续巩固其枢纽地位。</p>
+        </section>
+    </div>
+</div>
+</body>
+</html>
