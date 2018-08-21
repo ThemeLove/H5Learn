@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>浏览器私有化前缀</title>
+    <style>
+        div{
+            width: 1000px;
+            height: 200px;
+            margin: 100px auto;
+            border: 1px solid #000;
+            /*兼容各大浏览器写法,私有化前缀
+                -webkit-       google 苹果
+                -moz-          火狐
+                -o-            欧朋
+                -ms-           微软
+            */
+            background: -webkit-linear-gradient(red,green,blue);
+            background: -moz-linear-gradient(red,green,blue);
+            background: -o-linear-gradient(red,green,blue);
+            background: -ms-radial-gradient(red,green,blue);
+            background: linear-gradient(red,green,blue);
+        }
+    </style>
+</head>
+<body>
+<div></div>
+</body>
+</html>

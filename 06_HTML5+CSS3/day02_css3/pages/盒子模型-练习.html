@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>盒子模型-练习</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        /*清除浮动*/
+        .clear-fix{
+            zoom: 1;
+        }
+        .clear-fix:after{
+            content:"";
+            clear: both;
+            display: block;
+        }
+
+        ul{
+            width: 948px;
+            height: 170px;
+            margin: 100px auto;
+            background-color:rosybrown;
+        }
+
+        ul li img{
+            width: 316px;
+            height: 170px;
+            float: left;
+        }
+
+        /*
+          css2中传统做法
+        */
+        ul li:hover img{
+            border: 5px solid #000;
+            width: 306px;
+            height: 160px;
+        }
+
+        /*css3中的做法：利用box-sizing:border-box*/
+ /*       ul li:hover img{
+            border: 5px solid #000;
+            box-sizing: border-box;
+        }*/
+
+
+    </style>
+</head>
+<body>
+<ul class="clear-fix">
+    <li><img src="../images/1.jpg" alt=""></li>
+    <li><img src="../images/2.jpg" alt=""></li>
+    <li><img src="../images/3.jpg" alt=""></li>
+</ul>
+</body>
+</html>

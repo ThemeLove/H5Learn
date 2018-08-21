@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>盒子模型-css2和css3中的盒子模型</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        .box2,.box3{
+            border: 20px solid blue;
+            padding: 30px;
+        }
+
+        .box2{
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+<div class="box1">box1</div>
+<div class="box2">box2</div>
+<div class="box3">box3</div>
+</body>
+</html>
