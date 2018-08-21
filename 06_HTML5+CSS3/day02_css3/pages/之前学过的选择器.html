@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>之前学过的选择器</title>
+    <style>
+        *{
+            margin: 0 auto;
+            padding: 0 auto;
+            list-style: none;
+        }
+
+        /*
+            div+p  包含关系不生效，兄弟关系才生效，并且需要紧挨着，中间有其他元素不生效
+            div~p  包含关系不生效，兄弟关系才生效，不需要紧挨着，后面所有的同级p都生效
+        */
+
+        div{
+
+        }
+        div~p{
+            background: #ff0000;
+        }
+        div+p{
+            background: #00ff00;
+        }
+        h3+p{
+            background: #ffff00
+        }
+    </style>
+</head>
+<body>
+    <div>我是div
+        <p>我是第1个p,div+p、div~p都不生效</p>
+    </div>
+    <span>我是span</span>
+    <p>我是第2个p，但是我并不是div后面紧挨着的第一个p,所以我并没有变为绿色，div~p生效</p>
+    <h3>我是第h3</h3>
+    <p>我是第3个p,并且是h3后面紧挨着的第一个p,中间没有间隔，我被变色了，h3+p生效</p>
+    <p>我是第4个p，div~p生效</p>
+    <p>我是第5个p，div~p生效</p>
+    <div>
+        <p>我是第6个p,div~p不生效</p>
+    </div>
+</body>
+</html>

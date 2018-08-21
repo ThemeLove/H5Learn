@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文本-凹凸字-text-shodow效果</title>
+    <!--
+        text-shadow :水平位移像素 竖直位移像素 模糊长度 颜色
+        水平位移和竖直位移：负值---阴影在上，正值---阴影在下
+        多个阴影效果并列书写，使用逗号隔开
+    -->
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-color: #cccccc;
+        }
+
+        p:first-child{
+            margin: 100px;
+            text-align: center;
+            color: #ccc;
+            font-size: 100px;
+            font-family: "Microsoft YaHei";
+            font-weight: 700;
+            text-shadow: 2px 2px 0 #000,-2px -2px 0 #fff;
+        }
+
+        p:last-child{
+            margin: 100px;
+            text-align: center;
+            color: #ccc;
+            font-size: 100px;
+            font-family: "Microsoft YaHei";
+            font-weight: 700;
+            text-shadow: 2px 2px 0 #fff,-2px -2px 0 #000;
+        }
+    </style>
+</head>
+<body>
+    <p>为天地立心,为生民立命</p>
+    <p>为往圣继绝学,为万世开太平</p>
+</body>
+</html>

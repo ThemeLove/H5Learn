@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>颜色-css3中新增的两种颜色模式</title>
+</head>
+<body>
+
+    <!--
+        RGBA
+            R：red
+            G：green
+            B：blue
+            A：alpha
+        HSLA
+            H:色调 		取值范围：0~360
+            S:饱和度		取值范围：0%~100%
+            L:亮度 		取值范围：0%~100%
+            A:alpha 	取值范围：0~1
+    -->
+    <style>
+        .out{
+            width: 400px;
+            height: 400px;
+            background-color:rgba(0,0,255,0.6);
+            border: 1px solid #000;
+            margin: 100px auto;
+            text-align: center;
+        }
+
+        .in{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            margin: 100px auto;
+            text-align: center;
+        }
+
+        .other{
+            width: 400px;
+            height: 400px;
+            background-color: hsla(120,50%,50%,0.6);
+            margin: 50px auto;
+            border: 40px solid rgba(255,0,0,0.5);
+            text-align: center;
+            font-size: 50px;
+            color: rgba(255,0,0,0.5);
+        }
+    </style>
+</body>
+
+<div class="out">out
+    <div class="in">in</div>
+</div>
+<div class="other">other</div>
+</html>

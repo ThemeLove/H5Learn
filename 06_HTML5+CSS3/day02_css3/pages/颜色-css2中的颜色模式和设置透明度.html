@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>颜色-css2中的颜色模式和设置透明度</title>
+    <style>
+        /*
+        css2中颜色模式是rgb,没有透明度
+        opacity 设置透明度存在的问题,父盒子中设置的opactity了，
+        字符子再设置比父盒子高的透明度也不起作用
+        */
+        .out{
+            width: 400px;
+            height: 400px;
+            background-color: rgb(0,0,255);
+            margin: 100px auto;
+            border: 1px solid #000;
+            opacity: 0.4;
+        }
+
+        .in{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            margin: 100px auto;
+            opacity:1;
+        }
+
+        /*
+            css2中有一个透明色：transparent，其实对应的rgba是#00000000
+        */
+        .other{
+            width: 400px;
+            height: 400px;
+            border: 1px solid #000;
+            background-color: transparent;
+            margin: 50px auto;
+        }
+
+    </style>
+</head>
+<body>
+<div class="out">
+    <div class="in"></div>
+</div>
+
+<div class="other"></div>
+</body>
+</html>

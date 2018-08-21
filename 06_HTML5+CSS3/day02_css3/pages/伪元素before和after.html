@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>伪元素before和after</title>
+    <style>
+        span::before{
+            content: "今天";
+            color:red;
+            display: inline-block;
+            width: 50px;
+            height: 50%;
+            background: blue;
+        }
+        span::after{
+            content:"真好";
+            color: blue;
+        }
+
+        /*1.伪元素相当于用css模拟出html的效果，显示到网页上,
+          2.模拟出的伪元素相当于是选择元素的子元素，选中元素的属性对伪元素也起作用
+          3.必须要有content属性才行*/
+        span{
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <span>天气</span>
+</body>
+</html>

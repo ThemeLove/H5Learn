@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>属性选择器</title>
+    <style>
+        div{
+            width: 300px;
+            height: 50px;
+            margin: 20px auto;
+            text-align: center;
+        }
+        /*
+            属性选择器
+            标志性符号 []
+            开头       ^
+            结尾       $
+            包含       *
+
+            	示例：
+            E[title]			:选中页面中的E元素，并且E需要带有title属性
+            E[title="abc"]		:选中页面中的E元素，并且E需要带有title属性，属性值为"abc"
+            E[title^="abc"]		:选中页面中的E元素，并且E需要带有title属性，属性值以"abc"开头
+            E[title$="abc"]		:选中页面中的E元素，并且E需要带有title属性，属性值以"abc"结尾
+            E[title*="abc"]		:选中页面中的E元素，并且E需要带有title属性，属性值中包含"abc"
+        */
+
+        /*包含class属性*/
+        div[class]{
+            background-color: red;
+        }
+        /*包含class属性，并且class属性=box1*/
+        div[class="box1"]{
+            background-color:pink;
+        }
+
+        /*包含class属性，并且class属性值以"aa"开头*/
+        div[class^="aa"]{
+            background-color: green;
+        }
+        /*包含class属性，并且class属性值以"aa"结尾*/
+        div[class$="aa"]{
+            background-color: yellow;
+        }
+        /*包含class属性，并且class属性值包含"aa"*/
+        div[class*="aa"]{
+            background-color: #daa520;
+        }
+    </style>
+</head>
+<body>
+<div class="box1">1</div>
+<div class="aabox2">2</div>
+<div class="bbbox3">3</div>
+<div class="box4aa">4</div>
+<div class="box5bb">5</div>
+<div class="aabox6bb">6</div>
+<div class="bbbox7aa">7</div>
+<div>8</div>
+</body>
+</html>

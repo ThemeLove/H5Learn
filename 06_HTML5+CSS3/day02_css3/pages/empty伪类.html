@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>empty伪类</title>
+    <style>
+        div{
+            width: 300px;
+            height: 100px;
+            border: 1px solid #000;
+            margin: 50px auto;
+        }
+
+        /*empty伪类表示一种状态，表示只有当div里面为empty时才显示红色，有空格也不行*/
+        div:empty{
+            background-color: red;
+        }
+
+    </style>
+</head>
+<body>
+<div>   </div>
+<div><span>span</span></div>
+</body>
+</html>
