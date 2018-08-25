@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>径向渐变-位置控制</title>
+    <style>
+        #box{
+            width: 1000px;
+            height: 400px;
+            margin: 50px auto;
+            border: 1px solid #000;
+            background: radial-gradient(at center,blue,yellow);
+        }
+
+        .control{
+            width: 500px;
+            margin: 20px auto;
+        }
+
+        .control input{
+            width: 500px;
+        }
+
+        .position{
+            width: 1000px;
+            height: 80px;
+            margin: 50px auto;
+        }
+
+        .position input{
+            width: 100px;
+            height: 60px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<div class="control">
+x: 径向渐变中心位置x坐标<br>
+<input id="x" type="range" min="0" max="1000" value="50%"  onchange="onDrag()"><br>
+y: 径向渐变中心位置y坐标<br>
+<input id="y" type="range" min="0" max="400" value="50%" onchange="onDrag()"><br>
+</div>
+<div class="position">
+    <input type="button" value="left top" onclick="setPosition(this.value)"/>
+    <input type="button" value="center top" onclick="setPosition(this.value)"/>
+    <input type="button" value="right top" onclick="setPosition(this.value)"/>
+    <input type="button" value="left center" onclick="setPosition(this.value)"/>
+    <input type="button" value="center center" onclick="setPosition(this.value)"/>
+    <input type="button" value="right center" onclick="setPosition(this.value)"/>
+    <input type="button" value="left bottom" onclick="setPosition(this.value)"/>
+    <input type="button" value="center bottom" onclick="setPosition(this.value)"/>
+    <input type="button" value="right bottom" onclick="setPosition(this.value)"/>
+</div>
+
+<script>
+    var box=document.getElementById("box");
+    var x=document.getElementById("x");
+    var y=document.getElementById("y");
+    console.log("box="+box);
+    var onDrag=function () {
+       var rangeX= x.value;
+       var rangeY= y.value;
+
+/*       box.style.background="radial-gradient(100px 50px  at "+rangeX+"px "+rangeY+"px,blue 20%,yellow 60%)";*/
+       box.style.background="repeating-radial-gradient(100px 50px  at "+rangeX+"px "+rangeY+"px,blue 20%,yellow 60%)";
+    }
+
+    var setPosition=function (position) {
+        box.style.background="repeating-radial-gradient(100px 50px at "+position+",red 30%,green 60%,blue 90%)";
+    };
+</script>
+</body>
+</html>
