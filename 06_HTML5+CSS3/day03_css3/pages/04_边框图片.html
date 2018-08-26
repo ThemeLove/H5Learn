@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>04_边框图片</title>
+    <style>
+        body{
+            background-color: #cccccc;
+        }
+        .box{
+            width: 400px;
+            height: 300px;
+            margin: 100px auto;
+            background-color: #fff;
+            border-image-source: url("../images/border_image_5.png");
+            border-image-slice: 27 27 27 27;
+            border-image-width: 27px;
+            border-image-repeat: round;
+        }
+        /*
+            边框图片
+            border-image-source 边框图片的资源
+            border-image-slice:边框图片切片 值1 值2 值3 值4
+            border-image-width:边框图片宽度
+            border-image-repeat：边框图片重复策略
+                repeat:正常拉伸，可能会显示不完整
+                round:平铺，但是保证图片完整
+                stretch:拉伸显示
+        */
+
+        .box2{
+            width: 400px;
+            height: 300px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-image: url("../images/border_image_5.png") ;
+            border-image-source:url("../images/border_image_5.png");
+            border-image-slide:27 27 27 27;
+            border-image-width:27px;
+            border-image-repeat:stretch;
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+<div class="box2"></div>
+</body>
+</html>

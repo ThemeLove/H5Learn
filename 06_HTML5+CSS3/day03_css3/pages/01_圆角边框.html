@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01_圆角边框</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            border: 1px solid #f00;
+            margin: 20px auto;
+            text-align: center;
+            line-height: 200px;
+            font-size: 20px;
+            color: #99CC99;
+        }
+
+        div:nth-child(1){
+            border-radius: 100px/100px;
+        }
+        div:nth-child(2){
+            border-radius: 50%/50%;
+        }
+        div:nth-child(3){
+            font-size: 12px;
+            border-radius:200px 0 0 0;
+        }
+
+        div:nth-child(4){
+            height: 100px;
+            line-height: 100px;
+            border-radius:50%/50%;
+        }
+        div:nth-child(5){
+            width: 100px;
+            border-radius: 50%/50%;
+        }
+        /*
+        1.既可以写固定px数值，也可以写百分比
+        2."/":斜号分隔：x1 x2 x3 x4/y1 y2 y3 y4 ----->斜号之前表示上左、上右、下右、下左 （顺时针）x轴半径值，没有值的话取对角的值，
+        斜号之后表示上左、上右、下右、下左（顺时针）y轴的半径值;如果只有一个值，则表示4个角的值都一样;如果不足4个值，则取对角的值
+        3." "空格分隔：数值1 数值2 数值3 数值4----->表示上左、上右、下右、下左（顺时针）x和y轴半径的值；如果只有一个值，则4个角的值都一样；如果不足4个值，则取对角的值
+
+        */
+        div:nth-child(6){
+            border-radius: 25% 50%;
+        }
+
+        div:nth-child(7){
+            border-radius: 10px 20px 50px 100px/10px 20px 50px 100px;
+        }
+        div:last-child{
+           border-top-left-radius: 10px 20px;
+           border-top-right-radius: 20px 30px;
+           border-bottom-left-radius:30px 40px;
+           border-bottom-right-radius:40px 50px;
+        }
+    </style>
+</head>
+<body>
+<div>圆形：固定px写法</div>
+<div>圆形：百分比写法</div>
+<div>扇形：注意这个是设置左上角的效果</div>
+<div>椭圆：横向</div>
+<div>椭圆：竖向</div>
+<div>对角</div>
+<div></div>
+<div>四个角单独设置</div>
+</body>
+</html>
