@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>07-背景原点</title>
+    <style>
+
+        /*
+            背景图片的原点
+            background-origin:border-box; 背景图片以盒子模型border-box为原点开始平铺
+            background-origin:padding-box;背景图片以盒子模型padding-box为原点开始平铺，默认值
+            background-origin:content-box;背景图片以盒子模型content-box为原点开始平铺
+        */
+        .box{
+            width: 500px;
+            height: 500px;
+            border: 30px solid rgba(0,0,255,0.3);
+            margin: 50px auto;
+            padding: 30px;
+            background: url("../images/baby0.jpg") no-repeat;
+            /*background-origin:border-box;*/
+            /*background-origin:padding-box;*/
+            background-origin:content-box;
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+</body>
+</html>

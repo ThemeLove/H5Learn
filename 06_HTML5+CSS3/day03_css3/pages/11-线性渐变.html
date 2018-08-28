@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>11线性渐变</title>
+    <style>
+        div{
+            width: 1000px;
+            height: 100px;
+            margin: 30px auto;
+            border: 1px solid #000;
+            text-align: center;
+            color: #ff0000;
+            line-height: 100px;
+            font-size: 30px;
+        }
+
+        /*
+            线性渐变：
+            方向：to left ,to right ,to top ,to bottom
+            起始颜色 颜色渐变位置
+            终止颜色 颜色渐变位置
+        */
+
+        div:first-child{
+            background-image: linear-gradient(to right,yellow,blue);
+        }
+
+        div:nth-child(2){
+            background-image:linear-gradient(yellow,blue);
+        }
+
+        div:nth-child(3){
+            width: 400px;
+            height: 400px;
+            font-size: 10px;
+            background-image:linear-gradient(45deg,yellow,blue);
+        }
+
+        div:nth-child(4){
+            color: #000000;
+            background-image:linear-gradient(to right,yellow 0%,red 50%,blue 100%);
+        }
+        div:nth-child(5){
+            background-image:linear-gradient(to right,
+                                            black 0%,
+                                            black 25%,
+                                            white 25%,
+                                            white 50%,
+                                            black 50%,
+                                            black 75%,
+                                            white 75%,
+                                            white 100%);
+            background-repeat:no-repeat;
+            background-size: 100px 100%;
+        }
+
+        div:nth-child(6){
+            background-image:linear-gradient(135deg,
+            black 0%,
+            black 25%,
+            white 25%,
+            white 50%,
+            black 50%,
+            black 75%,
+            white 75%,
+            white 100%);
+            background-repeat:repeat;
+            background-size: 100px 100%;
+        }
+
+        div:nth-child(7){
+            background-image:linear-gradient(135deg,
+            black 0%,
+            black 25%,
+            white 25%,
+            white 50%,
+            black 50%,
+            black 75%,
+            white 75%,
+            white 100%);
+            background-repeat:repeat;
+            background-size: 100px 100%;
+            animation: move 1s linear infinite;
+        }
+        @keyframes move {
+            0%{
+                background-position: 0 0 ;
+            }
+
+            100%{
+                background-position: 100px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+<div>to right，yellow----->blue</div>
+<div>to bottom,yellow----->blue</div>
+<div>角度：45deg,yellow----->blue</div>
+<div>to right,yellow----->red----->blue</div>
+<div>to right,黑白交替固定大小</div>
+<div>角度：135deg,黑白交替固定大小</div>
+<div>角度：135deg,黑白交替固定大小，带无限动画</div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>09-多背景</title>
+    <style>
+
+        /*
+            多背景background
+            写法同text-shadow、box-shadow一样多个效果并列书写，使用逗号隔开，可以单独指定位置一张背景图片的位置，
+            如果设置背景颜色，一定要写在最后
+        */
+        .box{
+            width: 623px;
+            height: 417px;
+            border: 1px solid #000;
+            margin: 50px auto;
+            box-sizing: border-box;
+            background: url("../images/bg1.png") no-repeat left top
+                        ,url("../images/bg2.png") no-repeat right top
+                        ,url("../images/bg3.png") no-repeat right bottom
+                        ,url("../images/bg4.png") no-repeat left bottom
+                        ,url("../images/bg5.png") no-repeat center #FFFFE0;/*背景颜色一定要写在最后*/
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

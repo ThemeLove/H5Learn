@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>10-多背景练习</title>
+    <style>
+        /*
+            多个背景并列书写，用逗号分隔，如果有背景颜色一定要写在最后
+        */
+        .box{
+            width: 640px;
+            height: 1000px;
+            margin: 10px auto;
+            border: 1px solid #000;
+            background: url("../images/head.jpg") no-repeat top,
+                        url("../images/foot.jpg") no-repeat bottom #4a00ab;/*背景颜色一定要写在最后*/
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

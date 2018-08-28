@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>12-径向渐变</title>
+    <style>
+
+        /*
+     径向渐变：
+     radial-gradient(辐射半径 at 中心的位置，起始颜色 颜色渐变位置，终止颜色 颜色渐变位置)
+     辐射半径：x半径，y半径
+     中心点位置：at left right center bottom top   或者具体x y点坐标
+     起始颜色   颜色渐变位置
+     终止颜色   颜色渐变位置
+ */
+        div{
+            width: 400px;
+            height: 400px;
+            margin: 50px auto;
+            border: 1px solid #000;
+            background-image:radial-gradient(200px 100px at 200px 200px,yellow 20%,blue 50% ,red 80%);
+        }
+    </style>
+</head>
+<body>
+<div></div>
+</body>
+</html>

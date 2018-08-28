@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>08-背景裁剪</title>
+    <style>
+        /*
+            背景裁剪通常需要和背景原点配合使用：只保留（显示）background-clip对应盒子模型的背景，其他部分不显示.
+        */
+        .box{
+            width: 500px;
+            height: 500px;
+            border: 30px solid rgba(0,0,255,0.5);
+            padding: 30px;
+            background: url("../images/baby0.jpg") no-repeat;
+            background-origin: border-box;
+            /*background-clip:padding-box;*/
+            background-clip:content-box;
+            /*background-clip:border-box;*/
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>
