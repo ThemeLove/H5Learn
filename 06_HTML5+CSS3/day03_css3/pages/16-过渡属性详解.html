@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>16-过渡属性详解</title>
+    <style>
+
+        /*
+           过渡属性详解
+           transition-property   过渡属性
+           transition-duration   过渡持续时间
+           transition-delay         过渡延迟
+           transition-timing-function 运动曲线
+                linear:匀速
+                ease:减速
+                ease-in:加速
+                ease-out:减速
+                ease-in-out:先加速后减速
+
+           一般都会简写：
+           transition:过渡属性 过渡时间 运动曲线 延迟时间
+        */
+        .box{
+            width: 200px;
+            height: 200px;
+            margin: 50px auto;
+            border: 1px solid #000;
+            background-color: red;
+            transition-property: width;
+            transition-duration: 2s;
+            transition-timing-function: linear;
+            transition-delay: 1s;
+        }
+        .box:hover{
+            width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

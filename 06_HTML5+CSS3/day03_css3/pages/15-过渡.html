@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>15-过渡</title>
+    <style>
+        /*
+        	语法格式：一些属性可以省略
+            transition:过渡属性1 持续时间 运动曲线 延迟时间，过渡属性2 持续时间 运动曲线 延迟时间，.....
+            例如：
+            transition:width 2s,background-color 2s;
+            如果多个过渡特性是一样的，可以简写
+            transition:all 2s linear 1s;
+        */
+        .box{
+            width: 200px;
+            height: 200px;
+            margin: 50px auto;
+            background-color: red;
+            /*transition:width 2s ,background-color 2s;*/
+            transition:all 2s;
+        }
+        .box:hover{
+            width: 400px;
+            background-color: blue;
+            box-shadow: 10px 10px 10px  5px #333333;
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+</body>
+</html>
