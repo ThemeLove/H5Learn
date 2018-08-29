@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>19-transform-小火箭练习</title>
+    <style>
+
+        /*
+            transform:rotate(range) 旋转角度
+            transform:scale(水平缩放，竖直缩放)
+        */
+        html,body{
+            height: 100%;
+            background-color: lightskyblue;
+            overflow: hidden;
+            font-size: 30px;
+        }
+        body:hover img{
+            left: 1400px;
+            bottom: 1200px;
+            transform: rotate(75deg) scale(1.2,1.5);
+            /*transform: rotate3d(30,60,70,75deg);*/
+        }
+
+        img{
+            position: absolute;
+            left: 0;
+            bottom:-80px;
+            width: 50px;
+            height: 80px;
+            transform: rotate(30deg);
+
+            transition: all 3s;
+        }
+
+    </style>
+</head>
+<body>
+小火箭练习
+<img src="../images/rocket.png" alt="">
+</body>
+</html>

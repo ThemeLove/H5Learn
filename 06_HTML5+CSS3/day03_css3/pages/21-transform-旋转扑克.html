@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>21-transform-旋转扑克</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        html,body{
+            width: 100%;
+            height: 100%;
+            background-color: #60a531;
+            text-align: center;
+            font-size: 30px;
+            color: red;
+        }
+
+        .poker{
+            position: relative;
+            width: 310px;
+            height: 438px;
+            margin: 150px auto;
+        }
+
+        .poker li{
+            overflow: hidden;
+            position: absolute;
+            left: 0;
+            border: 1px solid rgba(0,0,0,0.5);
+            /*box-shadow: 0 0 10px 2px rgba(0,0,0,0.5);*/
+            transform-origin:50% 100%;
+
+
+            transition: all 0.5s;
+        }
+
+        .poker:hover li:nth-child(1){
+            transform: rotate(-60deg);
+        }
+        .poker:hover li:nth-child(2){
+            transform: rotate(-50deg);
+        }
+        .poker:hover li:nth-child(3){
+            transform: rotate(-40deg);
+        }
+        .poker:hover li:nth-child(4){
+            transform: rotate(-30deg);
+        }
+        .poker:hover li:nth-child(5){
+            transform: rotate(-20deg);
+        }
+        .poker:hover li:nth-child(6){
+            transform: rotate(-10deg);
+        }
+        .poker:hover li:nth-child(7){
+           /* transform-origin:50% 100%;
+            transform: rotate(45deg);*/
+        }
+        .poker:hover li:nth-child(8){
+            transform: rotate(10deg);
+        }
+        .poker:hover li:nth-child(9){
+            transform: rotate(20deg);
+        }
+        .poker:hover li:nth-child(10){
+            transform: rotate(30deg);
+        }
+        .poker:hover li:nth-child(11){
+            transform: rotate(40deg);
+        }
+        .poker:hover li:nth-child(12){
+            transform: rotate(50deg);
+        }
+        .poker:hover li:nth-child(13){
+            transform: rotate(60deg);
+        }
+        .poker li:hover{
+            margin-top: -40px;
+            box-shadow: 0  0 20px 5px red;
+        }
+    </style>
+</head>
+<body>
+旋转扑克，鼠标移动到扑克上试试
+<ul class="poker">
+    <li><img src="../images/pk1.png" alt="" class="src"></li>
+    <li><img src="../images/pk2.png" alt="" class="src"></li>
+    <li><img src="../images/pk1.png" alt="" class="src"></li>
+    <li><img src="../images/pk2.png" alt="" class="src"></li>
+    <li><img src="../images/pk1.png" alt="" class="src"></li>
+    <li><img src="../images/pk2.png" alt="" class="src"></li>
+    <li><img src="../images/pk1.png" alt="" class="src"></li>
+    <li><img src="../images/pk2.png" alt="" class="src"></li>
+    <li><img src="../images/pk1.png" alt="" class="src"></li>
+    <li><img src="../images/pk2.png" alt="" class="src"></li>
+    <li><img src="../images/pk1.png" alt="" class="src"></li>
+    <li><img src="../images/pk2.png" alt="" class="src"></li>
+    <li><img src="../images/pk3.png" alt="" class="src"></li>
+</ul>
+</body>
+</html>
