@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01-边框复习练习</title>
+    <style>
+        html,body{
+            width: 100%;
+            height: 100%;
+            background-color: #000000;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            margin: 50px auto;
+            border: 1px solid red;
+            box-sizing: border-box;
+        }
+
+        div:nth-child(1){
+            border:50px solid blue;
+            border-right: none;
+        }
+
+        div:nth-child(2){
+            border:50px solid red;
+            border-top: none;
+            border-radius: 0 0 50% 50%;
+        }
+
+        div:nth-child(3){
+            border:50px solid yellow;
+            border-radius: 50%  50% 50% 50%;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03-3D-transform-rotate(旋转)</title>
+    <style>
+        /*
+           perspective:透视，近大远小效果，透视一定要加给变幻元素的父盒子
+           transform 转换, 通常与perspective（透视）配合使用
+           transform:rotateX(range) 绕X轴旋转
+           transform:rotateY(range) 绕Y轴旋转
+           transform:rotateZ(range) 绕Z轴旋转
+           transform:rotate(range)  2d旋转角度
+           transform:rotate3d()     3d旋转
+
+           所有的3d旋转，对着正方向去看，都是顺时针旋转
+        */
+
+        html,body{
+            width: 100%;
+            height: 100%;
+            perspective: 300px;
+        }
+        div{
+            width: 300px;
+            height: 300px;
+            margin: 50px auto;
+            border: 1px solid #000;
+            text-align: center;
+            line-height: 200px;
+            font-size: 30px;
+        }
+
+        .rotateX{
+            background-color: red;
+            transition: transform 1s;
+        }
+        .rotateX:hover{
+            transform: rotateX(180deg);
+        }
+
+        .rotateY{
+            background-color: green;
+            transition: transform 1.5s;
+        }
+        .rotateY:hover{
+            transform:rotateY(180deg);
+        }
+
+        .rotateZ{
+            background-color: blue;
+            transition: transform 2s;
+        }
+        .rotateZ:hover{
+            transform: rotateZ(270deg);
+        }
+
+        .rotate{
+            background-color: yellow;
+            transition: transform 2s;
+        }
+        .rotate:hover{
+            transform:rotate(45deg);
+        }
+
+        .rotate3d{
+            background-color: pink;
+            transition: transform 2s;
+        }
+        .rotate3d:hover{
+            transform:rotate3d(45,90,270,45deg);
+        }
+    </style>
+</head>
+<body>
+<div class="rotateX">rotateX</div>
+<div class="rotateY">rotateY</div>
+<div class="rotateZ">rotateZ</div>
+<div class="rotate">rotate</div>
+<div class="rotate3d">rotate3d</div>
+</body>
+</html>

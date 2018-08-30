@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>05-3D-音乐盒练习</title>
+    <style>
+        html,body{
+            background-color: #000000;
+            text-align: center;
+            font-size: 30px;
+            color: red;
+        }
+
+        .musicbox{
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 400px auto;
+            border-radius: 50%;
+            background: url("../images/musicb.jpg") no-repeat;
+            text-align: left;
+        }
+
+        /*伪元素*/
+        .musicbox::before{
+            border-radius: 50%;
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: url("../images/musict.jpg") no-repeat;
+            transition: transform 1s;
+            transform-origin: bottom;
+        }
+
+        .musicbox:hover::before{
+            transform: rotateX(135deg);
+        }
+
+    </style>
+</head>
+<body>
+鼠标移动到音乐盒上试试
+<div class="musicbox"></div>
+</body>
+</html>

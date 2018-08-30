@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>07-3D-翻转文字练习</title>
+    <style>
+        html,body{
+            width: 100%;
+            height: 100%;
+            background-color: #cccccc;
+        }
+        .box{
+            margin: 300px auto;
+            background-color: #cccccc;
+            text-align: center;
+        }
+        .box>span{
+            font-size: 200px;
+            margin-left: 100px;
+            position: relative;
+            transform-origin: left;
+            color: rgba(0,0,0,0.6);
+            /*text-shadow: 1px 1px 3px #000000;*/
+        }
+
+        .box>span::before{
+            position: absolute;
+            content: attr(data-text);
+            left: 0;
+            top: 0;
+            color: rgba(0,0,0,0.4);
+            transform: scale(0.95,1);
+            transition: transform 1s;
+            transform-origin: left top;
+            /*text-shadow: 1px 1px 3px #000000;*/
+        }
+
+        .box>span::after{
+            position: absolute;
+            content: attr(data-text);
+            left: 0;
+            top: 0;
+            color: #ccc;
+            transform: scale(0.95,1);
+            transition: transform 1s;
+            transform-origin: left;
+            text-shadow: 1px 1px 3px #000000;
+        }
+
+        .box>span:hover::before{
+            transform:  skew(0deg,15deg);
+            transform-origin: left top;
+        }
+
+        .box>span:hover::after{
+            transform: rotateY(35deg) ;
+            transform-origin: left;
+        }
+
+    </style>
+</head>
+<body>
+<div class="box">
+    <span data-text="雅">雅</span>
+    <span data-text="致">致</span>
+    <span data-text="如">如</span>
+    <span data-text="君">君</span>
+</div>
+</body>
+</html>
