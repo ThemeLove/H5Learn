@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>08-3D倾斜</title>
+    <style>
+
+        /*
+          transform:skew(水平方向的倾斜角度，竖直方向的倾斜角度)
+          transform:skewX(水平方向的倾斜角度，竖直方向的倾斜角度为零)
+          transform:skewY(竖直方向的倾斜角度，水平方向的倾斜角度为零)
+          transform-origin:变换的起点位置
+          例如：transform-origin:left top 表示盒子的左上点不动，然后开始倾斜，默认为center center
+        */
+        .box{
+            width: 300px;
+            height: 300px;
+            background-color: #ffff00;
+            margin: 100px auto;
+            transition: transform 1s;
+        }
+
+        .box:hover{
+            /*transform:skewX(15deg);*/
+            transform:skewY(15deg);
+            /*transform: skew(15deg,30deg);*/
+            transform-origin:center top;
+        }
+
+    </style>
+</head>
+<body>
+<div class="box"></div>
+</body>
+</html>
