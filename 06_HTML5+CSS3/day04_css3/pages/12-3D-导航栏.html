@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>12-3D-导航栏</title>
+    <style>
+        html,body{
+            width: 100%;
+            height: 100%;
+            background-color: black;
+        }
+        ul,li,span{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul{
+            width: 1200px;
+            height: 60px;
+            box-sizing: border-box;
+            margin: 100px auto;
+            text-align: center;
+            /*border: 1px solid white;*/
+        }
+
+        ul>li{
+            position: relative;
+            float: left;
+            width: 200px;
+            height: 60px;
+            /*border: 2px solid transparent;*/
+            text-align: center;
+            line-height: 60px;
+            /*margin-left: -2px;*/
+            /*box-sizing: border-box;*/
+            /*background-color: #99CC99;*/
+            transform-style:preserve-3d;
+            /*transform:rotateX(-30deg) rotateY(30deg);*/
+            transform-origin: top left;
+            transition: all 1s;
+        }
+
+
+        li>span{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            font-size: 30px;
+            line-height: 60px;
+        }
+
+        li>span{
+            border: 2px solid black;
+            margin-left: -2px;
+        }
+
+        li:nth-child(1)>span{
+            margin-left: 0;
+        }
+
+        li>span:nth-child(1){
+            background-color: yellow;
+            transform:rotateX(90deg) translateY(-30px);
+            transform-origin:top;
+        }
+
+        li>span:nth-child(2){
+            background-color: #99CC99;
+            transform: translateZ(30px);
+        }
+
+        ul:hover li{
+            transform:rotateX(-90deg);
+            transform-origin:center;
+        }
+
+        ul>li:nth-child(2){
+            transition-delay: 0.1s;
+        }
+
+        ul>li:nth-child(3){
+            transition-delay: 0.2s;
+        }
+
+        ul>li:nth-child(4){
+            transition-delay: 0.3s;
+        }
+
+        ul>li:nth-child(5){
+            transition-delay: 0.4s;
+        }
+
+        ul>li:nth-child(6){
+            transition-delay: 0.5s;
+        }
+
+    </style>
+</head>
+<body>
+<ul>
+    <li>
+        <span>花轮</span>
+        <span>小丸子</span>
+    </li>
+    <li>
+        <span>花轮</span>
+        <span>小丸子</span>
+    </li>
+    <li>
+        <span>花轮</span>
+        <span>小丸子</span>
+    </li>
+    <li>
+        <span>花轮</span>
+        <span>小丸子</span>
+    </li>
+    <li>
+        <span>花轮</span>
+        <span>小丸子</span>
+    </li>
+    <li>
+        <span>花轮</span>
+        <span>小丸子</span>
+    </li>
+</ul>
+</body>
+</html>
