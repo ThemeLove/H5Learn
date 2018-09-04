@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>13-动画-体验</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        /*
+            调用：
+	        animation:动画名称 持续时间 执行次数（infinite：无限） 是否反向（alternate）  运动曲线(linear） 延迟执行时间
+	        注意：动画名称 持续时间 必须要有，其他参数可选
+        */
+        .box{
+            width: 200px;
+            height: 200px;
+            margin: 200px 0;
+            background-color: red;
+            line-height: 200px;
+            text-align: center;
+            font-size: 30px;
+            animation: singleAnim 4s linear;
+        }
+
+        .box2{
+            width: 200px;
+            height: 200px;
+            margin: 500px 0;
+            background-color: red;
+            line-height: 200px;
+            text-align: center;
+            font-size: 30px;
+            animation: mulAnim 4s linear;
+        }
+        /*
+        	一组动画定义：
+            @keyframes 动画名{
+                from{
+                }
+
+                to{
+                }
+            }
+        */
+        @keyframes singleAnim{
+            from{
+                transform: translateX(0px) rotateZ(0deg);
+            }
+
+            to{
+                transform: translateX(500px) rotateZ(360deg);
+            }
+        }
+
+        /*
+            多组动画定义：
+            @keyframes 动画名{
+                0%{变幻属性}
+                25%{变幻属性}
+                ...
+                ...
+                100%{变幻属性}
+            }
+        */
+        @keyframes mulAnim{
+            0%{
+                transform:translateX(0px) translateY(0px) rotateX(0deg);
+            }
+
+            25%{
+                transform:translateX(500px) translateY(0px) rotateX(120deg);
+            }
+
+            50%{
+                transform:translateX(500px) translateY(300px) rotateX(240deg);
+                border-radius: 50%;
+                background-color: green;
+            }
+
+            75%{
+                transform:translateX(0px) translateY(300px)  rotateX(360deg);
+            }
+
+            100%{
+                transform:translateX(0px) translateY(0px) rotateX(0deg);
+                background-color: yellow;
+
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="box">单组动画</div>
+<div class="box2">多组动画</div>
+</body>
+</html>

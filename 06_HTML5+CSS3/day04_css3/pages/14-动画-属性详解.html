@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>14-动画-属性详解</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            margin: 300px 0;
+            background-color: green;
+            /*       动画名称  单次执行时间     运动曲线    执行次数    执行方向    保持动画结束后的状态  延迟1秒执行                   */
+            /*animation: move         2s          linear      3       alternate       forwards         1s;*/
+
+            /*
+                animation-name:动画名称
+                animation-duration:单次执行时间
+                animation-timing-function:动画运动时间曲线
+                    1.linear:匀速
+                    2.ease:减速
+                    3.ease-in:加速
+                    4.ease-out:减速
+                    5.ease-in-out:先加速后减速
+                    6.steps(步数)：动画分几步执行完成，可以做秒针的效果
+                animation-iteration-count:重复次数 infinite 无数次
+                animation-direction:执行方向
+                    1.normal :正常 默认值
+                    2.alternate:反向
+                animation-delay:延迟时间
+                animation-fill-mode:动画结束后盒子的状态
+                    1.backwards:保持动画开始前的状态
+                    2.forwards:保持动画结束的状态
+                animation-play-state:动画运动状态
+		            paused:暂停
+		            running:播放
+
+                注意:其中animation-name 和animation-duration必须要有，其他属性可以没有，为默认值，
+                     多组动画以逗号分隔
+            */
+            animation-name: move;
+            animation-duration: 2s;
+            animation-timing-function: linear;
+            animation-iteration-count: 3;
+            animation-direction: alternate;
+            animation-fill-mode: forwards;
+            animation-delay: 1s;
+        }
+
+        @keyframes move {
+            0%{
+                transform: translateX(0px) rotateZ(0deg);
+            }
+
+            100%{
+                transform:translateX(500px) rotateZ(360deg);
+            }
+        }
+
+    </style>
+</head>
+<body>
+<div class="box"></div>
+</body>
+</html>

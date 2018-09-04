@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>20-动画-无缝滚动练习</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .box{
+            width: 882px;
+            height: 86px;
+            border: 1px solid red;
+            margin: 300px auto;
+            overflow: hidden;
+        }
+
+        ul{
+            width: 1764px;
+            height: 100%;
+            animation: move 4s linear infinite;
+        }
+        ul:hover{
+            animation-play-state: paused;
+        }
+
+        ul li{
+            float: left;
+        }
+
+        @keyframes move {
+            0%{
+                transform: translateX(0px);
+            }
+            100%{
+                transform: translateX(-882px);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <ul>
+        <li><img src="../images/1.jpg" alt=""></li>
+        <li><img src="../images/2.jpg" alt=""></li>
+        <li><img src="../images/3.jpg" alt=""></li>
+        <li><img src="../images/4.jpg" alt=""></li>
+        <li><img src="../images/5.jpg" alt=""></li>
+        <li><img src="../images/6.jpg" alt=""></li>
+        <li><img src="../images/7.jpg" alt=""></li>
+        <li><img src="../images/1.jpg" alt=""></li>
+        <li><img src="../images/2.jpg" alt=""></li>
+        <li><img src="../images/3.jpg" alt=""></li>
+        <li><img src="../images/4.jpg" alt=""></li>
+        <li><img src="../images/5.jpg" alt=""></li>
+        <li><img src="../images/6.jpg" alt=""></li>
+        <li><img src="../images/7.jpg" alt=""></li>
+    </ul>
+</div>
+</body>
+</html>

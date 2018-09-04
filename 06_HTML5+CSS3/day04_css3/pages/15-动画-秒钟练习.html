@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>15-动画-秒钟练习</title>
+    <style>
+        .clock{
+            width: 400px;
+            height: 400px;
+            margin: 300px auto;
+            border: 1px solid #000;
+            border-radius: 50%;
+            background-color: #99CC99;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .clock::before{
+            position: absolute;
+            content:"";
+            width: 4px;
+            height: 50%;
+            background-color: red;
+            border-radius: 50% 50% 0 0/50% 50% 0 0;
+            /*border-top-left-radius:50% 50% ;*/
+            /*border-top-right-radius: 50% 50%;*/
+            left: 200px;
+            top: 0;
+            transform: translateX(-50%);
+            /*margin-left: -2px;*/
+
+            animation: move 60s steps(60) infinite;
+            transform-origin: bottom;
+        }
+
+        @keyframes move {
+            from{
+                transform: rotateZ(0deg);
+            }
+            to{
+                transform: rotateZ(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="clock"></div>
+</body>
+</html>

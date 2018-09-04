@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>17-动画-太阳系练习</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .sun{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 100px;
+            height: 100px;
+            transform: translateX(-50%) translateY(-50%);
+            border-radius: 50%;
+            background-color: gold;
+            box-shadow: 0 0 25px 10px gold;
+        }
+
+        .earth{
+            width: 500px;
+            height: 500px;
+            border: 1px solid #ccc;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            border-radius: 50%;
+
+            animation: circle 8s linear infinite;
+        }
+
+        .earth::before{
+            position: absolute;
+            content:"";
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color:limegreen;
+            left: 0;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+
+        .moon{
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform:translateX(-50%) translateY(-50%);
+            width: 120px;
+            height: 120px;
+            /*border: 1px solid white;*/
+            border-radius: 50%;
+
+            animation: circle 3s linear infinite;
+        }
+
+        .moon::before{
+            content:"";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 30px;
+            height: 30px;
+            transform: translateX(-50%) translateY(-50%);
+            background-color: white;
+            border-radius: 50%;
+        }
+
+        .venus{
+            width: 800px;
+            height: 800px;
+            border: 1px solid #ccc;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            border-radius: 50%;
+
+            animation: circle 12s linear infinite;
+        }
+        .venus::before{
+            content:"";
+            width: 50px;
+            height: 50px;
+            background-color: #ddaaaa;
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+
+        .mars{
+            width: 1100px;
+            height: 1100px;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            animation: circle 18s linear infinite;
+        }
+
+        .mars::before{
+            content:"";
+            width: 70px;
+            height: 70px;
+            background-color: #FF9900;
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+
+        @keyframes circle {
+            0%{
+                transform:translateX(-50%) translateY(-50%) rotateZ(0deg);
+            }
+
+            100%{
+                transform: translateX(-50%) translateY(-50%) rotateZ(360deg);
+            }
+        }
+
+    </style>
+</head>
+<body>
+<div class="sun"></div>
+<div class="earth">
+    <div class="moon"></div>
+</div>
+<div class="venus"></div>
+<div class="mars"></div>
+</body>
+</html>
