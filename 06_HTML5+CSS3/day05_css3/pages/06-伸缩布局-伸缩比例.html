@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>06-伸缩布局-伸缩比例</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        html,body{
+            background-color: #cccccc;
+        }
+        section{
+            width: 1000px;
+            margin: 50px auto;
+        }
+        h3{
+            color: red;
+            font-size: 30px;
+            font-weight: normal;
+        }
+        section>ul{
+            width: 100%;
+            height: 100%;
+            border: 1px solid #000;
+            background-color: #99CC99;
+        }
+        section ul li{
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            font-size: 50px;
+            line-height: 200px;
+            text-align: center;
+            margin: 10px;
+        }
+
+        section:nth-child(1) ul{
+            display: flex;
+            flex-direction: row;
+        }
+        section:nth-child(1) ul>li:nth-child(1){
+            flex: 1;
+        }
+        section:nth-child(1) ul>li:nth-child(2){
+            flex: 2;
+        }
+        section:nth-child(1) ul>li:nth-child(3){
+            flex: 1;
+        }
+
+        section:nth-child(2) ul{
+            display: flex;
+            flex-direction: row;
+        }
+        section:nth-child(2) ul>li:nth-child(1){
+            width: 300px;
+        }
+        section:nth-child(2) ul>li:nth-child(2){
+            flex: 1;
+        }
+        section:nth-child(2) ul>li:nth-child(3){
+            flex: 3;
+        }
+        /*
+            伸缩比例 flex
+            flex：number 代表各个子控件占用比例
+            flex: 具体宽高px值或者不写，占用本身大小，不参与比例平分
+        */
+    </style>
+</head>
+<body>
+<section>
+    <h3>伸缩比例：flex: 1:2:1</h3>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</section>
+<section>
+    <h3>伸缩比例：flex:300px 1:3</h3>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</section>
+
+</body>
+</html>

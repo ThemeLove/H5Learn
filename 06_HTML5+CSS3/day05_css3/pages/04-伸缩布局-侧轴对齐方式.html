@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>04-伸缩布局-侧轴对齐方式</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        html,body{
+            background-color: #cccccc;
+        }
+        section{
+            width: 1000px;
+            height: 800px;
+            margin: 50px auto;
+        }
+        h3{
+            color: red;
+            font-size: 30px;
+            font-weight: normal;
+        }
+        section>ul{
+            width: 100%;
+            height: 100%;
+            border: 1px solid #000;
+            background-color: #99CC99;
+        }
+        section ul li{
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            font-size: 50px;
+            line-height: 200px;
+            text-align: center;
+            margin: 10px;
+        }
+
+        section:nth-child(1) ul{
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+        }
+        section:nth-child(2) ul{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        section:nth-child(3) ul{
+            display: flex;
+            flex-direction: row;
+            align-items: flex-end;
+        }
+        section:nth-child(4) ul{
+            display: flex;
+            flex-direction: row;
+            align-items: baseline;
+        }
+        section:nth-child(5) ul{
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+        }
+        section:nth-child(5) ul li{
+            height: auto;
+        }
+        /*
+            侧轴对齐方式:align-items
+            align-items:flex-start(从侧轴开始方向对齐)
+            align-items:center（在侧轴方向上居中）
+            align-items:flex-end（从侧轴结束方向上对齐）
+            align-items:baseline（基线对齐，效果同flex-start）
+            align-items:stretch(拉伸，和父盒子高度一致)
+        */
+    </style>
+</head>
+<body>
+<section>
+    <h3>侧轴对齐方式：align-items:flex-start(从侧轴开始方向对齐)</h3>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</section>
+<section>
+    <h3>侧轴对齐方式：align-items:center（在侧轴方向上居中）</h3>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</section>
+<section>
+    <h3>侧轴对齐方式：align-items:flex-end（从侧轴结束方向上对齐）</h3>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</section>
+<section>
+    <h3>侧轴对齐方式：align-items:baseline（基线对齐，效果同flex-start）</h3>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</section>
+<section>
+    <h3>侧轴对齐方式：align-items:stretch(拉伸，和父盒子高度一致)</h3>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</section>
+</body>
+</html>

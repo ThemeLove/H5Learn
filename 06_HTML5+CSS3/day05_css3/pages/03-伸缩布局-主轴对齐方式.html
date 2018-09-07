@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03-伸缩布局-主轴对齐方式</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        html,body{
+            background-color: #cccccc;
+        }
+        section{
+            width: 1000px;
+            margin: 50px auto;
+        }
+        h3{
+            color: red;
+            font-size: 30px;
+            font-weight: normal;
+        }
+        section>ul{
+            width: 100%;
+            border: 1px solid #000;
+            background-color: #99CC99;
+        }
+        section ul li{
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            font-size: 50px;
+            line-height: 200px;
+            text-align: center;
+            margin: 10px;
+        }
+
+        section:nth-child(1) ul{
+            display: flex;
+            flex-direction: row;
+            justify-content:flex-start;
+        }
+
+        section:nth-child(2) ul{
+            display: flex;
+            flex-direction: row;
+            justify-content:flex-end;
+        }
+        section:nth-child(3) ul{
+            display: flex;
+            flex-direction: row;
+            justify-content:center;
+        }
+        section:nth-child(4) ul{
+            display: flex;
+            flex-direction: row;
+            justify-content:space-around;
+        }
+        section:nth-child(5) ul{
+            display: flex;
+            flex-direction: row;
+            justify-content:space-between;
+        }
+
+
+        section:nth-child(6) ul{
+            height: 1000px;
+            display: flex;
+            flex-direction: column;
+            justify-content:flex-start;
+        }
+        section:nth-child(7) ul{
+            height: 1000px;
+            display: flex;
+            flex-direction: column;
+            justify-content:flex-end;
+        }
+        section:nth-child(8) ul{
+            height: 1000px;
+            display: flex;
+            flex-direction: column;
+            justify-content:center;
+        }
+        section:nth-child(9) ul{
+            height: 1000px;
+            display: flex;
+            flex-direction: column;
+            justify-content:space-around;
+        }
+        section:nth-child(10) ul{
+            height: 1000px;
+            display: flex;
+            flex-direction: column;
+            justify-content:space-between;
+        }
+        section:nth-child(11) ul{
+            height: 1000px;
+            display: flex;
+            flex-direction: column-reverse;
+            justify-content:space-between;
+        }
+
+        /*
+            主轴对齐方式 justify-content
+            justify-content:flex-start (左对齐或上对齐,默认)
+            justify-content:flex-end(右对齐或下对齐)
+            justify-content:center(居中)
+            justify-content:space-around(平分)
+            justify-content:space-between(两端对齐，中间平分)
+        */
+    </style>
+</head>
+<body>
+<section>
+    <h3>主轴对齐方式:justify-content:flex-start(左对齐，默认)</h3>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</section>
+<section>
+    <h3>主轴对齐方式:justify-content:flex-end（右对齐）</h3>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</section>
+<section>
+    <h3>主轴对齐方式:justify-content:center（居中）</h3>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</section>
+<section>
+    <h3>主轴对齐方式:justify-content:space-around（平分）</h3>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+</section>
+<section>
+    <h3>主轴对齐方式:justify-content:space-between(两端对齐，中间平分)</h3>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</section>
+
+
+
+<!--竖直方向-->
+<section>
+    <h3>主轴对齐方式（竖直）:justify-content:flex-start(上对齐，默认)</h3>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</section>
+<section>
+    <h3>主轴对齐方式（竖直）:justify-content:flex-end（下对齐）</h3>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</section>
+<section>
+    <h3>主轴对齐方式（竖直）:justify-content:center（居中）</h3>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</section>
+<section>
+    <h3>主轴对齐方式（竖直）:justify-content:space-around（平分）</h3>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</section>
+<section>
+    <h3>主轴对齐方式（竖直）:justify-content:space-between(上下对齐，中间平分)</h3>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</section>
+<section>
+    <h3>主轴对齐方式（竖直翻转）:justify-content:space-between(上下对齐，中间平分)</h3>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</section>
+</body>
+</html>

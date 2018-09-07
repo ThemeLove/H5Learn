@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02-伸缩布局-主轴方向</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        html,body{
+            background-color: #cccccc;
+        }
+        section{
+            width: 1000px;
+            margin: 50px auto;
+        }
+        h3{
+            color: red;
+            font-size: 30px;
+            font-weight: normal;
+        }
+        ul{
+            width: 100%;
+            background-color: #99CC99;
+            border: 1px solid #000;
+        }
+        ul>li{
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            margin: 10px;
+            line-height: 200px;
+            font-size: 50px;
+            text-align: center;
+        }
+        section:nth-child(1) ul{
+            overflow: hidden;
+        }
+        section:nth-child(1) ul li{
+            float: left;
+        }
+
+        /*
+           display:flex 伸缩布局，加给父盒子，对子元素起作用
+           flex-direction:主轴方向，加给父盒子，对子元素起作用
+                row:水平方向，从左到右 （默认）
+                row-reverse:水平方向，从右到左
+                column:竖直方向，从上到下
+                column-reverse:竖直方向，从下到上
+        */
+        section:nth-child(2) ul{
+            display: flex;
+        }
+        section:nth-child(3) ul{
+            display: flex;
+            /*row:水平方向，从左到右 （默认）*/
+            flex-direction: row;
+        }
+        section:nth-child(4) ul{
+            display: flex;
+            /*row-reverse:水平方向，从右到左*/
+            flex-direction: row-reverse;
+        }
+        section:nth-child(5) ul{
+            display: flex;
+            /*column:竖直方向，从上到下*/
+            flex-direction:column;
+        }
+        section:nth-child(6) ul{
+            display: flex;
+            /*column-reverse:竖直方向，从下到上*/
+            flex-direction: column-reverse;
+        }
+    </style>
+</head>
+<body>
+<section>
+    <h3>常规布局</h3>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</section>
+<section>
+    <h3>伸缩布局:display:flex</h3>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</section>
+<section>
+    <h3>伸缩布局:display:flex,主轴方向：flex-direction:row (水平方向 从左到右 默认)</h3>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</section>
+<section>
+    <h3>伸缩布局:display:flex,主轴方向：flex-direction:row-reverse（水平方向 从右到左）</h3>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</section>
+<section>
+    <h3>伸缩布局:display:flex,主轴方向：flex-direction:column （竖直方向 从上到下）</h3>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</section>
+<section>
+    <h3>伸缩布局:display:flex,主轴方向：flex-direction:column-reverse（竖直方向 从下到上）</h3>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</section>
+</body>
+</html>
