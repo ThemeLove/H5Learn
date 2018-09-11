@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01_自定义视频播放器.html</title>
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        html,body{
+            background-color: #333333;
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+        figure{
+            width: 800px;
+            /*background-color: red;*/
+            margin: 100px auto;
+        }
+
+        figcaption{
+            text-align: center;
+            font-size: 25px;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .player{
+            border-radius: 20px;
+            width: 800px;
+            height: 400px;
+            position: relative;
+            background:url("../images/loading.gif") no-repeat #000 center;
+            background-size: auto 100%;
+            overflow: hidden;
+        }
+
+        video{
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+            /*visibility: hidden;*/
+        }
+
+        .control{
+            position: absolute;
+            left: 0;
+            bottom:0;
+            width: 100%;
+            height: 40px;
+            border-radius: 20px;
+            background-color:rgba(255,255,0,0.3);
+        }
+
+        .control .playSwitch{
+            position: absolute;
+            left: 20px;
+            top: 10px;
+            width: 20px;
+            height: 20px;
+            color: yellow;
+        }
+
+        .control .totalProcess{
+            position: absolute;
+            left: 60px;
+            top: 15px;
+            background-color: rgba(255,255,255,0.3);
+            width: 500px;
+            height: 10px;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+
+        .control .currentProcess{
+            position: absolute;
+            width:0;
+            height:100%;
+            background-color: rgba(255,255,255,1);
+        }
+
+        .control .time{
+            position: absolute;
+            right: 70px;
+            top: 10px;
+            width: 160px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            background-color:rgba(0,0,0,0.5);
+            border-radius: 10px;
+            color: #fff;
+        }
+
+        .control .fullScreen{
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            color: yellow;
+        }
+    </style>
+
+    <script>
+        /*
+             标签：figure:多媒体
+             figcaption:多媒体标签
+             方法：load() 加载、play()播放、pause()暂停
+             属性：currentTime 视频播放的当前进度
+             duration:视频的总时长
+             paused:视频播放状态 暂停状态
+             事件：oncanplay:事件在用户可以开始播放音频/视频（audio/video）时触发。
+             ontimeupdate:通过该事件来报告当前的播放进度
+             onended:播放完成时触发
+             全屏：video.webkitRequestFullScreen();
+         */
+        window.onload=function (ev) {
+          var video=document.querySelector("video");
+          var playSwitch=document.querySelector(".playSwitch");
+          var currentProcess=document.querySelector(".currentProcess");
+          var time=document.querySelector(".time");
+          var fullScreen=document.querySelector(".fullScreen");
+          console.log(video);
+          console.log(playSwitch);
+          var totalTime=null;
+          var totalTimeFormat=null;
+          playSwitch.onclick=function (ev) {
+             if (video.paused){
+                 video.play();
+                 playSwitch.classList.remove("icon-play");
+                 playSwitch.classList.add("icon-pause")
+             }else{
+                 video.pause();
+                 playSwitch.classList.remove("icon-pause");
+                 playSwitch.classList.add("icon-play");
+             }
+              console.log("playSwitch.onclick");
+          };
+
+          video.oncanplay=function (ev2) {
+              totalTime=video.duration;
+              //  格式化视频总进度
+              var hour=Math.floor(totalTime/3600);
+              var minute=Math.floor(totalTime%3600/60);
+              var second=Math.floor(totalTime%60);
+              var formatHour=hour>=10?hour+"":"0"+hour;
+              var formatMinute=minute>=10?minute+"":"0"+minute;
+              var formatSecond=second>=10?second+"":"0"+second;
+              totalTimeFormat=formatHour+":"+formatMinute+":"+formatSecond;
+              console.log("totalTimeFormat="+totalTimeFormat)
+          };
+
+          //正在播放时的监听
+          video.ontimeupdate=function (ev2) {
+              var currentTime=video.currentTime;
+              //  格式化当前播放视频进度
+              var hour=Math.floor(currentTime/3600);
+              var minute=Math.floor(currentTime%3600/60);
+              var second=Math.floor(currentTime%60);
+              var formatHour=hour>=10?hour+"":"0"+hour;
+              var formatMinute=minute>=10?minute+"":"0"+minute;
+              var formatSecond=second>=10?second+"":"0"+second;
+              var currentTimeFormat=formatHour+":"+formatMinute+":"+formatSecond;
+              // console.log("currentTimeFormat="+currentTimeFormat);
+
+              currentProcess.style.width=currentTime*100/totalTime+"%";
+              // console.log("porcess="+Math.floor(currentTime*100/totalTime)+"%");
+
+              time.innerHTML=currentTimeFormat+"/"+totalTimeFormat;
+          };
+            //点击全屏按钮
+            fullScreen.onclick=function () {
+              video.webkitRequestFullscreen();
+              console.log("fullScreen.onclick");
+            };
+        };
+    </script>
+</head>
+<body>
+<div class="box">
+    <figure>
+        <figcaption>视频案例</figcaption>
+        <div class="player">
+            <video src="../video/fun.mp4"></video>
+            <div class="control">
+                <a href="javascript:void(0)" class="playSwitch icon-play"></a>
+                <div class="totalProcess">
+                        <process class="currentProcess"></process>
+                </div>
+                <p class="time">00:00:00/00:00:00</p>
+                <a href="javascript:void(0)" class="fullScreen icon-resize-full"></a>
+            </div>
+        </div>
+    </figure>
+</div>
+</body>
+</html>

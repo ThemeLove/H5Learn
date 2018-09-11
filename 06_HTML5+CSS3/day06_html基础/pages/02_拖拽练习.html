@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02-拖拽练习</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        html,body{
+            background-color: #cccccc;
+        }
+        .box{
+            overflow: hidden;
+            width: 2000px;
+            text-align: center;
+            margin: 100px auto;
+        }
+
+        .tip{
+            float: left;
+            height: 100px;
+            width: 300px;
+            margin-top: 200px;
+            background-color: cadetblue;
+            text-align: center;
+            font-size: 25px;
+            font-weight: 400;
+            border: 1px solid #000;
+        }
+
+        .one,.two{
+            float: left;
+            width: 800px;
+            height: 500px;
+            border: 1px solid #000;
+        }
+
+        .one div,.two div{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 200px;
+            font-size: 50px;
+            border: 1px solid #000;
+            float: left;
+            box-sizing: border-box;
+        }
+    </style>
+
+
+    <script>
+    /*
+        拖拽元素：页面中设置了draggable="true"属性的元素
+        目标元素：页面中任何一个元素都可以成为目标元素
+        拖拽事件监听：
+        拖拽元素：
+        ondrag:应用于拖拽元素，整个拖拽过程都会调用
+        ondragstart:应用于拖拽元素，当拖拽开始时调用 （按下鼠标开始拖拽）
+        ondragend:应用于拖拽元素，当拖拽结束时调用（松开鼠标）
+        ondragenter:应用于拖拽元素时，当拖拽开始时调用 （按下鼠标开始拖拽，晚于ondragstart）
+        ondragleave:应用于拖拽元素时，当拖拽元素离开自身时调用（以鼠标指针为判断依据）
+        目标元素：
+        ondragenter:应用于目标元素，当拖拽元素进入时调用，以鼠标指示为判断依据
+        ondragover:应用于目标元素，当拖拽元素停留在目标元素上时调用
+        ondragleave:应用于目标元素，当拖拽元素离开目标元素时调用，以鼠标指示为判断依据
+        ondrop:应用于目标元素，当拖拽元素在目标元素上松开鼠标时调用
+    */
+       window.onload=function (ev) {
+            var one=document.querySelector(".one");
+            var two=document.querySelector(".two");
+
+            var boxs=one.querySelectorAll("div");
+
+           console.log(one);
+           console.log(two);
+           console.log(boxs);
+
+            var dragBox=null;
+
+       //   给one下面的每个盒子添加拖动事件
+            for (var i=0;i<boxs.length;i++){
+                //拖拽开始
+                boxs[i].ondragstart=function (ev2) {
+                    dragBox=this;
+                    console.log("box-one:拖拽开始了")
+                };
+                //拖拽结束
+                boxs[i].ondragend=function () {
+                    console.log("box-one:拖拽结束了")
+                };
+
+                boxs[i].ondragleave=function (ev2) {
+                    console.log("box-one:leave");
+                };
+
+                boxs[i].ondragenter=function (ev2) {
+                    console.log("box-one:enter");
+                }
+            }
+
+            one.ondragover=function (ev) {
+              ev.preventDefault();
+            };
+            one.ondrop=function (ev) {
+                one.appendChild(dragBox);
+            };
+
+            two.ondragenter=function () {
+                console.log("box-two:进来了");
+            };
+
+            two.ondragover=function (ev) {
+                console.log("box-two:在上面了");
+                //阻止默认行为
+                ev.preventDefault();
+            };
+
+            two.ondragleave=function () {
+                console.log("box-two:出去了'")
+            };
+
+            //当拖拽被放开时
+            two.ondrop=function (ev) {
+                console.log("box-tow:拖拽被放开了");
+                two.appendChild(dragBox)
+            }
+       }
+    </script>
+</head>
+<body>
+<div class="box">
+<div class="one">
+    <div draggable="true">1</div>
+    <div draggable="true">2</div>
+    <div draggable="true">3</div>
+    <div draggable="true">4</div>
+    <div draggable="true">5</div>
+    <div draggable="true">6</div>
+    <div draggable="true">7</div>
+    <div draggable="true">8</div>
+</div>
+<div class="tip">
+    试试看来回拖拽小球<br>
+    -----><br>
+    <-----<br>
+</div>
+
+<div class="two"></div>
+</div>
+</body>
+</html>
