@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>10-icon字体</title>
+    <style>
+        /*第一步：拷贝项目下面生成的font-face*/
+        @font-face {
+            font-family: 'iconfont';
+            src: url('font/iconfont.eot');
+            src: url('font/iconfont.eot?#iefix') format('embedded-opentype'),
+            url('font/iconfont.woff') format('woff'),
+            url('font/iconfont.ttf') format('truetype'),
+            url('font/iconfont.svg#iconfont') format('svg');
+        }
+        /*第二步：定义使用iconfont的样式*/
+        .iconfont{
+            font-family:"iconfont" !important;
+            font-size:100px;font-style:normal;
+            color: pink;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-stroke-width: 0.2px;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        p{
+            width: 600px;
+            border: 1px solid #000;
+            font-size: 100px;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+<!--第三步：挑选相应图标并获取字体编码，应用于页面-->
+<p><span class="iconfont">&#xe614;</span>美女</p>
+<p><span class="iconfont">&#xe603;</span>扫码支付</p>
+<p><span class="iconfont">&#xe63e;</span>章鱼小丸子</p>
+<p><span class="iconfont">&#xe66a;</span>支付宝</p>
+</body>
+</html>

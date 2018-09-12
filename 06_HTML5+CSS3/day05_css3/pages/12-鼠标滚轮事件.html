@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>12-鼠标滚轮事件</title>
+    <style>
+        html,body{
+            height: 2000px;
+            position: relative;
+        }
+        span{
+            display: block;
+            position: fixed;
+            font-size: 30px;
+            line-height: 30px;
+            background-color: pink;
+            top: 500px;
+            left: 500px;
+        }
+    </style>
+    <script>
+        window.onload=function (ev) {
+
+            var span=document.querySelector("span");
+            var num=0;
+            window.onmousewheel=function (ev2) {
+                num++;
+                console.log("num="+num);
+                span.innerHTML="鼠标滚动了：  "+num+"   次";
+            }
+        }
+    </script>
+</head>
+<body>
+<span>滚动鼠标滚轮试试</span>
+</body>
+</html>

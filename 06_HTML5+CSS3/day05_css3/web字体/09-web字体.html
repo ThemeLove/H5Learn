@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>09-web字体</title>
+    <style>
+        /*
+            1.使用font-face 声明字体
+         */
+        @font-face {font-family: 'webfont';
+            src: url('font/webfont.eot'); /* IE9*/
+            src: url('font/webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+            url('font/webfont.woff') format('woff'), /* chrome、firefox */
+            url('font/webfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+            url('font/webfont.svg#webfont') format('svg'); /* iOS 4.1- */
+        }
+
+        .web-font{
+            font-family:"webfont" !important;
+            font-size:30px;font-style:normal;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-stroke-width: 0.2px;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
+</head>
+<body>
+<p class="web-font">web字体 :不用再徘徊你就是我最美的期待</p>
+    <p>
+    第一步：使用font-face声明字体
+        @font-face {font-family: 'webfont';<br>
+        src: url('webfont.eot'); /* IE9*/<br>
+        src: url('webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */<br>
+        url('webfont.woff') format('woff'), /* chrome、firefox */<br>
+        url('webfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/<br>
+        url('webfont.svg#webfont') format('svg'); /* iOS 4.1- */<br>
+    }</p>
+<p>
+    第二步：定义使用webfont的样式<br>
+    .web-font{<br>
+        font-family:"webfont" !important;<br>
+        font-size:16px;font-style:normal;<br>
+        -webkit-font-smoothing: antialiased;<br>
+        -webkit-text-stroke-width: 0.2px;<br>
+        -moz-osx-font-smoothing: grayscale;<br>
+    }</p>
+<p>第三步：为文字加上对应的样式<br>
+    &lt;i class="web-font"&gt;知识就像内-裤，看不见但很重要。&lt;/i&gt;
+</p>
+</p>
+</body>
+</html>

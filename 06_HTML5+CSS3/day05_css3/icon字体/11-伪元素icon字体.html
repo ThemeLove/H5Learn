@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>11-伪元素icon字体</title>
+    <style>
+        /*第一步：拷贝项目下面生成的font-face*/
+        @font-face {
+            font-family: 'iconfont';
+            src: url('font/iconfont.eot');
+            src: url('font/iconfont.eot?#iefix') format('embedded-opentype'),
+            url('font/iconfont.woff') format('woff'),
+            url('font/iconfont.ttf') format('truetype'),
+            url('font/iconfont.svg#iconfont') format('svg');
+        }
+        /*第二步：定义使用iconfont的样式*/
+        .icon-font{
+            display: block;
+            width: 600px;
+            font-size:100px;
+            color: #000000;
+            position: relative;
+            text-align: center;
+            margin: 100px auto;
+            border: 1px solid #000;
+        }
+        /*添加伪元素，更加语义化*/
+        .icon-font::before{
+            font-family:"iconfont";
+            position: absolute;
+            content: '\e603';/*注意定义在样式里的时候icon编码要改变 例如：&#xe603;------>\e603*/
+            color: red;
+            left: -11px;
+            top: 17px;
+        }
+    </style>
+</head>
+<body>
+第三步：添加定义好的样式
+<span class="icon-font">扫码支付</span>
+</body>
+</html>
