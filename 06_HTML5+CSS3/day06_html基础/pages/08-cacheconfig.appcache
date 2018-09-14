@@ -1,0 +1,5 @@
+CACHE MANIFEST
+
+#注释以#号开头,缓存这张网络图片，先加载，之后断网后该图片仍然可以显示出来
+CACHE:
+	https://img.mukewang.com/5b6a948d00013edb09360316.jpg

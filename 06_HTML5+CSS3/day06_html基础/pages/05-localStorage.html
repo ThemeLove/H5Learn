@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>05-localStorage</title>
+    <style>
+        span{
+            display: block;
+            width: 300px;
+            height: 50px;
+            line-height: 50px;
+            color: blue;
+            background-color: pink;
+        }
+    </style>
+    <script>
+        /*
+          localStorage:20M 永久生效，除非手动删除，清理垃圾，否则始终在硬盘上。
+          setItem(key, value) 设置存储内容
+          getItem(key) 读取存储内容
+          removeItem(key) 删除键值为key的存储内容
+          clear() 清空所有存储内容
+        */
+        window.onload=function (ev) {
+            var userName=document.querySelector(".userName");
+            var viewUserName=document.querySelector(".viewUserName");
+            var addLocal=document.querySelector(".addLocal");
+            var updateLocal=document.querySelector(".updateLocal");
+            var removeLocal=document.querySelector(".removeLocal");
+            var getLocal=document.querySelector(".getLocal");
+            var clearLocal=document.querySelector(".clearLocal");
+
+            addLocal.onclick=function (ev) {
+                window.localStorage.setItem("userName",userName.value);
+            };
+            updateLocal.onclick=function (ev) {
+                window.localStorage.setItem("userName",userName.value);
+            };
+            removeLocal.onclick=function (ev) {
+                window.localStorage.removeItem("userName");
+            };
+            getLocal.onclick=function (ev) {
+                var userName=window.localStorage.getItem("userName");
+                viewUserName.innerHTML= userName;
+                alert(userName);
+            };
+            clearLocal.onclick=function (ev) {
+                window.localStorage.clear();
+            };
+        };
+    </script>
+</head>
+<body>
+用户名（key=userName）：<input class="userName" type="text" placeholder="请输入用户名"><br>
+显示用户名：<span class="viewUserName"></span><br>
+<button class="addLocal">localStorage存储</button>
+<button class="updateLocal">localStorage修改</button>
+<button class="removeLocal">localStorage删除</button>
+<button class="getLocal">localStorage获取</button>
+<button class="clearLocal">localStorage清空</button>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>06-记住用户名和密码案例</title>
+    <style>
+
+    </style>
+    <script>
+        window.onload=function (ev) {
+            var userName=document.querySelector(".userName");
+            var password=document.querySelector(".password");
+            var check=document.querySelector(".remember");
+            var login=document.querySelector(".login");
+
+            if(window.localStorage){
+                userName.value=window.localStorage.getItem("userName");
+                password.value=window.localStorage.getItem("password");
+            }
+
+            login.onclick=function (ev) {
+                var user=userName.value;
+                var pwd=password.value;
+                if (isEmpty(user)||isEmpty(pwd)){
+                    alert("用户名或密码为空");
+                    return;
+                }
+                if(check.checked){//如果用户勾选记住密码了
+                    window.localStorage.setItem("userName",user);
+                    window.localStorage.setItem("password",pwd);
+                }else{
+                    window.localStorage.removeItem("userName");
+                    window.localStorage.removeItem("password");
+                }
+            }
+        };
+
+        /**
+         * 判断字符串是否为空
+         * @param str
+         * @returns {boolean}
+         */
+        function isEmpty(str) {
+            if (typeof str=="undefined" || str==null || str==""){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+<form action="">
+<label for="userName">
+    用户名<input  id="userName" autocomplete="off" type="text" name="username" class="userName">
+</label><br>
+<label for="password">
+    密&nbsp;&nbsp;&nbsp;码<input id="password" autocomplete="off" type="text" name="password" class="password">
+</label><br>
+<input type="checkbox" checked class="remember">记住密码 <br>
+<input type="submit" class="login" value="登录">
+</form>
+</body>
+</html>

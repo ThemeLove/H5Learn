@@ -1,0 +1,16 @@
+CACHE MANIFEST
+
+#注释以#号开头,缓存前三张图片
+CACHE:
+	../images/img1.jpg
+	../images/img2.jpg
+	../images/img3.jpg
+	../images/img4.jpg
+
+#指定必须联网才能访问的图片
+NETWORK:
+	http://img2.mukewang.com/szimg/5ab84f650001f0b005400300.jpg
+
+#当页面无法访问时回退时的页面
+FALLBACK:
+	404.html

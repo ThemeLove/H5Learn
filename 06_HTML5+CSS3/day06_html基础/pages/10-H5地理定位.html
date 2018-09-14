@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>10-H5地理定位</title>
+    <style>
+        span{
+            width: 300px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background-color: #99CC99;
+        }
+    </style>
+    <script>
+        /*
+            获取定位
+            navigator.geolocation.getCurrentPosition(successCallback,errorCallback);
+            navigator.watchPosition(successCallback, errorCallback, options) 重复获取当前地理信息
+            1、当成功获取地理信息后，会调用succssCallback，并返回一个包含位置信息的对象position。Coords(坐标)
+            position.coords.latitude纬度
+            position.coords.longitude经度
+            2、当获取地理信息失败后，会调用errorCallback，并返回错误信息error
+            3、可选参数 options 对象可以调整位置信息数据收集方式
+         */
+        window.onload=function (ev) {
+            //获取定位成功回调
+            function successCallback(position) {
+                //经度
+                var longitude=position.coords.longitude;
+                //纬度
+                var latitude=position.coords.latitude;
+                console.log("经度："+longitude+"<br>纬度："+latitude);
+                alert("经度："+longitude+"<br>纬度："+latitude);
+            }
+            //获取定位失败回调
+            function errorCallback(error){
+                console.log("定位失败："+error);
+                alert("定位失败："+error);
+            }
+            if(window.navigator.geolocation){
+                navigator.geolocation.getCurrentPosition(successCallback,errorCallback);
+            }else{
+                alert("你的浏览器不支持地理定位");
+            }
+        };
+    </script>
+</head>
+<body>
+
+地理定位中：
+<span></span>
+</body>
+</html>
