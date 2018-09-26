@@ -1,6 +1,6 @@
 <?php
 //设置编码格式为utf-8
-header('content-type:text/html;charset=utf-8');
+header('content-type:text/html; charset= utf-8');
 //单行注释
 /*
     多行注释
