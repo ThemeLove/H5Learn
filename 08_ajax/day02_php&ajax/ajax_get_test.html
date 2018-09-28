@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax_test</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        form{
+            margin: 50px 0 0 50px;
+        }
+        table{
+            border-collapse: collapse;
+            margin: 50px 0 0 50px;
+            width: 1000px;
+            border: 1px solid #000;
+            /*background-color: #FD6500;*/
+        }
+
+        table th{
+            background-color:silver;
+            border: 1px solid #000;
+        }
+
+        table td{
+            border: 1px solid #000;
+            background-color: #99CC99;
+            text-align: center;
+        }
+    </style>
+
+    <script>
+        window.onload=function (ev) {
+            var id=document.querySelector("#id");
+            var commit=document.querySelector("#commit");
+            var table=document.querySelector("#table");
+            var tbody=table.getElementsByTagName("tbody")[0];
+            console.log(tbody);
+            commit.onclick=function (ev) {
+                //先清空tbody中的内容
+                for(var i=0;i<tbody.children.length;i++){
+                    if(i!=0){
+                        tbody.removeChild(tbody.children[i]);
+                    }
+                }
+                var xmlHttp;
+                if (window.XMLHttpRequest){
+                    xmlHttp=new XMLHttpRequest();
+                }else{//兼容ie
+                    xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+                }
+
+                //添加监听
+                xmlHttp.onreadystatechange=function () {
+                    if (xmlHttp.readyState==4&&xmlHttp.status==200){
+                        console.log("responseText="+xmlHttp.responseText);
+                        var response=JSON.parse(xmlHttp.responseText);
+                        var code=response.code;
+                        if (code==0){//成功
+                            console.log("name="+response.result.name);
+                            console.log("age="+response.result.age);
+                            console.log("skill="+response.result.skill);
+
+                            var persion=response.result;
+
+                            //  动态创建tr,添加到table中,首先情况tab中的所有子元素，除了th
+                            var tr=document.createElement("tr");
+                            var idTd=document.createElement("td");
+                            idTd.innerHTML=id.value;
+                            tr.appendChild(idTd);
+
+                            var nameTd=document.createElement("td");
+                            nameTd.innerHTML=persion.name;
+                            tr.appendChild(nameTd);
+
+                            var ageTd=document.createElement("td");
+                            ageTd.innerHTML=persion.age;
+                            tr.appendChild(ageTd);
+
+                            var skillTd=document.createElement("td");
+                            skillTd.innerHTML=persion.skill;
+                            tr.appendChild(skillTd);
+
+                            //   将tr添加到table
+                            tbody.appendChild(tr);
+                        }else{//失败
+
+                        }
+                    }
+                };
+
+                xmlHttp.open("GET","ajax_get_test.php?id="+id.value,true);
+                xmlHttp.send();
+            }
+        }
+    </script>
+</head>
+<body>
+<form action="">
+    <label for="">
+        <input type="text" placeholder="请输入序号:例如1、2" id="id" autocomplete="off">
+    </label>
+    <label for="">
+        <input type="button" value="查询" id="commit">
+    </label><br>
+</form>
+<table id="table">
+    <tr>
+        <th>序号</th>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>技能</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>张三</td>
+        <td>18</td>
+        <td>笑</td>
+    </tr>
+</table>
+</body>
+</html>

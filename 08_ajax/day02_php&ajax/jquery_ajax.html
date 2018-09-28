@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery_ajax</title>
+    <style>
+        p{
+            padding: 50px;
+            font-size: 30px;
+            background-color: pink;
+            color: #333333;
+        }
+    </style>
+    <script src="js/jquery-1.11.1.js"></script>
+    <script>
+        window.onload=function (ev) {
+            var id=document.querySelector("#id");
+            var commit=document.querySelector("#commit");
+            var info=document.querySelector("#info");
+            var get=document.querySelector("#get");
+
+            var option={
+                data:{
+                    id:"1"
+                },
+                success:function(data,status){
+                    console.log("response="+data);
+                    info.innerHTML="result:<br>"+data;
+                },
+                fail:function (msg) {
+                    info.innerHTML="result:<br>"+msg;
+                }
+            };
+
+            commit.onclick=function (ev) {
+                option.data.id=id.value;
+                if(get.checked){
+                    option.method="get";
+                    option.url="ajax_get_test.php";
+                }else{
+                    option.method="post";
+                    option.url="ajax_post_test.php";
+                }
+
+                $.ajax(option)
+            }
+        }
+    </script>
+</head>
+<body>
+<label for="">
+    <input type="text" placeholder="请输入序号：例如1、2" name="id" id="id">
+</label>
+请求方式：get
+<label for="">
+    <input type="radio"  name="method" value="get" checked="checked" id="get">
+</label>
+post:
+<lebel>
+    <input type="radio"  name="method" value="post">
+</lebel>
+<label for="">
+    <input type="button" id="commit" value="提交">
+</label>
+<br>
+<p id="info">result:</p>
+</body>
+</html>
