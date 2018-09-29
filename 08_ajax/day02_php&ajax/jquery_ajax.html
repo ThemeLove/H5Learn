@@ -19,29 +19,40 @@
             var info=document.querySelector("#info");
             var get=document.querySelector("#get");
 
+
+            /*
+            *   dataType参数：要求服务器返回的数据类型
+            *   json:服务器返回的是一个json对象，要用JSON.stringify(),来转换为json字符串
+            *   text:服务器返回的纯文本，本身就是一个json字符串
+            */
+
             var option={
                 data:{
                     id:"1"
                 },
-                success:function(data,status){
-                    console.log("response="+data);
-                    info.innerHTML="result:<br>"+data;
+                dataType:"json",
+                success:function(data){
+                    // console.log("data="+data);
+                    // info.innerHTML="result:<br>"+data;
+                    // console.log("name="+data.name);
+                    console.log("response="+JSON.stringify(data));
+                    info.innerHTML="result:<br>"+JSON.stringify(data);
                 },
-                fail:function (msg) {
-                    info.innerHTML="result:<br>"+msg;
+                error:function (error) {
+                    console.log("error="+JSON.stringify(error))
+                    info.innerHTML="result:<br>"+JSON.stringify(error);
                 }
             };
 
             commit.onclick=function (ev) {
                 option.data.id=id.value;
                 if(get.checked){
-                    option.method="get";
+                    option.type="get";
                     option.url="ajax_get_test.php";
                 }else{
-                    option.method="post";
+                    option.type="post";
                     option.url="ajax_post_test.php";
                 }
-
                 $.ajax(option)
             }
         }

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery_ajax</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        p{
+            margin-top: 50px;
+            background-color: pink;
+            color: #000;
+            font-size: 30px;
+            padding: 30px;
+        }
+    </style>
+    <script src="js/jquery-1.11.1.js"></script>
+    <script>
+        window.onload=function (ev) {
+
+            $("input").eq(0).click(function () {//获取第一个input并添加点击事件
+                $.ajax({
+                        url:"ajax_post.php",
+                        type:"post",
+                        dataType:"text",
+                        data:{
+                            name:"ThemeLove",
+                            skill:"瞬间移动"
+                        },
+                        beforeSend:function (xhr) {//请求之前调用，可以设置请求头，校验参数
+                            console.log("request start")
+                        },
+                        complete:function (xhr,ts) {//请求完成时回调，成功失败都会回调
+                            console.log("request complete");
+                        },
+                        success:function (data) {//请求成功
+                            console.log("request success:data="+data);
+                            $("#info").html("result:<br>"+data);
+                        },
+                        error:function (xhr,msg,exception) {//请求出错
+                            console.log("request error:msg="+msg);
+                        },
+                        timeout:30000,//设置请求超时时间，此设置将覆盖全局设置（毫秒值）
+                        async:true//是否异步
+                    }
+                );
+            });
+        };
+
+    </script>
+</head>
+<body>
+<input type="button" value="ajax的get请求" >
+<p id="info"></p>
+</body>
+</html>

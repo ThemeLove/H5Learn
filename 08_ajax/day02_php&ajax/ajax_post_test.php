@@ -23,5 +23,5 @@ header('content-type:application/json; charset= utf-8');
                         'result'=>''
                         );
     }
-    exit(json_encode($resultArr));
+    echo(json_encode($resultArr));
 ?>
