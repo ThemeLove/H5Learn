@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>upload_file</title>
+    <script>
+        window.onload=function (ev) {
+          var file=document.getElementById("file");
+          var btn=document.getElementById("upload");
+
+          btn.onclick=function (ev2) {
+
+          }
+        };
+    </script>
+</head>
+<body>
+<form action="upload_file.php" method='post' enctype='multipart/form-data'>
+    <input type="file" value="上传文件" id="file" name="file">
+    <input type="submit" value="提交" id="upload">
+</form>
+</body>
+</html>
