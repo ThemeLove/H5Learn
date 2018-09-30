@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>template_test</title>
+    <style>
+
+    </style>
+    <script src="js/template-native.js"></script>
+    <script type="text/template" id="template">
+        <ul>
+            <li><%=name%></li>
+            <li><%=platform%></li>
+            <li><%=classify%></li>
+            <ul>
+                <% for(var i =0;i<users.length;i++){ %>
+                <li>用户类型<%=i%>:<%=users[i]%></li>
+                <% } %>
+            </ul>
+        </ul>
+    </script>
+    <script>
+        var data={
+            name:"抖音",
+            platform:"今日头条",
+            classify:"短视频app",
+            users:["网红","网瘾少年","各类大咖"]
+        };
+
+        window.onload=function (ev) {
+          var resultStr=template('template',data);
+          console.log("resultStr="+resultStr);
+          document.body.innerHTML=resultStr;
+        };
+    </script>
+</head>
+<body>
+
+</body>
+</html>

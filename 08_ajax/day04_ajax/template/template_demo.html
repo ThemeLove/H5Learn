@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>template_demo</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        p{
+            padding: 50px;
+            color: #000;
+            background-color: pink;
+        }
+    </style>
+    <script>
+        window.onload=function (ev) {
+            var btn=document.querySelector("#replace");
+
+            var p1=document.querySelectorAll("p")[0];
+            var p2=document.querySelectorAll("p")[1];
+            var persion={
+                name:'社会你山哥',
+                skill:'革命'
+            };
+
+            var reg=/\w+/;//定义正则，匹配一个或多个字母或数字
+            var templateStr="";
+            var resultStr="";
+            btn.onclick=function (ev) {
+                templateStr=p1.innerHTML;
+                console.log("template="+templateStr);
+                var result;
+                while(result=reg.exec(templateStr)){
+                    console.log("result="+result);
+                    var key=result[0];
+                    var replaceValue=persion[key];
+                    templateStr=templateStr.replace(key,replaceValue);
+                    resultStr=templateStr;
+                }
+                p2.innerHTML=resultStr;
+            }
+        };
+    </script>
+</head>
+<body>
+替换前：<br>
+<p>我叫name,我的特长是skill,我是个蒸不烂，煮不熟，锤不扁，炒不爆，响当当一粒铜豌豆</p><br>
+模板：<br>
+<div>
+    persion={
+    name:'社会你山哥',
+    skill:'革命'
+    };
+</div>
+<input type="button" value="开始替换" id="replace"><br><br>
+替换后：<br>
+<p></p>
+</body>
+</html>

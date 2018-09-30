@@ -22,12 +22,11 @@
 
             $("input").eq(0).click(function () {//获取第一个input并添加点击事件
                 $.ajax({
-                        url:"ajax_post.php",
+                        url:"jquery_ajax_test_post.php",
                         type:"post",
                         dataType:"text",
                         data:{
-                            name:"ThemeLove",
-                            skill:"瞬间移动"
+                            id:"1"
                         },
                         beforeSend:function (xhr) {//请求之前调用，可以设置请求头，校验参数
                             console.log("request start")

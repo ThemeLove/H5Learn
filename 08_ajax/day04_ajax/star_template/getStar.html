@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>getStar</title>
+    <style>
+        table{
+            margin: 100px auto;
+            border: 1px solid #000;
+            border-collapse: collapse;
+        }
+        td{
+            width: 200px;
+            border: 1px solid #0094ff;
+            text-align: center;
+        }
+
+        img{
+            width: 121px;
+            height: 140px;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+    <!--导入jquery-->
+    <script src="./js/jquery-1.11.1.js"></script>
+    <!--导入模板引擎-->
+    <script src="./js/fox_template.js"></script>
+
+    <!--定义模板-->
+    <script type="text/template" id="template">
+        <tr>
+            <td>{{name}}</td>
+            <td>{{skill}}</td>
+            <td><img src='{{path}}' alt=""></td>
+            <td><a href="#">点击了解跟多关于{{name}}</a></td>
+        </tr>
+    </script>
+    <!--本例子中的js-->
+    <script>
+        window.onload=function (ev) {
+            var btn=document.querySelector("#getStar");
+            var table=document.querySelector("#starTable");
+
+            btn.onclick=function (ev) {
+                $.ajax({
+                    url:"getStar.php",
+                    type:"get",
+                    dataType:"text",//返回纯文本的形式
+                    data:{
+
+                    },
+                    success:function (data) {
+                        console.log("data="+data);
+                        var totalStr="";
+                        var starArr=JSON.parse(data);
+
+                        var templateStr=document.querySelector("#template").innerHTML;
+                        for(var i=0;i<starArr.length;i++){
+                            var dataObj=starArr[i];
+                            var resultStr=fox_template_pro(templateStr,dataObj);
+                            // 测试 替换是否成功
+                            console.log("result="+resultStr);
+                            totalStr+=resultStr;
+                        }
+                        table.innerHTML=totalStr;
+                    }
+                });
+            }
+
+        }
+    </script>
+</head>
+<body>
+<h2>获取女神使用模板</h2><br>
+<input type="button" value="获取很多女神" id="getStar">
+<table id="starTable"/>
+</body>
+</html>

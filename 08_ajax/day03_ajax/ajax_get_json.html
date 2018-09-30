@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax_get_json</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        p{
+            font-size: 30px;
+            color: #000;
+            background-color: pink;
+            padding: 50px;
+            margin-top: 50px;
+        }
+    </style>
+    <script src="./js/ajax_wrapper.js"></script>
+    <script>
+        window.onload=function (ev) {
+            var btn=document.querySelectorAll("input")[0];
+            var info=document.querySelector("#info");
+            btn.onclick=function (ev) {
+                var option={
+                    url:"ajax_get_json.php",
+                    method:"get",
+                    data:{
+                        name:"book"
+                    },
+                    success:function (data) {
+                        console.log("data="+data);
+                        var totalStr="获取书籍如下：<br><br>";
+                        var bookArr=JSON.parse(data);
+                        for(var i=0;i<bookArr.length;i++){
+                            var book=bookArr[i];
+                            totalStr+=book+"<br>";
+                        }
+                        info.innerHTML=totalStr;
+                    }
+                };
+                ajax_wrapper(option);
+            }
+
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="获取json数据">
+<p id="info"></p>
+</body>
+</html>

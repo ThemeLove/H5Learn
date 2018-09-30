@@ -84,10 +84,10 @@
                 option.data.id=id.value;
                 if(get.checked){
                     option.method="get";
-                    option.url="ajax_get_test.php";
+                    option.url="ajax_wrapper_get.php";
                 }else{
                     option.method="post";
-                    option.url="ajax_post_test.php";
+                    option.url="ajax_wrapper_post.php";
                 }
                 ajax(option);
             }

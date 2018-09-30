@@ -8,7 +8,7 @@ header('content-type:application/json; charset= utf-8');
     $id=$_POST['id'];
     $data=NULL;
     if(array_key_exists($id,$dataArr)){//判断该key是否在关系型数组中
-           $data=$dataArr[$id];
+        $data=$dataArr[$id];
     }
 
     $resultArr=NULL;
@@ -23,5 +23,5 @@ header('content-type:application/json; charset= utf-8');
                         'result'=>''
                         );
     }
-    echo(json_encode($resultArr));
+    exit(json_encode($resultArr));
 ?>

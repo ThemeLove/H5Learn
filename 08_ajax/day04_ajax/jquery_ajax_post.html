@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ajax_get</title>
+    <title>ajax_post</title>
     <style>
         *{
             margin: 0;
@@ -22,7 +22,7 @@
             var btn=document.querySelectorAll("input[type='button']")[0];//属性选择器
             var info=document.querySelector("#info");
             $(btn).on("click",function () {
-                $.get("ajax_get.php",
+                $.post("jquery_ajax_post.php",
                     {
                         "name":"themelove"
                     },

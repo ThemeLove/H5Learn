@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax_get_xml</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    p{
+        font-size: 30px;
+        color: #000;
+        background-color: pink;
+        padding: 50px;
+        margin-top: 50px;
+    }
+</style>
+<script src="./js/ajax_wrapper.js"></script>
+<script>
+    window.onload=function (ev) {
+       var btn=document.querySelectorAll("input")[0];
+       var info=document.querySelector("#info");
+       btn.onclick=function (ev) {
+            var option={
+                url:"ajax_get_xml.php",
+                method:"get",
+                dataType:"xml",
+                data:{
+                    name:"book"
+                },
+                success:function (data) {
+                    console.log("data="+data);
+                    var totalStr="获取书籍如下：<br><br>";
+                    var bookArr=data.getElementsByTagName("book");
+                    for(var i=0;i<bookArr.length;i++){
+                        var book=bookArr[i];
+                        totalStr+=book.getAttribute("name")+"<br>";
+                    }
+                    info.innerHTML=totalStr;
+                }
+            };
+            ajax_wrapper(option);
+       }
+
+    }
+</script>
+<body>
+<input type="button" value="获取xml数据">
+<p id="info"></p>
+</body>
+</html>

@@ -48,12 +48,12 @@
                 option.data.id=id.value;
                 if(get.checked){
                     option.type="get";
-                    option.url="ajax_get_test.php";
+                    option.url="jquery_ajax_test_get.php";
                 }else{
                     option.type="post";
-                    option.url="ajax_post_test.php";
+                    option.url="jquery_ajax_test_post.php";
                 }
-                $.ajax(option)
+                $.ajax(option);
             }
         }
     </script>
