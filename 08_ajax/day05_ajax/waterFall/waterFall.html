@@ -34,6 +34,7 @@
             height: 100%;
             background-color: #eeeeee;
             overflow: hidden;
+            position: relative;
         }
         .item{
             width: 228px;
@@ -42,6 +43,7 @@
             box-sizing: border-box;
             float: left;
             padding:3px 3px 10px 3px;
+            position: absolute;
         }
 
         .item:hover{
@@ -88,7 +90,7 @@
                     type:"get",
                     dataType:"json",
                     data:{
-                        count:10
+                        count:5
                     },
                     success:function (data) {
                         console.log("data(text)="+JSON.stringify(data));
@@ -98,7 +100,7 @@
                        var str=template("template",obj);
 
                         $(".items").append(str);
-                        $(".container").waterFall(data);
+                        $(".items").waterFall(data);
                     }
                 });
             });
