@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jq_plugin_test</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            border: 0;
+            list-style: none;
+        }
+        input{
+            height: 50px;
+            background-color: #cccccc;
+            line-height: 50px;
+            font-size: 15px;
+            text-align: center;
+            border-radius: 3px;
+            margin: 50px;
+            padding: 0 20px ;
+        }
+
+        p{
+            background-color: pink;
+            font-size: 20px;
+            padding: 20px;
+        }
+    </style>
+
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.plugintest.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("input").eq(0).click(function () {
+                console.log("button1");
+                $("button").eq(0).diyPrint("haha",function (data) {
+                    $("p").eq(0).text("您调用了自定义插件方法：diyPrint；参数为："+data)
+                });
+            });
+
+            $("input").eq(1).click(function () {
+                console.log("button2");
+
+                $.diyAlert("diyAlert",function (data) {
+                    $("p").eq(0).text("您调用了自定义插件方法：diyAlert；参数为："+data)
+                });
+            })
+        });
+    </script>
+</head>
+<body>
+<input type="button" value="调用自定义打印（jquery.fn.extend）"><br>
+<input type="button" value="调用自定义弹窗（jquery.extend）"><br>
+<p class="info"></p>
+</body>
+</html>

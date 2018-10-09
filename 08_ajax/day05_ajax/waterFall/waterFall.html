@@ -3,8 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <title>waterFall</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            border: none;
+        }
+
+        h1{
+            text-align: center;
+            margin:20px auto;
+        }
+
+        html,body{
+            width: 100%;
+            background-color: #cccccc;
+        }
+        .container{
+            width: 1150px;
+            background-color: #eeeeee;
+            margin: 0 auto;
+            padding: 5px;
+            padding-bottom: 30px;
+
+        }
+
+        .items{
+            width: 1140px;
+            height: 100%;
+            background-color: #eeeeee;
+            overflow: hidden;
+        }
+        .item{
+            width: 228px;
+            border: 1px solid paleturquoise;
+            border-radius: 5px;
+            box-sizing: border-box;
+            float: left;
+            padding:3px 3px 10px 3px;
+        }
+
+        .item:hover{
+             margin-top: -8px;
+             box-shadow: 0  0 15px 0px red;
+        }
+        .item img{
+            width: 100%;
+            height: 300px;
+            background:url("./images/1.jpg") no-repeat center;
+            background-size: cover;
+        }
+        .item p{
+            text-indent: 1.5em;
+        }
+        .loadMore{
+            width: 150px;
+            height: 50px;
+            background-color: #dd5a64;
+            text-align: center;
+            border-radius: 5px;
+            margin: 30px auto;
+            font-size: 20px;
+            display: block;
+        }
+    </style>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/template-native.js"></script>
+    <script src="js/jquery.waterFall.js"></script>
+    <script type="text/template" id="template">
+        <% for(var i=0;i<items.length;i++){%>
+            <div class="item">
+                <img src="<%=items[i].path%>" alt="">
+                <p><%=items[i].text%></p>
+            </div>
+        <%}%>
+    </script>
+
+    <script>
+        $(document).ready(function (ev) {
+            $(".loadMore").click(function (ev) {
+                $.ajax({
+                    url:"waterFall.php",
+                    type:"get",
+                    dataType:"json",
+                    data:{
+                        count:10
+                    },
+                    success:function (data) {
+                        console.log("data(text)="+JSON.stringify(data));
+                        var obj={
+                            items:data,
+                        };
+                       var str=template("template",obj);
+
+                        $(".items").append(str);
+                        $(".container").waterFall(data);
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 <body>
-
+<h1>瀑布流</h1>
+<div class="container">
+    <div class="items">
+<!--        <div class="item">
+            <img src="./images/1.jpg" alt="" class="img"/>
+            <p class="info" >昨天回家，吃饭时加上我明明是四人，可我妈只拿了三个碗。当时心想，难道自己长时间在外忙，我妈习惯了我的不存在感！ 眼看着三碗已盛好米饭，正想着起身去拿碗时，我妈把锅往我面前一放说:“用碗吃麻烦，你还是真接用锅吃吧，费事！”亲妈！了解我！！</p>
+        </div>-->
+    </div>
+    <input type="button" value="加载更多..." class="loadMore"/>
+</div>
 </body>
 </html>
