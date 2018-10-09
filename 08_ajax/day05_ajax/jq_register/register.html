@@ -61,6 +61,7 @@
         border: 1px solid #ccc;
         outline: none;
         float: left;
+        text-indent: 5px;
     }
 
     li .smsCode{
@@ -99,7 +100,7 @@
         text-align: center;
         line-height: 50px;
         font-size:20px;
-        visibility: hidden;
+        display: none;
     }
 
 </style>
@@ -107,15 +108,55 @@
 <script>
     $(function () {
         $(".name").blur(function () {
+            console.log("name="+$(".name").val());//设置或返回表单字段的值
+            //逻辑一：当用户名一栏失去焦点的时候，将用户名通过ajax发送到php后台校验，是否可用使用该用户名；返回结果通过p标签淡入淡出提示用户
             $.ajax({
                 url:"register.php",
-                type:"post",
+                type:"get",
+                data:{
+                    name:$(".name").val()
+                },
                 dataType:"text",
                 success:function (data) {
-
+                    console.log("data="+data);
+                    console.log("p="+$(".tips").eq(0));
+                    $(".tips").eq(0).text(data).show().fadeIn(1000).delay(1000).fadeOut(1000);
                 }
             })
         });
+
+    //    逻辑二：当用户点击获取验证码的时候，校验用户输入的手机号码是否为空，如果为空，则提示用户，并且自动获取焦点
+        $(".getSmsCode").click(function ( ) {
+            var phoneNum=$(".phone").val();
+            console.log("phoneNum="+phoneNum);
+            $.ajax({
+                url:"getSmsCode.php",
+                type:"get",
+                data:{
+                    phone:phoneNum
+                },
+                dataType:"text",
+                beforeSend:function () {
+                    if(phoneNum==""){
+                        $(".tips").eq(0).text("手机号码不能为空").fadeIn(1000).delay(1000).fadeOut(1000,function () {
+                            //让手机号码输入框获取焦点
+                            $(".phone").focus();
+                        });
+                        return false;
+                    }
+                    return true;
+                },
+                success:function (data) {
+                //    从后台获取到验证码后提示用户,并直接填入到验证码一栏
+                    $(".tips").eq(0).text("您的验证为："+data).fadeIn(1000).delay(1000).fadeOut(1000,function () {
+                        $(".smsCode").val(data);
+                    });
+                }
+            });
+
+        });
+
+
 
 
     });
@@ -138,7 +179,7 @@
             </li>
             <li>
                 <label for="">手机号码</label>
-                <input type="text" name="phone" class="phpne" autocomplete="off">
+                <input type="text" name="phone" class="phone" autocomplete="off">
             </li>
             <li>
                 <label for="">短信验证码</label>
@@ -151,8 +192,6 @@
         </ul>
     </form>
 </div>
-<div class="tips">
-    <p>用户名不能为空</p>
-</div>
+<p class="tips">用户名不能为空</p>
 
 </html>
