@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jq-jsonp-cross-domain</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        input{
+            width: 150px;
+            height: 50px;
+            text-align: center;
+        }
+        p{
+            padding: 20px;
+            font-size: 20px;
+            background-color: pink;
+        }
+    </style>
+    <script src="js/jquery.min.js"></script>
+    <script>
+        function getData(data){
+            $(document).ready(function () {
+                $("p").text(data);
+            });
+        }
+        window.onload=function (ev) {
+            $("input").click(function () {
+                $.ajax({
+                    url:"cross-domain.php",
+                    type:"get",
+                    dataType:"jsonp",
+                    jsonpCallback:"getData",
+                    data:{
+                        name:"xiaowang"
+                    },
+                    success:function (data) {
+                        console.log("success-data="+data);
+                    }
+                });
+            });
+        }
+
+    </script>
+</head>
+<body>
+<input type="button" value="jsonP跨域请求">
+<p class="info"></p>
+</body>
+</html>

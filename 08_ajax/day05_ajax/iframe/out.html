@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>out</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+        h2{
+            text-align: center;
+            font-size: 20px;
+        }
+        input{
+            width: 200px;
+            height: 50px;
+            display: block;
+            margin: 50px auto;
+        }
+        iframe{
+            width: 500px;
+            height: 500px;
+            margin: 100px auto;
+        }
+    </style>
+    <script>
+        window.onload=function (ev) {
+            //找到内层info标签
+            var iframe=document.getElementsByTagName("iframe")[0];
+            console.log("iframe="+iframe);
+            var iframeWindow= iframe.contentWindow;
+            console.log("iframeWindow="+iframeWindow);
+            var iframeDocument=iframeWindow.document;
+            console.log("iframeDocument="+iframeDocument);
+
+
+            var innerInfo=iframeDocument.getElementsByClassName("inner-info")[0];
+            console.log("innerInfo="+innerInfo);
+
+            //找到外层按钮
+            var btn=document.getElementsByTagName("input")[0];
+
+            btn.onclick=function (ev) {
+                innerInfo.innerHTML="好好学习，天天向上";
+            };
+
+        //    找到内层按钮，点击并发送跨域请求
+            var innerBtn=iframeDocument.getElementsByTagName("input")[0];
+            innerBtn.onclick=function (ev) {
+                   //控制台可见，请求失败
+                   var ajax= new XMLHttpRequest();
+                   ajax.open("get","https://my.csdn.net/index.php/follow/do_follow?jsonpcallback=jQuery191097002702525076_1539159398922&username=a5601564&_=1539159398926");
+                   ajax.send();
+            }
+        }
+    </script>
+</head>
+<body>
+<h2>我是外层html的标题</h2>
+<input type="button" value="改变内层iframe中p的值"/>
+<iframe src="inner.html"></iframe>
+</body>
+</html>
