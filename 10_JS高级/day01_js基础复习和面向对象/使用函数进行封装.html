@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用函数进行封装</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            margin: 10px ;
+            text-align: center;
+            line-height: 200px;
+        }
+
+        p{
+            margin: 50px 0;
+        }
+    </style>
+    <script>
+
+        <!--改变所有div和p的样式为border:1px solid red-->
+
+        //使用函数将代码封装，使得复用性更高
+
+        //使用函数封装带来的问题：
+        //1.全局变量污染（这些函数相当于定义在window下的，会造成污染）
+        //2.代码结构不够清晰，维护不方便
+
+        window.onload=function (ev) {
+
+            var divs=tag("div");
+            setStyle(divs);
+
+            var ps=tag("p");
+            setStyle(ps);
+        };
+        function tag(tagName) {
+            return document.getElementsByTagName(tagName);
+        }
+
+        function setStyle(elements){
+            for (var i = 0; i < elements.length; i++) {
+                var obj = elements[i];
+                obj.style.border="1px solid red";
+            }
+        }
+
+        console.log("tag="+window.tag);
+    </script>
+</head>
+<body>
+<div>我是第1个div</div>
+<div>我是第2个div</div>
+<div>我是第3个div</div>
+<p>我是第1个p</p>
+<p>我是第2个p</p>
+<p>我是第3个p</p>
+</body>
+</html>
