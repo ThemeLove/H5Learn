@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>cross-domain</title>
+    <style>
+        p{
+            padding: 10px;
+            line-height: 50px;
+            font-size: 20px;
+            background-color: pink;
+        }
+    </style>
+
+    <script src="js/jquery.min.js"></script>
+
+    <script>
+        function getData(data) {
+            console.log("data="+data);
+
+            console.log("p="+$("p").eq(0));
+
+            window.onload=function (ev) {
+                document.querySelector("p").innerHTML=data;
+                // $("p").eq(0).text(data);
+            }
+        }
+    </script>
+
+    <script src="cross-domain.php?callback=getData"></script>
+</head>
+<body>
+<p></p>
+</body>
+</html>
