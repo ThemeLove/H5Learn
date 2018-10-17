@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>传统构造函数3_应用全局函数</title>
+</head>
+<body>
+<script>
+
+
+    //为了解决在构造函数中定义成员函数，在创建对象的时候每次都会重新在内存中创建新的函数对象，可以把成员函数定义在外部（全局变量window中）
+    //从打印结果可以看出这样每次在创建对象时用的都是同一个函数对象
+    //造成问题，假如都想这样的定义构造函数中的成员方法，那么全局变量window中的方法会越来越多，造成全局变量污染严重。
+    function bark(){//其实是定义在全局变量window中的
+        console.log(this.name+"----->喵喵喵");
+    }
+
+    function Cat(name){
+        this.name=name;
+        this.bark=bark;
+    }
+
+    var cat1=new Cat("花花");
+    var cat2=new Cat("球球");
+
+    cat1.bark();
+    cat2.bark();
+
+    console.log(cat1.bark);
+    console.log("typeof="+typeof cat1.bark);
+    console.log(cat1.bark == cat2.bark);//true
+    console.log(cat1.bark === cat2.bark);//true
+
+    console.log(window.bark);//
+
+
+
+</script>
+</body>
+</html>

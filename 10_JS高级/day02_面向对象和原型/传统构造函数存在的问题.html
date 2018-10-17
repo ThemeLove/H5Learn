@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>传统构造函数存在的问题</title>
+</head>
+<body>
+<script>
+
+    function skill(){
+        console.log(this.name+"Good Good Learn ,Day Day Up");
+    }
+
+    function action(name){
+        console.log(name+"正在努力学习中...")
+    }
+
+    function Student(name,age){
+        this.name=name;
+        this.age=age;
+        this.skill=skill;
+        this.action=action;
+    }
+
+    var stu1=new Student("陆瑶",12);
+    var stu2=new Student("王小聪",24);
+    console.log(stu1.name);
+    stu1.skill();
+    // console.log(typeof stu1.skill());
+
+    console.log(stu2.name);
+    stu2.action(stu2.name);
+    stu2.action();
+    console.log(action);
+    console.log(action("张三"));
+
+</script>
+</body>
+</html>

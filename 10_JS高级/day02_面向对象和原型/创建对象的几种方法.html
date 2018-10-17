@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建对象的几种方法</title>
+</head>
+<body>
+<script>
+    //使用字面量创建对象var obj={key:value...}
+    var obj1={name:"王小宝",age:"19"};//只能创建一次对象，复用性较差，如果要创建多个对象，代码冗余度太高
+    //使用内置对象比如Object Date RegExp
+    var reg=new RegExp();
+    //封装简单工厂函数
+    function createObj(name ,age){
+        var obj=new Object();
+        obj["name"]=name;
+        obj["age"]=age;
+        obj.sing=function () {
+            console.log("我正在唱歌");
+        };
+        return obj;
+    }
+    //自定义构造函数
+    function Persion(name,age){
+        this.name=name;
+        this,age=age;
+
+    }
+    var persion=new Persion("高渐离",30);
+
+</script>
+</body>
+</html>

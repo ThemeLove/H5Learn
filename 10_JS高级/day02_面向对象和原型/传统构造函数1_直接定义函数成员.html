@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>传统构造函数1</title>
+</head>
+<body>
+<script>
+
+    //构造函数需要首字母大写
+    function Cat(name){
+        this.name=name;
+        this.bark=function () {
+            console.log(this.name+"----->喵喵喵");
+        }
+    }
+
+    //存在的问题
+    //定义在构造函数中的方法在每次创建对象的时候都会在内存中重新创建，造成资源浪费
+
+    var cat1=new Cat("花花");
+    var cat2=new Cat("小布");
+
+    console.log(cat1.name);
+    cat1.bark();
+
+    console.log(cat1.bark);
+
+    console.log(cat2.name);
+    cat2.bark();
+
+    console.log(cat2.bark);
+
+    console.log(cat1.bark == cat2.bark);//false
+    console.log(cat1.bark === cat2.bark);//false
+</script>
+</body>
+</html>
