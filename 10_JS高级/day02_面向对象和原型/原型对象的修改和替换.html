@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>原型对象的修改和替换</title>
+</head>
+<body>
+<script>
+    function Cat(name){
+        this.name=name;
+    }
+
+    //为原型属性新增成员方法
+    Cat.prototype.bark=function () {
+        console.log(this.name+"----->喵喵喵");
+    };
+
+    var cat1=new Cat("花花");
+    cat1.bark();
+
+
+    //创建对象
+    var obj={age:"18",eat:function () {
+            console.log("猫吃鱼");
+        }};
+
+    Cat.prototype=obj;    //    替换原型对象
+
+    var cat2=new Cat("球球");
+    console.log("cat2-name="+cat2.name);
+    console.log("cat2-age="+cat2.age);
+    console.log("cat2.bark="+cat2.bark);
+    console.log("cat2.eat="+cat2.eat);
+    cat2.eat();
+
+    console.log("cat1.__proto__----->如下");
+    console.log(cat1.__proto__);
+    console.log("cat2.__proto__----->如下");
+    console.log(cat2.__proto__);
+    console.log("cat1.__proto__===cat2.__proto__ ?"+cat1.__proto__===cat2.__proto__);//false,说明原型替换前后原型对象不一样
+</script>
+</body>
+</html>
