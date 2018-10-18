@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>05_经典继承的实现</title>
+</head>
+<body>
+<script>
+
+
+    <!---->
+    /*
+    * 返回值为一个对象，继承自参数中的obj
+    * 这个方法从ES5中出来的，所以存在兼容性问题
+    * */
+
+
+    /**
+     * 方式一
+     * 检测浏览器的能力，如果没有Object.create方法就给他添加一个，然后手动调用返回一个对象（不推荐使用）
+     * @param obj
+     * @returns {any}
+     */
+    function createObj(obj){
+        if (!Object.create){
+        {
+            Object.create=function ( ) {
+                    function F() {
+
+                    }
+                    F.prototype=obj;
+                    var o=new F();
+                    return o;
+                }
+            }
+        }
+        return Object.create(obj);
+    }
+
+
+    /**
+     * 方式2
+     * 检测浏览器的能力，如果没有就手动创建一个对象并返回（推荐使用）
+     * @param obj
+     * @returns {*}
+     */
+    function createObj2(obj){
+        if (Object.create){
+            return Object.create(obj)
+        }else{
+            function F(){};
+            F.prototype=obj;
+            var f=new F();
+            return f;
+        }
+    }
+
+    var obj1={
+        name:"小亚",
+        age:27
+    };
+
+    var obj2={
+        name:"小君",
+        age:24
+    };
+
+    console.log(createObj(obj1));;
+    console.log(createObj2(obj2));;
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>07_复杂原型链结构</title>
+</head>
+<body>
+<script>
+    /**
+     * 桥上有个人，牵着条狗，狗叼着个香肠
+     * 对象有：桥 、人、狗、香肠
+     */
+
+    function Bridge(spend){
+        this.spend=spend;
+    }
+
+    function Persion(name){
+        this.name=name;
+    }
+
+    Persion.prototype=new Bridge("$3000W");
+    Persion.prototype.constructor=Persion;
+
+    function Dog(kind){
+        this.kind=kind;
+    }
+
+    Dog.prototype=new Persion("小明");
+    Dog.prototype.constructor=Dog;
+
+    function Sausage(brand){
+        this.brand=brand;
+    }
+    Sausage.prototype=new Dog("哈士奇");
+    Sausage.prototype.constructor=Sausage;
+
+
+   var xc= new Sausage("双汇");
+
+    console.log("桥花费----->"+xc.spend);
+    console.log("人名----->"+xc.name);
+    console.log("狗的品种----->"+xc.kind);
+    console.log("香肠的牌子----->"+xc.brand);
+
+    console.log(xc.__proto__);//Dog
+    console.log(xc.__proto__.__proto__);//Persion
+    console.log(xc.__proto__.__proto__.__proto__);//Bridge
+    console.log(xc.__proto__.__proto__.__proto__.__proto__);//Object
+    console.log(xc.__proto__.__proto__.__proto__.__proto__.__proto__);//Object
+    console.log(xc.__proto__.__proto__.__proto__.__proto__.__proto__.__proto__);//null
+
+</script>
+</body>
+</html>
