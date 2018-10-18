@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>原型继承的实现</title>
+</head>
+<body>
+<script>
+
+    //原型继承
+    //利用原型中的成员可以被和其相关的对象共享这一特性，可以实现继承
+    //这种实现继承的方式，就叫做原型继承
+
+
+    function Persion(name,age){
+        this.name=name;
+        this.age=age;
+    }
+
+    //1.给原型对象中添加成员（通过对象的动态特性） 不是严格意义上的继承
+    Persion.prototype.sayHai=function () {
+        console.log("你好啊...");
+    };
+    var per1=new Persion("小刚",55);
+    per1.sayHai();
+
+    //2.直接替换原型对象
+    //注意：使用替换原型的方式实现继承的时候，原有原型中的成员就会丢失
+    function Cat(name,age){
+        this.name=name;
+        this.age=age;
+    }
+    Cat.prototype.sayHai=function () {
+        console.log("喵喵喵");
+    };
+    var maoke={
+        sayHai:function () {
+            console.log("猫科动物是也");
+        }
+    };
+    Cat.prototype=maoke;
+    var cat1=new Cat("阿花",2);
+    cat1.sayHai();
+
+    //3.利用混入的方式给原型对象添加成员
+    function Dog(name, age) {
+        this.name=name;
+        this.age=age;
+    }
+
+    Dog.prototype.sayHai=function () {
+        console.log("汪汪汪");
+    };
+
+    var quanke={
+      sayHai:function () {
+          console.log("犬科动物是也")
+      },
+      skill:function () {
+        console.log("看家")
+      }
+    };
+
+    for (var k in quanke) {
+       Dog.prototype[k]=quanke[k];
+    }
+    var dog1=new Dog("黑子",2);
+    dog1.sayHai();
+    dog1.skill();
+
+</script>
+</body>
+</html>

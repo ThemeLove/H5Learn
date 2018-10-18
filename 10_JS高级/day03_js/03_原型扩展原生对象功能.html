@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03_原型扩展原生对象功能</title>
+</head>
+<body>
+<script>
+    /*原型扩展原生对象功能
+      1.比如原生对象Array里没有sayHai功能，利用原型扩展
+     */
+    Array.prototype.sayHai=function () {
+        console.log("Hi,原生Array");
+    };
+
+    var arr=new Array();
+    arr.sayHai();
+
+    /*
+    * 存在的问题：
+    * 1.虽然能成功将扩展功能添加到原生Array原型上，但是这样会造成原生对象功能混乱，冗余，应当避免，团队开发时更是如此
+    * */
+
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01_混入式继承</title>
+</head>
+<body>
+<script>
+var persion={
+    name:"小明",
+    age:21,
+    score:90,
+    skill:function () {
+        console.log("唱歌炒鸡好听哦.....");
+    }
+};
+
+var obj={};
+console.log(obj);
+
+//混入式继承（实际是：遍历对象，循环复制）
+for (var k in persion) {
+    obj[k]=persion[k];
+}
+console.log(obj);
+</script>
+</body>
+</html>

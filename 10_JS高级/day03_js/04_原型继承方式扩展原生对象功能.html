@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>04_原型继承方式扩展原生对象功能</title>
+</head>
+<body>
+<script>
+    /*
+    * 因为直接扩展原生对象会污染造成原生对象污染，代码混乱和冗余，所以可以用原型继承的方式为新定义对象继承原生对象的所有方法和属性
+    * 好处：1、不污染原生对象；2、方便扩展和协同开发
+    * */
+    function MyArr(name){
+        this.name=name;
+    }
+
+    //继承原生Array原型对象
+    MyArr.prototype=new Array();
+    // MyArr.prototype=[];
+    MyArr.prototype.sayHai=function () {
+        console.log("hi,原生array");
+    };
+
+   var myArr=new MyArr("MyArr");
+    console.log(myArr.name);
+    myArr.sayHai();
+
+</script>
+</body>
+</html>
