@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>10_Function的使用</title>
+</head>
+<body>
+<script>
+    //Function这个构造函数可以用来创建函数
+
+//    1.没有参数时，默认为空函数
+    var tempFunc=new Function();
+    tempFunc();
+//    2.只有一个参数时，默认为函数体
+    var func1=new Function("console.log('测试只有一个参数时，即为函数体')");
+    func1();
+//    3.多个函数时，最后一个参数为函数体，其他函数都为这个函数体的形参
+//    例1:定义一个2个数的求和函数
+    var func2=new Function("a","b","return a+b");
+    console.log(func2(1,2));
+//    例2：求三个数的最大值，并返回
+
+    var func3=new Function("a","b","c","return (a>b) ? (a>c?a:c) : (b>c?b:c)");
+    // var func3=new Function("a", "b", "c", "return (a > b ? a : b)> c ? (a > b? a : b):c;");
+    console.log(func3(12,45,60));
+
+//    特别的当多个参数时或者函数体比较复杂时的处理办法，
+//    1.可以使用模板来拼接函数体字符串,比如求一个数组中的最大值
+
+    window.onload=function (ev) {
+      var func4=document.getElementById("func4");
+      var func4Str=func4.innerHTML;
+      console.log(func4Str);
+      var func4=new Function("arr",func4Str);
+      var max= func4([123,26,73,82,25,74]);
+      console.log("max="+max);
+    };
+
+</script>
+
+<script type="text/template" id="func4">
+    var max=arr[0];
+    for(var i=0;i<arr.lenght;i++){
+        if(arr[i]>max){
+           max=arr[i];
+        };
+    }
+    return max;
+</script>
+</body>
+</html>

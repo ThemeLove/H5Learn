@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>09_创建函数的几种方式</title>
+</head>
+<body>
+<script>
+//    1.直接声明函数
+    function functionName(/*参数列表*/){
+        console.log("直接声明函数");
+    }
+//    2.函数表达式
+    var functionName=function (/*参数列表*/) {
+        console.log("函数表达式");
+    };
+
+//    3.构造函数声明
+    var func=new Function();
+
+//    4.自执行函数
+    (function add(a,b){
+            console.log(a+b);
+            return a+b;
+        })(1,2);
+
+</script>
+</body>
+</html>

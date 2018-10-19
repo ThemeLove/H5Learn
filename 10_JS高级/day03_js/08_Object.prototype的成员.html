@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>08_Object.prototype的成员</title>
+</head>
+<body>
+<script>
+    //1.constructor:原型对象内的一个属性，指向该原型对象相关联的构造函数
+
+//    2.hasOwnProperty:方法，用来判断对象本身（不包含原型）是否拥有某个属性
+
+//    3.propertyIsEnumerable:判断属性是否属于对象本身，判断属性是否可以被遍历
+
+//    4.Object.defineProperty():使用以上方法添加属性的时候，可以附加一些信息，例如这个属性是否可读 可写 可遍历
+
+//    5.toString：标志打印
+//    toLocaleString：根据本机环境进行打印
+
+//    6.valueOf：获取当前对象的值
+//    在对象参与运算的时候，默认会先去调用对象的valueOf方法，如果valueOf获取到的值，无法进行计算，就去调用对象的toString方法，
+//    最终做的就是字符串的拼接工作
+
+
+//    7.__proto__:原型对象中的属性，可以使用  对象.__proto__去访问该原型对象
+
+</script>
+</body>
+</html>

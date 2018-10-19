@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>11_arguments对象</title>
+    <script>
+        function max(){
+            // console.log(arguments);
+            var max=arguments[0];
+            for (var i = 0; i < arguments.length; i++) {
+                max=max>arguments[i]?max:arguments[i];
+            }
+            return max;
+        }
+        max();
+        console.log(max(12, 43, 56, 63, 75));;
+
+        /**
+         * 练习：定义一个函数，可以传入任意多个参数，在函数内部进行去重操作，然后返回去重后的数组
+         */
+        function removeDuplicate(){
+            var newArr=[];
+            for (var i = 0; i < arguments.length; i++) {
+                if(newArr.indexOf(arguments[i])==-1){
+                    newArr.push(arguments[i]);
+                }
+            }
+            return newArr;
+        }
+
+       var newArr= removeDuplicate(12,34,45,12,34,56,77);
+       console.log(newArr);
+
+        /**
+         * 1.一个函数有行参的时候，调用的时候，可以不传参数
+         * 2.一个函数没有形参的时候，调用时候，可以传参用argument接收
+         * 3.一个函数不管有没有形参，调用的时候都会把实参的值存入arguments对象
+         */
+
+        function test(a,b){
+            console.log(a,b);
+            console.log(arguments);
+        }
+
+        test();
+    </script>
+</head>
+<body>
+
+</body>
+</html>
