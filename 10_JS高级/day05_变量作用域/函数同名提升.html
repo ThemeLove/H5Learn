@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数同名提升</title>
+    <script>
+
+        /**
+         * 同名函数提升：2个函数都会被提升，但是后面的函数会覆盖前面的函数
+         */
+        func1();////同名函数2
+        function func1(){
+            console.log("同名函数1");
+        }
+
+        func1();//同名函数2
+        function func1(){
+            console.log("同名函数2");
+        }
+
+        /**
+         * 同名函数提升：2个函数都会被提升，但是后面的函数会覆盖前面的函数
+         *
+         *  上例提升后的代码如下：
+         *  function func1(){
+         *      console.log("同名函数1");
+         *  }
+         *  function func1(){
+         *      console.log("同名函数2");
+         *  }
+         *
+         *  func1();
+         *  func1();
+         */
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

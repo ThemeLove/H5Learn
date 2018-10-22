@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数表达式的提升</title>
+    <script>
+        func1();//Uncaught TypeError: func1 is not a function at 函数表达式的提升.html?_ijt=osvp851ih1jm76h54b6jf35gke:
+        var func1=function () {
+            console.log("函数表达式的提升");
+        };
+
+        /**
+         * 函数表达式的提升规则：函数表达式不会被提升,只会提升变量，并不会先赋值
+         * 上例提升后的代码如下：
+         * var func1;
+         * func1();
+         * func1=function(){
+         *      console.log("函数表达式的提升");
+         * }
+         */
+    </script>
+</head>
+<body>
+
+</body>
+</html>

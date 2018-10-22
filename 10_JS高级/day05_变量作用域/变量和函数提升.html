@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>变量和函数提升</title>
+    <script>
+
+        /**
+         *
+         * 代码的执行过程：预解析----->执行
+         * 预解析的过程：变量和函数提升：遇到var声明的变量和function开头定义的方法，会将声明提升（但是不会将负责提升）
+         */
+        /**
+         * 例如1：函数调用在函数定义之前也不会报错
+         */
+        func1();
+        function func1() {
+            console.log("函数提升");
+        }
+
+        /**
+         * 例如2：这里只会把var a 的声明提升，赋值并不会提升,所以为undefined.
+         * 提升后的代码为：
+         * var a;
+         * console.log(a);
+         * a=1;
+         */
+        console.log(a);//undefined
+        var a=1;
+    </script>
+</head>
+<body>
+
+</body>
+</html>

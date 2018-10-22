@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>变量和函数同名提升</title>
+    <script>
+        console.log(foo);//函数体
+        function foo() {
+            console.log("变量和函数同名");
+        }
+        var foo=2;
+        console.log(foo);//2
+
+        /**
+         * 变量和函数同名 时提升规则：只提升函数，不提升变量
+         *  上例提升后的代码如下：
+         *  function foo(){
+         *      console.log("变量和函数同名");
+         *  }
+         *  console.log(foo);
+         *  foo=2;
+         *  console.log(foo);
+         */
+    </script>
+</head>
+<body>
+
+</body>
+</html>
