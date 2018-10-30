@@ -27,6 +27,18 @@ a{
     text-decoration: none;
 }
 
+/*清除图片低侧默认的3像素空白缝隙*/
+img{
+    border: 0;
+    vertical-align: middle;
+}
+
+/*设置i，s,em为默认样式*/
+i,s,em{
+    font-style: normal;
+    text-decoration: none;
+}
+
 .fl{
     float: left;
 }
@@ -36,11 +48,19 @@ a{
 }
 
 /*清除浮动*/
+/*
 .clear-fix{
     zoom: 1;
 }
-.clear-fix:after{
-    content:"";
-    clear: both;
+*/
+
+/* 清除浮动 */
+.clear-fix::before,
+.clear-fix::after{
+    content:'';
     display: block;
+    line-height: 0;
+    height: 0;
+    visibility: hidden;
+    clear: both;
 }
