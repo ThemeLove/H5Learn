@@ -248,3 +248,35 @@ body，html{
     color: #808080;
     text-align: center;
 }
+/*排除第一个content_top*/
+.jd_main .main_content:nth-child(n+2) .content_top span{
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    color: rgb(201, 21, 35);
+    float: left;
+    position: relative;
+    margin-left: 10px;
+    padding-left: 10px;
+    display: block;
+}
+.jd_main .main_content:nth-child(n+2) .content_top span::before{
+    content: '';
+    width: 5px;
+    height: 16px;
+    background-color: rgb(201, 21, 35);
+    position: absolute;
+    left:0;
+    top:8px;
+}
+
+
+.jd_main .main_content:nth-child(n+2) .content_bottom a{
+    width: 50%;
+    display: block;
+}
+.jd_main .main_content:nth-child(n+2) .content_bottom a img{
+    width: 100%;
+    display: block;
+}
+

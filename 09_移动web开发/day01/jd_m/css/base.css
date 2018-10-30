@@ -64,3 +64,16 @@ i,s,em{
     visibility: hidden;
     clear: both;
 }
+
+.b_t{
+    border-top: 1px solid #cccccc;
+}
+.b_b{
+    border-bottom: 1px solid #cccccc;
+}
+.b_l{
+    border-left: 1px solid #cccccc;
+}
+.b_r{
+    border-right: 1px solid #cccccc;
+}
