@@ -39,9 +39,29 @@ function countDown(){
     //获取要设置的li
     var liArr=document.querySelectorAll(".jd_main .main_content:nth-child(1) .content_top ul li");
     var totalSecond=3*60*60;
-    var hour=Math.floor(totalSecond/60*60);
-    var minth=Math.floor(totalSecond%3600/60);
-    var second=totalSecond%60;
+
+    var timer=setInterval(function () {
+        totalSecond--;
+        if(totalSecond<0){//当小于0的时候清除定时器
+            clearInterval(timer);
+            return;
+        }
+        var hour=Math.floor(totalSecond/3600);
+        var minute=Math.floor(totalSecond%3600/60);
+        var second=totalSecond%60;
+
+        console.log("totalSecond=" + totalSecond);
+        console.log("hour=" + hour);
+        console.log("minute=" + minute);
+        console.log("second=" + second);
+
+        liArr[0].innerHTML=Math.floor(hour/10);
+        liArr[1].innerHTML=hour%10;
+        liArr[3].innerHTML=Math.floor(minute/10);
+        liArr[4].innerHTML=minute%10;
+        liArr[6].innerHTML=Math.floor(second/10);
+        liArr[7].innerHTML=second%10;
+    },1000);
 }
 
 function banner(){

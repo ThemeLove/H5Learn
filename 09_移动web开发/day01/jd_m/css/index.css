@@ -71,7 +71,6 @@ body，html{
 }
 .banner_images{
     width: 1000%;
-    overflow: hidden;
 }
 
 .banner_images li{
