@@ -166,11 +166,9 @@ body，html{
 .jd_main .main_content:nth-child(1) .content_top{
     border-bottom: none;
     padding: 0 10px;
-    background-color: #FF0000;
 }
 .jd_main .main_content:nth-child(1) .content_bottom{
     border-bottom: none;
-    background-color: #00ff00;
 }
 .jd_main .main_content:nth-child(1) .content_top span{
     float: left;
@@ -189,7 +187,6 @@ body，html{
     text-align:center;
 }
 .jd_main .main_content:nth-child(1) .content_top ul{
-    height: 100%;
     float: left;
     margin-left: 5px;
     margin-top: 7.5px;
@@ -226,7 +223,6 @@ body，html{
     text-align: center;
     float: left;
     width: 33.3333%;
-    background-color: pink;
 }
 .jd_main .main_content:nth-child(1) .content_bottom li:last-child a{
     border-right: none;
