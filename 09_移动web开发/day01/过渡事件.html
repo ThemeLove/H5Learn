@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过渡事件</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+            transition: all 1s;
+            margin-top: 30px;
+        }
+    </style>
+    <script>
+        window.onload=function () {
+            var div1=document.querySelectorAll("div")[0];
+            var div2=document.querySelectorAll("div")[1];
+            //点击div,随机改变其背景色
+            div1.onclick=function (event) {
+                var randomRed=Math.floor(Math.random()*255);
+                var randomGreen=Math.floor(Math.random()*255);
+                var randomBlue=Math.floor(Math.random()*255);
+                var randomAlpha=Math.random();
+
+                console.log("randomRed="+randomRed);
+                console.log("randomGreen="+randomGreen);
+                console.log("randomBlue="+randomBlue);
+                console.log("randomAlpha="+randomAlpha);
+                this.style.backgroundColor="rgba("+randomRed+","+randomGreen+","+randomBlue+","+randomAlpha+")";
+            };
+
+            //添加过渡结束事件，该事件是C3新添加事件，需要添加浏览器私有化前缀
+            div1.addEventListener("webkitTransitionEnd",function (event) {
+                console.log("div1 过渡结束了");
+            });
+
+
+
+
+
+            div2.onclick=function (event) {
+                var percent=Math.random()*50;
+                console.log("percent="+percent);
+                this.style.borderRadius=percent+"%";
+            };
+
+            div2.addEventListener("webkitTransitionEnd",function () {
+                console.log("div2 过渡结束了");
+            })
+        }
+    </script>
+</head>
+<body>
+<div></div>
+<div></div>
+</body>
+</html>

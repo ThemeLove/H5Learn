@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>setInterval异步测试</title>
+    <script>
+        window.onload=function (ev) {
+
+            var btn1=document.querySelectorAll("input")[0];
+            var btn2=document.querySelectorAll("input")[1];
+            var timer1;
+            btn1.onclick=function (ev) {
+                var index=0;
+                timer1=setInterval(function () {
+                    index++;
+                    console.log("index="+index);
+                },1000);
+
+                console.log("我是setInterval后面的代码")//这行先打印，1秒钟之后打印了index=1,说明setInterval是异步的。
+            };
+
+            btn2.onclick=function (ev) {
+                console.log("clearInterval");
+                clearInterval(timer1);
+            }
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="interval测试"/>
+<input type="button" value="清楚interval"/>
+</body>
+</html>

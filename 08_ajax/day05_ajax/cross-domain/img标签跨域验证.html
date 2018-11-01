@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>img标签跨域验证</title>
+    <style>
+        img{
+            margin: 100px auto;
+            width: 80%;
+            height: 50%;
+            display: block;
+        }
+        #img3{
+            width: 713px;
+            height: 401px;
+            background: url(https://i.imgur.com/l8epu2N.jpg) no-repeat;
+        }
+        #img4{
+            width: 640px;
+            height:452px;
+            background: url(http://img5.imgtn.bdimg.com/it/u=702350221,1865643844&fm=26&gp=0.jpg) no-repeat;
+        }
+        #a1{
+            margin: 100px auto;
+            display: block;
+            width: 640px;
+            height:452px;
+            background: url(images/vol.840.jpg) no-repeat;
+        }
+    </style>
+</head>
+<body>
+
+<!--浏览器的跨域不限制src属性-->
+
+<!--可以访问-->
+<img src="https://i.imgur.com/l8epu2N.jpg" alt="">
+
+<!--不可以访问，图片服务器做了限制-->
+<!--<img src="http://img5.imgtn.bdimg.com/it/u=702350221,1865643844&fm=26&gp=0.jpg" alt="">-->
+
+
+<img src="" alt="" id="img3">
+<img src="" alt="" id="img4">
+<a href="#" id="a1"></a>
+</body>
+</html>

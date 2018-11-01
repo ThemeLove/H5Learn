@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>移动端touch事件</title>
+    <style>
+        html,body{
+            width: 100%;
+            height: 100%;
+            background-color:pink;
+        }
+    </style>
+    <script>
+        window.onload=function (event) {
+
+            var startX=0;
+            var startY=0;
+            var moveX=0;
+            var moveY=0;
+
+            document.body.addEventListener("touchstart",function (ev) {
+                console.log("touchstart");
+                startX=ev.touches[0].clientX;
+                startY=ev.touches[0].clientY;
+                console.log("startX="+startX);
+                console.log("startY="+startY);
+            });
+
+            document.body.addEventListener("touchmove",function (ev) {
+                console.log("touchmove");
+                moveX=ev.touches[0].clientX-startX;
+                moveY=ev.touches[0].clientY-startY;
+
+                console.log("moveX="+moveX);
+                console.log("moveY="+moveY);
+            });
+
+            document.body.addEventListener("touchend",function (ev) {
+                console.log("touchend");
+            });
+
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

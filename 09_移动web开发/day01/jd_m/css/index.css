@@ -71,12 +71,19 @@ body，html{
 }
 .banner_images{
     width: 1000%;
+    /*默认显示第一张图片*/
+    transform: translateX(-10%);
 }
 
 .banner_images li{
     width: 10%;
     float: left;
     height: 182px;
+}
+
+.banner_images li a{
+    width: 100%;
+    display: block;
 }
 
 .banner_images img{
@@ -88,21 +95,21 @@ body，html{
 
 .banner_index{
     position: absolute;
-    width: 115px;
-    height: 10px;
+    width: 126px;
+    height: 7px;
     left: 50%;
-    bottom: 10px;
+    bottom: 6px;
     transform: translateX(-50%);
     overflow: hidden;
 }
 
 .banner_index li{
     float: left;
-    width: 10px;
-    height: 10px;
-    border-radius: 5px;
+    width: 7px;
+    height: 7px;
+    border-radius: 3.5px;
     border: 1px solid #fff;
-    margin-left: 5px;
+    margin-left: 10px;
 }
 
 .banner_index li:first-child{
