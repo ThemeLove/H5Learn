@@ -18,6 +18,7 @@ function headerScroll(){
     // console.log("scrollTop="+scrollTop);
 
     var maxInstance=offsetHeight+scrollTop;//
+    console.log("maxInstance="+maxInstance);
 
    //当屏幕滚动的时候
    window.onscroll=function() {
