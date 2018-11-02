@@ -64,6 +64,8 @@ function countDown(){
     },1000);
 }
 
+
+
 /**
  * 实现轮播图滚动，由于ul的li的是浮动的，ul的父盒子设置了overflow：hidden,只需要用定时器平移ul的位置即可,同时改变banner_index的状态
  * 1.平移ul我们用C3中的translateX
@@ -83,9 +85,10 @@ function banner(){
     var index=1;
 
     var timer=setInterval(function (args) {
-        bannerImages.style.transition="all 0.3s";
+        startTransition();
         index++;
         console.log("index=" + index);
+        setTransform(-imageWidth*index);
         bannerImages.style.transform="translateX("+ -imageWidth*(index) +"px)";
     },2000);
 
@@ -93,16 +96,14 @@ function banner(){
     bannerImages.addEventListener("webkitTransitionEnd",function () {
         if(index>8){
             index=1;
-            bannerImages.style.transition="";//
+            stopTransition();
             console.log("index="+index);
         }
         if(index<1){
-            bannerImages.style.transition="";//
+            stopTransition();
             index=8;
         }
-
-        bannerImages.style.transform="translateX("+ (-imageWidth*index) +"px)";
-
+        setTransform(-imageWidth*index);
         //    先清空bannerIndexArr的所有状态，再根据索引为当前index添加样式
         for (var i = 0; i < bannerIndexArr.length; i++) {
             var bannerIndex = bannerIndexArr[i];
@@ -126,7 +127,7 @@ function banner(){
     //    清楚定时器
         clearInterval(timer);
     //    关闭过渡效果
-        bannerImages.style.transition="";
+        stopTransition();
     //    记录触摸的的水平位置
         startX=event.touches[0].clientX;
     });
@@ -143,8 +144,7 @@ function banner(){
         console.log("moveX=" + moveX);
         console.log("index=" + index);
         console.log("aaa="+(-index*imageWidth+moveX));
-
-        bannerImages.style.transform="translateX("+ (-imageWidth*index+moveX) +"px)";
+        setTransform(-imageWidth*index+moveX);
     });
 
     /**
@@ -156,7 +156,6 @@ function banner(){
         //记录结束时的位置
         // var endX=event.touches[0].clientX;//注意结束时没有clientX,会报错
 
-
         if(Math.abs(moveX)>maxScrollDistance){
             if(moveX>0){
                 index--;
@@ -164,17 +163,28 @@ function banner(){
                 index++;
             }
         }
-        bannerImages.style.transition="all 0.3s";
-        bannerImages.style.transform="translateX("+ (-imageWidth*index) +"px)";
+        startTransition();
+        setTransform(-imageWidth*index);
 
     //  重新开启定时器
         timer=setInterval(function () {
-            bannerImages.style.transition="all 0.3s";
+            startTransition();
             index++;
             console.log("index=" + index);
-            bannerImages.style.transform="translateX("+ (-imageWidth*index) +"px)";
-
+            setTransform(-imageWidth*index);
         },2000);
 
     });
+
+    function startTransition(){
+        bannerImages.style.transition="all 0.3s";
+    }
+
+    function stopTransition(){
+        bannerImages.style.transition="";
+    }
+
+    function setTransform(distance){
+        bannerImages.style.transform="translateX("+distance+"px)";
+    }
 }
