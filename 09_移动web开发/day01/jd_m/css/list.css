@@ -1,3 +1,10 @@
+html,body{
+    height: 100%;
+}
+.container{
+    height: 100%;
+    overflow: hidden;
+}
 
 .container .header{
     height: 45px;
@@ -8,6 +15,7 @@
     background: url("../images/header-bg.png") repeat-x;
     background-size: 1px 44px;
 }
+
 .container .header a{
     text-decoration: none;
 }
@@ -21,6 +29,7 @@
     position: absolute;
     left: 10px;
 }
+
 .container .header input{
     width: 100%;
     height: 31px;
@@ -45,9 +54,14 @@
     background-clip: content-box;
 }
 
-
+.main{
+    height: 100%;
+    overflow: hidden;
+}
 .main_left{
     width: 90px;
+    height: 100%;
+    overflow: hidden;
 }
 
 .main_left ul{
@@ -72,7 +86,16 @@
     line-height: 40px;
 }
 
+.main_left ul li.current {
+    border-right: none;
+}
+
+.main_left ul li.current a{
+    color: red;
+}
+
 .main_right{
+    height: 100%;
     padding: 10px;
     overflow: hidden;
 }
@@ -110,3 +133,4 @@
 .main_right ul a p{
 
 }
+
