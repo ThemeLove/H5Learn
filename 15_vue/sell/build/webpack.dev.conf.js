@@ -9,6 +9,15 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
+//第一步
+const express = require("express");
+const app=express();
+var appData = require("../data.json");//加载本地数据文件
+var seller = appData.seller;
+var goods = appData.goods;
+var ratings =appData.ratings;
+var apiRoutes = express.Router();
+app.use('/app',apiRoutes);//通过路由请求数据
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
@@ -42,6 +51,27 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {
       poll: config.dev.poll,
+    },
+    //第二步
+    before(app){
+      app.get('/api/seller',(req,res)=>{
+        res.json({
+          errno:0,
+          data:seller
+        })//接口返回json数据，把上面配置的seller赋值给data,当做请求数据
+      }),
+      app.get('/api/goods',(req,res)=>{
+        res.json({
+          errno:0,
+          data:goods
+        })
+      }),
+      app.get('/api/ratings',(req,res)=>{
+        res.json({
+          errno:0,
+          data:ratings
+        })
+      })
     }
   },
   plugins: [
