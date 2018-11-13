@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-header></v-header>
+    <v-header v-bind:seller="seller"></v-header>
     <div class="tab border-1px">
       <div class="tab-item">
         <router-link to="/goods">商品</router-link>
@@ -21,7 +21,23 @@
   import goods from './components/goods/goods'
   import ratings from './components/ratings/ratings'
   import seller from 'components/seller/seller'
+
+  const ERR_OK = 0;//接口状态码
   export default {
+    data(){
+      return {
+        seller:{}
+      }
+    },
+    created(){
+      this.$http.get('/api/seller').then((response) => {
+        response=response.body;
+        if(response.errno===ERR_OK){
+           this.seller=response.data;
+           console.log("seller="+seller);
+        }
+      });
+    },
     components:{
       "v-header":VHeader,
       "goods":goods,
