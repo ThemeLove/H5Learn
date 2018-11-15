@@ -7,6 +7,13 @@
             <span class="icon-shopping_cart" :class="{'highlight':totalCount>0}"></span>
           </div>
           <div class="num" v-show="totalCount>0">{{totalCount}}</div>
+          <transition-group name="dropBall"
+            tag:ul
+            v-on:before-enter="beforeEnter"
+            v-on:enter="enter"
+            v-on:after-enter="afterEnter">
+            <div v-for="(ball,index) in balls" v-bind:key="index"  class="ball" v-show="ball.show"></div>
+          </transition-group>
         </div>
         <div class="price" :class="{'highlight':totalPrice>0}">￥{{totalPrice}}</div>
         <div class="desc">另需配送费￥{{deliveryPrice}}元</div>
@@ -44,33 +51,96 @@
             }
           }
         },
-      computed:{
-          totalPrice (){
-            let total=0;
-            this.selectFoods.forEach((food) => {
-              total+=food.price*food.count;
-            });
-            return total
-          },
-          totalCount (){
-            let count=0;
-            this.selectFoods.forEach((food) => {
-              count+=food.count;
-            });
-            return count;
-          },
-          payDesc (){
-            if(this.totalPrice===0){
-                return "￥"+this.minPrice+"起送";
-            }else if(this.minPrice>this.totalPrice){
-                let diff=0;
-                diff=this.minPrice-this.totalPrice;
-                return "还差"+diff+"元起送";
-            }else {
-              return "去结算";
-            }
+        data (){
+          return {
+            balls:[
+              {
+                show:false,
+              },
+              {
+                show:false,
+              },
+              {
+                show:false,
+              },
+              {
+                show:false,
+              },
+              {
+                show:false,
+              }
+            ],
+            dropBalls:[]
           }
-      }
+        },
+        computed:{
+            totalPrice (){
+              let total=0;
+              this.selectFoods.forEach((food) => {
+                total+=food.price*food.count;
+              });
+              return total
+            },
+            totalCount (){
+              let count=0;
+              this.selectFoods.forEach((food) => {
+                count+=food.count;
+              });
+              return count;
+            },
+            payDesc (){
+              if(this.totalPrice===0){
+                  return "￥"+this.minPrice+"起送";
+              }else if(this.minPrice>this.totalPrice){
+                  let diff=0;
+                  diff=this.minPrice-this.totalPrice;
+                  return "还差"+diff+"元起送";
+              }else {
+                return "去结算";
+              }
+            }
+        },
+        methods:{
+          dropBall (el){
+            console.log("dropBall----->in----->shopcart");
+            console.log(el);
+            this.balls.forEach((ball) =>{
+              if(!ball.show){
+                ball.show=true;
+                ball.el=el;
+                this.dropBalls.push(ball);
+                return;
+              }
+            })
+          },
+          //过渡钩子函数
+          beforeEnter (el){
+            console.log("beforeEnter");
+            this.dropBalls.forEach((dropBall) => {
+              let rect=dropBall.el.getBoundingClientRect();
+            //计算开始的位置
+              let translateX=rect.left-32;
+              let translateY=-(window.innerHeight-rect.top-26);
+            //设置
+              el.style.webkitTransform="translate3d("+translateX+"px,"+translateY+"px,0)";
+              el.style.transform="translate3d("+translateX+"px,"+translateY+"px,0)";
+              el.style.display="";
+            })
+          },
+          enter (el){
+            console.log("enter");
+            //让浏览器重绘
+              let rf=el.offsetHeight;
+              this.$nextTick(() =>{
+                el.style.webkitTransform="translate3d(0,0,0)";
+                el.style.transform="translate3d(0,0,0)";
+              })
+          },
+          afterEnter (el){
+            console.log("afterEnter");
+          }
+        }
+
     }
 </script>
 
@@ -131,6 +201,16 @@
             color: #fff
             background-color: rgb(240,20,20)
             box-shadow : 0 4px 8px 0 rgba(0,0,0,0.4)
+          .ball
+          &.dropBall
+            position :fixed
+            left:32px
+            bottom:26px
+            width: 16px
+            height: 16px
+            border-radius :50%
+            background-color: #00a0dc
+            transition: translateX 0.5s linear, translateY 0.5s linear
         .price
           display: inline-block
           vertical-align: top

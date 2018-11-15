@@ -30,7 +30,7 @@
                   <span class="old" v-show="food.oldPrice">￥{{food.oldPrice}}</span>
                 </div>
                 <div class="cartcontrol-wrapper">
-                  <cartcontrol :food="food"></cartcontrol>
+                  <cartcontrol :food="food" v-on:add-cart="addCart"></cartcontrol>
                 </div>
               </div>
             </li>
@@ -38,7 +38,7 @@
         </li>
       </ul>
     </div>
-    <shopcart :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice" :selectFoods="selectFoods"></shopcart>
+    <shopcart :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice" :selectFoods="selectFoods" ref="shopcart"></shopcart>
   </div>
 </template>
 
@@ -112,6 +112,11 @@
             console.log("menuItemClcik");
             let foodList=this.$refs.foodsWrapper.getElementsByClassName("food-list");
             this.foodsScroll.scrollToElement(foodList[index],300);
+          },
+          addCart (el){
+            console.log("dropBall----->in----->goods");
+            console.log(el);
+            this.$refs.shopcart.dropBall(el);
           }
       },
       computed:{
