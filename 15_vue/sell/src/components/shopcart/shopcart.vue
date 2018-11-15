@@ -43,7 +43,6 @@
               ]
             }
           }
-
         },
       computed:{
           totalPrice (){

@@ -29,19 +29,23 @@
                   <span class="now">￥{{food.price}}</span>
                   <span class="old" v-show="food.oldPrice">￥{{food.oldPrice}}</span>
                 </div>
+                <div class="cartcontrol-wrapper">
+                  <cartcontrol :food="food"></cartcontrol>
+                </div>
               </div>
             </li>
           </ul>
         </li>
       </ul>
     </div>
-    <shopcart :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
+    <shopcart :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice" :selectFoods="selectFoods"></shopcart>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
     import BScroll from 'better-scroll'
     import shopcart from 'components/shopcart/shopcart'
+    import cartcontrol from 'components/cartcontrol/cartcontrol'
 
     const ERR_OK=0;
     export default {
@@ -52,11 +56,12 @@
           }
         },
         components:{
-          "shopcart":shopcart
+          "shopcart":shopcart,
+          "cartcontrol":cartcontrol
         },
         data (){
           return {
-            goods:{},
+            goods:[],
             foodHeightList:[],
             scrollY:0
           }
@@ -80,7 +85,8 @@
               click:true
             });
             this.foodsScroll=new BScroll(this.$refs.foodsWrapper,{
-              probeType:3
+              probeType:3,
+              click:true
             });
 
             this.foodsScroll.on("scroll",(pos) => {
@@ -100,10 +106,10 @@
             console.log("foodHeightList="+this.foodHeightList);
           },
           menuItemClcik(index,e){
-  /*          if(e._constructed){
-                console.log(e);
+            if(!e._constructed){
                 return;
-            }*/
+            }
+            console.log("menuItemClcik");
             let foodList=this.$refs.foodsWrapper.getElementsByClassName("food-list");
             this.foodsScroll.scrollToElement(foodList[index],300);
           }
@@ -123,6 +129,17 @@
             }
             console.log("currentIndex=" + currentIndex);
             return currentIndex;
+          },
+          selectFoods (){
+            let selectFoods=[];
+            this.goods.forEach((good) => {
+              good.foods.forEach((food) =>{
+                if(food.count>0){
+                  selectFoods.push(food);
+                }
+              });
+            });
+            return selectFoods;
           }
       }
     }
@@ -236,4 +253,11 @@
               text-decoration: line-through
               font-size: 10px
               color: rgb(147,153,159)
+          .cartcontrol-wrapper
+            position: absolute
+            right :0;
+            bottom:12px
+
+
+
 </style>
