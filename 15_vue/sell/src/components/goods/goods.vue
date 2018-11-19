@@ -116,7 +116,10 @@
           addCart (target){
             console.log("dropBall----->in----->goods");
             console.log(target);
-            this.$refs.shopcart.dropBall(target);
+
+            this.$nextTick(() => {
+              this.$refs.shopcart.dropBall(target);
+            });
           }
       },
       computed:{
