@@ -12,7 +12,7 @@
             v-on:before-enter="beforeEnter"
             v-on:enter="enter"
             v-on:after-enter="afterEnter">
-            <div v-for="(ball,index) in balls" v-bind:key="index"  class="ball" v-show="ball.show"></div>
+            <div v-for="(ball,index) in balls" v-bind:key="index" :itemIndex="index" class="ball" v-show="ball.show"></div>
           </transition-group>
         </div>
         <div class="price" :class="{'highlight':totalPrice>0}">￥{{totalPrice}}</div>
@@ -56,21 +56,26 @@
             balls:[
               {
                 show:false,
+                isDrop:false
               },
               {
                 show:false,
+                isDrop:false
               },
               {
                 show:false,
+                isDrop:false
               },
               {
                 show:false,
+                isDrop:false
               },
               {
                 show:false,
+                isDrop:false
               }
             ],
-            dropBalls:[]
+            ballTarget:null
           }
         },
         computed:{
@@ -101,34 +106,45 @@
             }
         },
         methods:{
-          dropBall (el){
+          dropBall (target){
             console.log("dropBall----->in----->shopcart");
-            console.log(el);
-            this.balls.forEach((ball) =>{
-              if(!ball.show){
-                ball.show=true;
-                ball.el=el;
-                this.dropBalls.push(ball);
-                return;
-              }
-            })
+            for (let i = 0; i < this.balls.length; i++) {
+                let ball= this.balls[i];
+                if(!ball.show){
+                  ball.show=true;
+                  ball.target=target;
+                  return;
+                }
+            }
+
           },
           //过渡钩子函数
           beforeEnter (el){
             console.log("beforeEnter");
-            this.dropBalls.forEach((dropBall) => {
-              let rect=dropBall.el.getBoundingClientRect();
-            //计算开始的位置
-              let translateX=rect.left-32;
-              let translateY=-(window.innerHeight-rect.top-26);
-            //设置
-              el.style.webkitTransform="translate3d("+translateX+"px,"+translateY+"px,0)";
-              el.style.transform="translate3d("+translateX+"px,"+translateY+"px,0)";
-              el.style.display="";
-            })
+            this.ballTarget=el;
+            for (let i = 0;  i< this.balls.length;i++) {
+              let ball=this.balls[i];
+              if(ball.show&&!ball.isDrop){
+                ball.isDrop=true;
+                let rect=ball.target.getBoundingClientRect();
+                // 计算开始的位置
+                let translateX=rect.left-32;
+                let translateY=-(window.innerHeight-rect.top-26);
+                el.style.transition="all 0.5s cubic-bezier(0.49,-0.29,0.75,0.41)";
+                // el.style.transition="transform:translateX 0.5s linear,transform:translateY 0.5s cubic-bezier(0.49,-0.29,0.75,0.41)";
+                //设置
+                el.style.webkitTransform="translate3d("+translateX+"px,"+translateY+"px,0)";
+                el.style.transform="translate3d("+translateX+"px,"+translateY+"px,0)";
+                el.style.display="";
+                return;
+              }
+            }
           },
           enter (el){
             console.log("enter");
+            console.log(this.ballTarget);
+            console.log(el);
+            console.log(this.ballTarget===el);
             //让浏览器重绘
               let rf=el.offsetHeight;
               this.$nextTick(() =>{
@@ -138,6 +154,13 @@
           },
           afterEnter (el){
             console.log("afterEnter");
+            console.log(this.ballTarget);
+            console.log(el);
+            console.log(this.ballTarget===el);
+
+            console.log(this.balls);
+            console.log("=====================");
+            console.log(this.balls);
           }
         }
 
