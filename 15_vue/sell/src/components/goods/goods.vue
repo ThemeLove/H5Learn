@@ -113,10 +113,12 @@
             let foodList=this.$refs.foodsWrapper.getElementsByClassName("food-list");
             this.foodsScroll.scrollToElement(foodList[index],300);
           },
-          addCart (el){
+          addCart (target){
             console.log("dropBall----->in----->goods");
-            console.log(el);
-            this.$refs.shopcart.dropBall(el);
+            console.log(target);
+            this.$nextTick(() => {
+              this.$refs.shopcart.dropBall(target);
+            });
           }
       },
       computed:{
