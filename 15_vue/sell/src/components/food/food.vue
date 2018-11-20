@@ -19,9 +19,11 @@
             </div>
           </div>
           <div class="cartcontrol-wrapper">
-              <cartcontrol :food="food"></cartcontrol>
+              <cartcontrol :food="food" v-on:add-cart="addCart"></cartcontrol>
           </div>
-          <div class="buy" v-show="!food.count||food.count===0"></div>
+          <transition name="fade">
+            <div class="buy" v-show="!food.count||food.count===0" @click="addFirstFood($event)">加入购物车</div>
+          </transition>
         </div>
       </div>
     </transition>
@@ -30,6 +32,7 @@
 <script type="text/ecmascript-6">
   import BScroll from "better-scroll"
   import cartcontrol from "components/cartcontrol/cartcontrol"
+  import Vue from "vue"
 
     export default {
         name: "food",
@@ -61,6 +64,20 @@
           },
           hide(){
             this.showFlag=false;
+          },
+          addFirstFood(event){
+            if(!event._constructed){
+              return;
+            }
+            if(!this.food.count){
+              Vue.set(this.food,"count",1);
+            }else{
+              this.food.count++;
+            }
+            this.$emit("add-cart",event.target);
+          },
+          addCart(target){
+            this.$emit("add-cart",target);
           }
         }
     }
@@ -132,4 +149,24 @@
           font-size: 10px
           color: rgb(147,153,159)
 
+    .cartcontrol-wrapper
+      position: absolute
+      right: 12px
+      bottom: 12px
+    .buy
+      position: absolute
+      right: 18px
+      bottom: 18px
+      z-index: 10
+      height: 24px
+      line-height: 24px
+      padding:0 12px
+      box-sizing:border-box
+      font-size:10px
+      border-radius:12px
+      color: #fff
+      background-color: rgb(0,160,220)
+      transition:all 0.5s linear
+      &.fade-enter,&.fade-leave-to
+        opacity:0
 </style>

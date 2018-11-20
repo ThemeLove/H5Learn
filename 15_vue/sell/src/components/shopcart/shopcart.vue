@@ -40,7 +40,7 @@
                 <span>￥{{food.price*food.count}}</span>
               </div>
               <div class="cartcontrol-wrapper">
-                <cartcontrol :food="food"></cartcontrol>
+                <cartcontrol :food="food" v-on:add-cart="dropBall"></cartcontrol>
               </div>
             </li>
           </ul>

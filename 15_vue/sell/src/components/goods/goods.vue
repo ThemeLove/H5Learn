@@ -39,7 +39,7 @@
       </ul>
     </div>
     <shopcart :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice" :selectFoods="selectFoods" ref="shopcart"></shopcart>
-    <food v-bind:food="selectedFood" ref="food"></food>
+    <food v-bind:food="selectedFood" ref="food" v-on:add-cart="addCart"></food>
   </div>
 </template>
 
