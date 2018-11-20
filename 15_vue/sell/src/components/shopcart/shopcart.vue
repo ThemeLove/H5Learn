@@ -1,50 +1,57 @@
 <template>
-  <div class="shopcart">
-    <div class="content">
-      <div class="content-left" @click="toggleListShow">
-        <div class="logo-wrapper">
-          <div class="logo" :class="{'highlight':totalCount>0}">
-            <span class="icon-shopping_cart" :class="{'highlight':totalCount>0}"></span>
+  <div>
+    <div class="shopcart">
+      <div class="content">
+        <div class="content-left" @click="toggleShopcartShow">
+          <div class="logo-wrapper">
+            <div class="logo" :class="{'highlight':totalCount>0}">
+              <span class="icon-shopping_cart" :class="{'highlight':totalCount>0}"></span>
+            </div>
+            <div class="num" v-show="totalCount>0">{{totalCount}}</div>
           </div>
-          <div class="num" v-show="totalCount>0">{{totalCount}}</div>
+          <div class="price" :class="{'highlight':totalPrice>0}">￥{{totalPrice}}</div>
+          <div class="desc">另需配送费￥{{deliveryPrice}}元</div>
         </div>
-        <div class="price" :class="{'highlight':totalPrice>0}">￥{{totalPrice}}</div>
-        <div class="desc">另需配送费￥{{deliveryPrice}}元</div>
-      </div>
-      <div class="content-right">
-        <div class="pay" :class="{'enough':totalPrice>=minPrice}">
-          {{payDesc}}
+        <div class="content-right" @click="pay">
+          <div class="pay" :class="{'enough':totalPrice>=minPrice}">
+            {{payDesc}}
+          </div>
         </div>
       </div>
-    </div>
-    <transition-group
-      name="dropBall"
-      tag:ul
-      v-on:before-enter="beforeEnter"
-      v-on:enter="enter"
-      v-on:after-enter="afterEnter">
-      <div v-for="(ball,index) in balls"  v-bind:key="index"  class="ball" v-show="ball.show"></div>
-    </transition-group>
-    <div class="shopcart-list" v-show="listShow">
-      <div class="list-header">
-        <h1 class="title">购物车</h1>
-        <span class="empty">清空</span>
-      </div>
-      <div class="list-content" ref="list-content">
-        <ul>
-          <li class="food" v-for="food in selectFoods">
-            <span class="name">{{food.name}}</span>
-            <div class="price">
-              <span>￥{{food.price*food.count}}</span>
-            </div>
-            <div class="cartcontrol-wrapper">
-              <cartcontrol :food="food"></cartcontrol>
-            </div>
-          </li>
-        </ul>
-      </div>
+      <transition-group
+        name="dropBall"
+        tag:ul
+        v-on:before-enter="beforeEnter"
+        v-on:enter="enter"
+        v-on:after-enter="afterEnter">
+        <div v-for="(ball,index) in balls"  v-bind:key="index"  class="ball" v-show="ball.show"></div>
+      </transition-group>
+      <transition name="expand">
+        <div class="shopcart-list" v-show="isShopcartShow" >
+        <div class="list-header">
+          <h1 class="title">购物车</h1>
+          <span class="empty" @click="empty">清空</span>
+        </div>
+        <div class="list-content" ref="listContent">
+          <ul>
+            <li class="food" v-for="food in selectFoods">
+              <span class="name">{{food.name}}</span>
+              <div class="price">
+                <span>￥{{food.price*food.count}}</span>
+              </div>
+              <div class="cartcontrol-wrapper">
+                <cartcontrol :food="food"></cartcontrol>
+              </div>
+            </li>
+          </ul>
+        </div>
 
+      </div>
+      </transition>
     </div>
+    <transition name="fade" >
+      <div class="shopcart-mask" v-show="isShopcartShow" @click="isShopcartExpand=false"></div>
+    </transition>
   </div>
 </template>
 
@@ -99,7 +106,8 @@
                 isDrop:false
               }
             ],
-            toggleList:false
+            isShopcartExpand:false,//购物车是否处于展开状态,初始化为false
+            listContent:null
           }
         },
         computed:{
@@ -128,11 +136,27 @@
                 return "去结算";
               }
             },
-            listShow(){
+            isShopcartShow(){
               if(!this.totalCount){
-                  return false;
+                this.isShopcartExpand=false;
               }
-              return this.toggleList;
+
+              if(this.isShopcartExpand){
+                this.$nextTick(() =>{
+                  if(!this.shopcartListScroll){
+                    this.shopcartListScroll=new BScroll(this.$refs.listContent,
+                      {
+                        click:true
+                      }
+                    );
+                    console.log("init");
+                  }else{
+                    this.shopcartListScroll.refresh();
+                    console.log("refresh");
+                  }
+                })
+              }
+              return this.isShopcartExpand;
             }
         },
         methods:{
@@ -198,8 +222,23 @@
             this.balls.push(this.balls.shift());//删除数组的第一个元素再放到数组的末尾
             console.log(this.balls);
           },
-          toggleListShow (){
-            this.toggleList=!this.toggleList;
+          toggleShopcartShow (){
+            if(!this.totalCount){
+              this.isShopcartExpand=false;
+            }
+            this.isShopcartExpand=!this.isShopcartExpand;
+            console.log("isShopcartExpand="+this.isShopcartExpand);
+          },
+          empty(){
+            this.selectFoods.forEach((good) =>{
+              good.count=0;
+            })
+          },
+          pay(){
+            if(this.totalPrice<this.minPrice){
+              return;
+            }
+            window.alert(`支付${this.totalPrice}元`)
           }
         },
       components:{
@@ -225,6 +264,7 @@
       background-color: #141d27
       font-size: 0
       color:  rgba(255,255,255,0.4)
+      z-index:70
       .content-left
         flex :1
         .logo-wrapper
@@ -312,11 +352,17 @@
       display:""
       transition: translate3dX 0.5s linear, translate3dY 0.5s cubic-bezier(0.49,-0.29,0.75,0.41)
     .shopcart-list
-      position :fixed
+      position :absolute
       left: 0
-      bottom:48px
+      top : 0
       width: 100%
       overflow :hidden
+      transition:all 0.5s linear
+      transform:translate3d(0,-100%,0)
+      z-index:-1
+      &.expand-enter,&.expand-leave-to
+        transform:translate3d(0,0,0)
+
       .list-header
         width: 100%
         height: 40px
@@ -341,8 +387,8 @@
       .list-content
         max-height :241px
         width: 100%
-        padding-right :18px
         background-color: #fff
+        overflow: hidden
         .food
           position :relative
           height :48px
@@ -368,11 +414,23 @@
             position: absolute
             right :0
             top: 6px
-
             vertical-align :middle
             text-align :center
 
 
 
+
+  .shopcart-mask
+    position: fixed
+    left:0
+    top:0
+    width: 100%
+    height: 100%
+    z-index:40
+    backdrop-filter:blur(10px)
+    background-color: rgba(7,17,27,0.6)
+    transition:all 0.5s linear
+    &.fade-enter,&.fade-leave-to
+      opacity:0
 
 </style>

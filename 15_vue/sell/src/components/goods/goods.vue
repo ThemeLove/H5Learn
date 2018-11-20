@@ -14,7 +14,7 @@
         <li v-for="item in goods" class="food-list">
           <h1 class="title">{{item.name}}</h1>
           <ul>
-            <li v-for="food in item.foods" class="food-item border-1px">
+            <li v-for="food in item.foods" class="food-item border-1px" @click="selectFood(food,$event)">
               <div class="icon">
                 <img :src="food.icon" width="57px" height="57px" alt="">
               </div>
@@ -39,6 +39,7 @@
       </ul>
     </div>
     <shopcart :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice" :selectFoods="selectFoods" ref="shopcart"></shopcart>
+    <food v-bind:food="selectedFood" ref="food"></food>
   </div>
 </template>
 
@@ -46,6 +47,7 @@
     import BScroll from 'better-scroll'
     import shopcart from 'components/shopcart/shopcart'
     import cartcontrol from 'components/cartcontrol/cartcontrol'
+    import food from "components/food/food"
 
     const ERR_OK=0;
     export default {
@@ -57,13 +59,15 @@
         },
         components:{
           "shopcart":shopcart,
-          "cartcontrol":cartcontrol
+          "cartcontrol":cartcontrol,
+          "food":food
         },
         data (){
           return {
             goods:[],
             foodHeightList:[],
-            scrollY:0
+            scrollY:0,
+            selectedFood:{}
           }
         },
         created(){
@@ -85,8 +89,8 @@
               click:true
             });
             this.foodsScroll=new BScroll(this.$refs.foodsWrapper,{
-              probeType:3,
-              click:true
+              probeType:3,//滚动过程中实时派发scroll时间，可以获取滚动的位置
+              click:true//让内部控件可点击
             });
 
             this.foodsScroll.on("scroll",(pos) => {
@@ -120,6 +124,13 @@
             this.$nextTick(() => {
               this.$refs.shopcart.dropBall(target);
             });
+          },
+          selectFood (food,event){
+            if(!event._constructed){
+              return;
+            }
+            this.selectedFood=food;
+            this.$refs.food.show();
           }
       },
       computed:{
