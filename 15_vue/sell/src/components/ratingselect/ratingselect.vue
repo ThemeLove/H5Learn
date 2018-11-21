@@ -1,12 +1,12 @@
 <template>
 <div class="ratingselect">
   <div class="rating-type border-1px">
-    <span class="block positive" v-bind:class="{'active':selectType===2}" @click="select(2,$event)">{{desc.all}}<span class="count">47</span></span>
-    <span class="block positive" v-bind:class="{'active':selectType===0}" @click="select(0,$event)">{{desc.positive}}<span class="count">47</span></span>
-    <span class="block negative" v-bind:class="{'active':selectType===1}" @click="select(1,$event)">{{desc.negative}}<span class="count">47</span></span>
+    <span class="block positive" v-bind:class="{'active':selectData.selectType===2}" @click="select(2,$event)">{{desc.all}}<span class="count">{{ratings.length}}</span></span>
+    <span class="block positive" v-bind:class="{'active':selectData.selectType===0}" @click="select(0,$event)">{{desc.positive}}<span class="count">{{positives.length}}</span></span>
+    <span class="block negative" v-bind:class="{'active':selectData.selectType===1}" @click="select(1,$event)">{{desc.negative}}<span class="count">{{negatives.length}}</span></span>
   </div>
-  <div class="switch" v-bind:class="{'on':onlyContent}">
-    <span class="icon-check_circle" ></span>
+  <div class="switch" v-bind:class="{'on':selectData.onlyContent}">
+    <span class="icon-check_circle" @click="toggleOnlyContent"></span>
     <span class="text">只看有内容的评价</span>
   </div>
 </div>
@@ -25,13 +25,14 @@
               return [];
             }
           },
-          selectType:{
-            type:Number,
-            default:ALL
-          },
-          onlyContent:{
-            type:Boolean,
-            default:false
+          selectData:{
+            type:Object,
+            default (){
+              return {
+                selectType:ALL,
+                onlyContent:true
+              }
+            }
           },
           desc:{
             type:Object,
@@ -46,11 +47,24 @@
         },
         data(){
           return {
+
+          }
+        },
+        computed: {
+          positives (){
+            return this.ratings.filter((rating) => {
+              return rating.rateType===POSITIVE;
+            })
+          },
+          negatives () {
+            return this.ratings.filter((rating) => {
+              return rating.rateType===NEGATIVE;
+            })
           }
         },
         methods:{
           toggleOnlyContent (){
-
+              this.selectData.onlyContent=!this.selectData.onlyContent;
           },
           select (type,event){
             console.log("select");
@@ -58,7 +72,7 @@
               return;
             }
             console.log("select after");
-            this.selectType=type;
+            this.selectData.selectType=type;
           }
         }
     }
