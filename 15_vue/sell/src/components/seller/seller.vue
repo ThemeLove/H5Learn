@@ -72,6 +72,9 @@
   import BScroll from "better-scroll"
   import star from "components/star/star"
   import split from "components/split/split"
+  import {saveToLocal} from "../../common/js/store.js"
+  import {loadFromLocal} from "../../common/js/store.js"
+
 
     export default {
         name: "seller",
@@ -86,7 +89,9 @@
         },
         data (){
           return {
-            favorite:false
+            favorite:(() => {
+              return loadFromLocal(this.seller.id,"favorite",false);
+            })()
           }
         },
         computed:{
@@ -147,6 +152,7 @@
               return;
             }
             this.favorite=!this.favorite;
+            saveToLocal(this.seller.id,'favorite',this.favorite)
           }
         }
     }
