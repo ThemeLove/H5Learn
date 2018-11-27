@@ -2,10 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>webpack test</title>
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <script type="text/javascript" src="<%= htmlWebpackPlugin.files.chunks.index.entry %>"></script>
 </head>
-<script type="text/javascript" src="../dist/main.js"></script>
 <body>
+<script type="text/javascript" src="<%= htmlWebpackPlugin.files.chunks.hello.entry %>"></script>
+htmlWebpackPlugin.files:----->
+打印htmlWebpackPlugin.files的配置
+<%= htmlWebpackPlugin.options.date %>
+<% for (var key in htmlWebpackPlugin.files) { %>
+    <%=key %>:<%= JSON.stringify(htmlWebpackPlugin.files[key]) %>
+<% } %>
 
+---------------------------------------------------
+<!--我是一行注释，测试用-->
+打印htmlWebpackPlugin.option的配置
+htmlWebpackPlugin.options:----->
+<% for (var key in htmlWebpackPlugin.options) { %>
+<%=key %>:<%= JSON.stringify(htmlWebpackPlugin.options[key]) %>
+<% } %>
 </body>
 </html>

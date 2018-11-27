@@ -1,3 +1,3 @@
-export function hello (str){
-    alert(str);
+export function hello (name){
+    alert("hello~~~"+name);
 }
