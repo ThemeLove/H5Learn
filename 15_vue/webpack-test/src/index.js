@@ -1,8 +1,7 @@
-require('./js/hello.js')
-require('style-loader!css-loader!./css/style.css')
+require('style-loader!css-loader!./css/style.css');
 
 function helloWebpack(str){
-    alert(str+"say:hello-webpack");
+    alert("hello-webpack from"+ str);
 }
 
-helloWebpack();
+helloWebpack("index");

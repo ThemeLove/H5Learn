@@ -1,19 +1,21 @@
 {
-  "name": "y",
+  "name": "webpack-demo",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
+  "babel-loader":{
+    "presets":["latest"]
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack": "webpack --config webpack.config.js --progress --display-modules --colors --display-reason --mode production "
+    "webpack": "webpack --config webpack.config.js --progress --display-modules --colors --display-reason --mode production"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "css-loader": "^1.0.1",
+    "babel-preset-latest": "^6.24.1",
     "html-webpack-plugin": "^3.2.0",
-    "style-loader": "^0.23.1",
     "webpack": "^4.26.1",
     "webpack-cli": "^3.1.2"
-  },
-  "description": ""
+  }
 }
