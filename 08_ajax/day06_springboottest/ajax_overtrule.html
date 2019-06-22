@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax_test</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #info{
+            width: 80%;
+            min-height: 50px;
+            background-color: #9da0a4;
+            padding-left: 50px;
+            font-size: 20px;
+            font-family: '微软雅黑', sans-serif ;
+            color: #ffff56;
+        }
+        form{
+            width: 0px;
+            margin-top: 30px;
+            border: 1px solid #000;
+        }
+
+        input{
+            width: 200px;
+            height: 30px;
+            margin-left: 50px;
+            content: 'left';
+        }
+
+        #query{
+            margin: 50px;
+        }
+
+        table{
+            border-collapse: collapse;
+            margin: 0 0 0 50px;
+            width: 1000px;
+            border: 1px solid #000;
+            /*background-color: #FD6500;*/
+        }
+
+        table th{
+            background-color:silver;
+            border: 1px solid #000;
+            padding: 5px;
+        }
+        table td{
+            border: 1px solid #000;
+            background-color: #99CC99;
+            text-align: center;
+        }
+        table tbody td{
+            padding: 5px ;
+            background-color: #42b983;
+            border: 1px solid #000;
+        }
+    </style>
+    <script src="js/jquery-1.11.1.js"></script>
+    <script>
+        window.onload=function (ev) {
+            $("#add").click(function () {
+                $.ajax({
+                        url:"localhost:8080/live/toolbar/overtrule/edit",
+                        type:"post",
+                        dataType:"json",
+                        data:{
+                            ruleName:"游戏房间",
+                            gameId:100,
+                            applicationId:1,
+                            op:1
+                        },
+                        success:function (data) {//请求成功
+                            console.log("request success:data="+data);
+                            $("#info").html("result:<br>"+data);
+                        },
+                        error:function (xhr,msg,exception) {//请求出错
+                            console.log("request error:msg="+msg);
+                        },
+                        timeout:30000,//设置请求超时时间，此设置将覆盖全局设置（毫秒值）
+                        async:true//是否异步
+                    }
+                );
+
+            });
+            $("#del").click(function () {
+
+            });
+            $("#query").click(function () {
+                $.ajax({
+                        url:"http://localhost:8080/live/toolbar/overtrule/list",
+                        type:"get",
+                        dataType:"json",
+                        success:function (data) {//请求成功
+                            console.log("request success:data="+data);
+                            // $("#info").html("result:<br>"+JSON.stringify(data));
+                            $("#table_body").empty();
+                            var list=data.data.list;
+                            $("#info").html("result:<br>"+JSON.stringify(list))
+                            for (var i = 0; i < list.length; i++) {
+                                var $trTemp=$("<tr></tr>");
+                                $trTemp.append("<td>"+list[i].ruleId+"</td>");
+                                $trTemp.append("<td>"+list[i].ruleName+"</td>");
+                                $trTemp.append("<td>"+list[i].gameName+"</td>");
+                                $trTemp.append("<td>"+list[i].applicationName+"</td>");
+
+                                var statusStr="下线";
+                                statusStr=list[i].status==0?"下线":"上线";
+                                $trTemp.append("<td>"+statusStr+"</td>");
+
+                                $trTemp.append("<td><a>删除</a></td>");
+                                $trTemp.appendTo("#table_body");
+                            }
+                        },
+                        error:function (xhr,msg,exception) {//请求出错
+                            $("#info").html("result:<br>"+"msg="+msg+"<br>exceptoin="+exception.toLocaleString());
+                        },
+                        timeout:30000,//设置请求超时时间，此设置将覆盖全局设置（毫秒值）
+                        async:true//是否异步
+                    }
+                );
+
+            });
+        }
+    </script>
+</head>
+<body>
+    <p id="info"><br>
+    <form action="localhost:8080/live/toolbar/overtrule/edit" method="post">
+        <input type="text" placeholder="名称(ruleName)" id="ruleName" name="ruleName">
+        <input type="text" placeholder="开播类型(gameName)" id="gameName" name="gameName">
+        <input type="text" placeholder="外显类型(applicationName)" id="applicationName" name="applicationName">
+        <input type="button" value="添加" type="submit"><br>
+    </form>
+
+    <div>
+        <input type="button" value="刷新列表" id="query">
+    </div>
+<table id="table">
+    <thead>
+        <tr>
+            <th>序号</th>
+            <th>名称</th>
+            <th>开播类型</th>
+            <th>外显类型</th>
+            <th>状态</th>
+            <th>编辑</th>
+        </tr>
+    </thead>
+    <tbody id="table_body">
+    </tbody>
+</table>
+</body>
+</html>
